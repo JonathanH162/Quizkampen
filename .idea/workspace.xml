@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Initial commit" />
+    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/Test" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +34,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "/Users/johnnoren/Repositories/oopj/assignments/Quizkampen",
+    "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Client">
@@ -78,6 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668764161276</updated>
       <workItem from="1668764162903" duration="2221000" />
+      <workItem from="1668768294925" duration="89000" />
     </task>
     <task id="LOCAL−00001" summary="Initial commit">
       <created>1668766286246</created>
