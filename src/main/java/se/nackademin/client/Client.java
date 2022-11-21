@@ -1,4 +1,4 @@
-package quizkampen.client;
+package se.nackademin.client;
 
 import java.io.*;
 import java.net.InetAddress;

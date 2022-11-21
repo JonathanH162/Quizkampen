@@ -1,7 +1,7 @@
-package quizkampen.server.states;
+package se.nackademin.server.states;
 
-import quizkampen.server.events.ClientOneReady;
-import quizkampen.server.events.ClientTwoReady;
+import se.nackademin.server.events.ClientOneReady;
+import se.nackademin.server.events.ClientTwoReady;
 
 public class InitialState implements State {
 

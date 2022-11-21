@@ -1,4 +1,4 @@
-package quizkampen.server;
+package se.nackademin.server;
 
 
 import java.io.IOException;

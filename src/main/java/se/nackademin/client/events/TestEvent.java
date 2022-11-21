@@ -1,6 +1,6 @@
-package quizkampen.client.events;
+package se.nackademin.client.events;
 
-import quizkampen.client.states.State;
+import se.nackademin.client.states.State;
 
 public class TestEvent implements Event {
 

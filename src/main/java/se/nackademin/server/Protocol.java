@@ -1,8 +1,8 @@
-package quizkampen.server;
+package se.nackademin.server;
 
-import quizkampen.server.states.InitialState;
-import quizkampen.server.states.State;
-import quizkampen.server.events.Event;
+import se.nackademin.server.events.Event;
+import se.nackademin.server.states.InitialState;
+import se.nackademin.server.states.State;
 
 public class Protocol {
     private State currentState = new InitialState();

@@ -1,6 +1,6 @@
-package quizkampen.client.states;
+package se.nackademin.client.states;
 
-import quizkampen.client.events.TestEvent;
+import se.nackademin.client.events.TestEvent;
 
 public class InitialState implements State {
 

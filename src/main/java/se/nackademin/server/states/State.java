@@ -1,6 +1,7 @@
-package quizkampen.server.states;
+package se.nackademin.server.states;
 
-import quizkampen.server.events.*;
+import se.nackademin.server.events.ClientOneReady;
+import se.nackademin.server.events.ClientTwoReady;
 
 public interface State {
 

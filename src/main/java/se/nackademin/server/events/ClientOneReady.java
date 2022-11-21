@@ -1,6 +1,6 @@
-package quizkampen.server.events;
+package se.nackademin.server.events;
 
-import quizkampen.server.states.State;
+import se.nackademin.server.states.State;
 
 public class ClientOneReady implements Event{
     @Override

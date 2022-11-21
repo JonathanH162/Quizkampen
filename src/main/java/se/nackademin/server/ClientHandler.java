@@ -1,4 +1,4 @@
-package quizkampen.server;
+package se.nackademin.server;
 
 public class ClientHandler implements Runnable {
 private final ClientConnection clientConnectionOne;
