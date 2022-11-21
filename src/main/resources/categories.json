@@ -1,0 +1,69 @@
+{
+  "categories": [
+    {
+      "name": "Historia",
+      "cards": [
+        {
+          "question": "Vilken historisk person är känd som 'Il Duce'?",
+          "possibleAnswer": ["Benito Mussolini","Julias Cesar", "Josef Stalin", "Jesu"],
+          "correctAnswer": "Benito Mussolini"
+        },
+        {
+          "question": "Vad användes Judestjärnan till under Andra världskriget?,",
+          "possibleAnswer": ["Märkning av judar", "Fredssymbol för judarna", "Förföra judarna", "Att leda judarna"],
+          "correctAnswer": "Märkning av judar"
+        },
+        {
+          "question": "Var ligger den katolska nunnan Moder Teresa begraven?",
+          "possibleAnswer": ["Indien", "Frankrike", "Italien", "Albanien"],
+          "correctAnswer": "Indien"
+        },
+        {
+          "question": "I vilken fransk stad evakuerades nästan 350.000 allierade soldater under Andra världskriget?",
+          "possibleAnswer": ["Dunkerque","Brest", "Dunkerque", "Calais", "Le Havre"],
+          "correctAnswer": "Dunkerque"
+        },
+        {
+          "question": "Under vilket namn är Manfred Freiherr von Richthofen bättre känd?",
+          "possibleAnswer": ["Röde baronen", "Napoleon", "Hitler", "Bismarck", "Röde baronen"],
+          "correctAnswer": "Röde baronen"
+        }
+      ]
+    },
+    {
+      "name": "Sport",
+      "cards": [
+        {
+          "question": "Hur lång är distansen för ett maratonlopp?",
+          "possibleAnswer": ["26,2 mil","26,3 mil", "26 mil", "27,2 mil", "27 mil"],
+          "correctAnswer": "26,2 mil"
+        },
+        {
+          "question": "Vilka är de fem färgerna på ringen för de olympiska spelen?",
+          "possibleAnswer": ["Blå, röd, gul, grön och svart", "Blå, röd, gul, grön och violett", "Indigo, röd, lila, grön och svart", "Blå, röd, gul, orange och grön"],
+          "correctAnswer": "Blå, röd, gul, grön och svart"
+        },
+        {
+          "question": "  Hur många gånger vann Michael Jordan mästerskap för Chicago Bulls?",
+          "possibleAnswer": ["5", "7", "6", "4"],
+          "correctAnswer": "6"
+        },
+        {
+          "question": "  Vilken sport har utrustning som heter foil?",
+          "possibleAnswer": ["fäktning","polo", "golf", "boxning"],
+          "correctAnswer": "fäktning"
+        },
+        {
+          "question": " Vilken OS -sport innefattar tuckar och gäddor?",
+          "possibleAnswer": ["simning","fäktning","simning", "bowling", "polo"],
+          "correctAnswer": "simning"
+        },
+        {
+          "question": "  Manny Pacquiao är en legendarisk boxare från vilket land?",
+          "possibleAnswer": ["Filippinerna", "Korea", "Kina", "Mexiko"],
+          "correctAnswer": "Filippinerna"
+        }
+      ]
+    }
+  ]
+}
