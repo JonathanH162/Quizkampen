@@ -1,2 +1,23 @@
 # Quizkampen
 Inlämningsuppgift 4 av Bahareh, John, Jonathan Hellgren och Pontus.
+
+## Git workflow:
+
+Få ner koden till datorn (görs bara en gång):
+https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/
+
+### När ett kort i Trello ska kodas:
+1. Skapa en ny branch från master branch:
+   https://www.jetbrains.com/help/idea/manage-branches.html
+2. Välj att den nya lokala branchen ska vara den aktiva genom att högerklicka på den och välja ”Checkout”.
+3. Skriv kod och gör commits.
+4. Välj att lokala master ska vara den aktiva genom att högerklicka på den och välja ”Checkout”.
+5. Uppdatera lokala master genom att göra en pull från remote master:
+   https://www.jetbrains.com/help/idea/sync-with-a-remote-repository.html#pull
+7. Gör en merge till lokala master genom att högerklicka på den nya branchen och välja ”merge into current”:
+   https://www.jetbrains.com/help/idea/apply-changes-from-one-branch-to-another.html#merge
+8. Uppdatera remote master genom att göra en push:
+   https://www.jetbrains.com/help/idea/commit-and-push-changes.html#push
+9. Kolla på github i webbläsaren att ändringarna syns i koden där.
+10. När du är säker på att dina ändringar syns på github i webbläsaren kan du ta bort branchen:
+    https://www.jetbrains.com/help/idea/manage-branches.html#delete-branch
