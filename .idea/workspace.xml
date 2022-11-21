@@ -2,8 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/Test" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/states/InitialState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/states/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/ClientConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/ClientHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/Protocol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quizkampen/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quizkampen/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quizkampen/Test" beforeDir="false" />
     </list>
+    <list id="f378f29a-cbc2-422a-8c4e-15b49ec63996" name="Changes by johnnoren" comment="">
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/events/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/events/TestEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/ClientOneReady.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/ClientTwoReady.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/states/InitialState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/states/State.java" afterDir="false" />
+    </list>
+    <list id="eaa77889-f9f6-4ad6-9491-092ff06344fb" name="Changes by jonat" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +34,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -34,19 +57,25 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "/Users/johnnoren/Repositories/oopj/assignments/Quizkampen",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="quizkampen.Client" />
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="quizkampen" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ServerApp">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="quizkampen.client.Client" />
       <module name="Quizkampen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="quizkampen.*" />
+          <option name="PATTERN" value="quizkampen.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -55,11 +84,11 @@
       </method>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="quizkampen.Server" />
+      <option name="MAIN_CLASS_NAME" value="quizkampen.server.Server" />
       <module name="Quizkampen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="quizkampen.*" />
+          <option name="PATTERN" value="quizkampen.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -67,8 +96,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="quizkampen.server.ServerApp" />
+      <module name="Quizkampen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="quizkampen.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
       </list>
