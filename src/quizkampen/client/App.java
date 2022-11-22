@@ -5,6 +5,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class App extends JFrame implements ActionListener {
@@ -15,6 +17,9 @@ public class App extends JFrame implements ActionListener {
     String category = "Category";
     Font font = new Font("",Font.PLAIN,20);
     JPanel mainPanel = new JPanel();
+    JPanel lobbyScreenPanel = new JPanel();
+    JPanel questionScreenPanel = new JPanel();
+    JPanel categoryScreenPanel = new JPanel();
     JPanel namePanel = new JPanel();
     JPanel totalScorePanel = new JPanel();
     JPanel pointPanel1 = new JPanel();
@@ -29,30 +34,23 @@ public class App extends JFrame implements ActionListener {
     JLabel totalScoreCounter2 = new JLabel(String.valueOf(player2TotalPoints));
     JPanel answerButtonPanel = new JPanel();
     JLabel questionLabel = new JLabel("Question", SwingConstants.CENTER);
-    JButton answerButton1 = new JButton("Answer 1");
-    JButton answerButton2 = new JButton("Answer 2");
-    JButton answerButton3 = new JButton("Answer 3");
-    JButton answerButton4 = new JButton("Answer 4");
     JPanel categoryButtonPanel = new JPanel();
     JLabel categoryLabel = new JLabel("Choose a Category!", SwingConstants.CENTER);
-    JButton categoryButton1 = new JButton("Category 1");
-    JButton categoryButton2 = new JButton("Category 2");
-    JButton categoryButton3 = new JButton("Category 3");
-    JButton categoryButton4 = new JButton("Category 4");
-    JButton categoryButton5 = new JButton("Category 5");
-    JButton categoryButton6 = new JButton("Category 6");
+    ArrayList<JButton> categoryButtonList = new ArrayList<>();
+    ArrayList<JButton> answerButtonList = new ArrayList<>();
 
 
 
     App() {
         this.add(mainPanel);
-        appScoreBoard();
-    }
-    public void appScoreBoard () {
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(namePanel, BorderLayout.NORTH);
-        mainPanel.add(categoryAndPointPanel, BorderLayout.CENTER);
-        mainPanel.add(playButton, BorderLayout.SOUTH);
+        mainPanel.add(lobbyScreenPanel);
+        mainPanel.add(questionScreenPanel);
+        mainPanel.add(categoryScreenPanel);
+
+        lobbyScreenPanel.setLayout(new BorderLayout());
+        lobbyScreenPanel.add(namePanel, BorderLayout.NORTH);
+        lobbyScreenPanel.add(categoryAndPointPanel, BorderLayout.CENTER);
+        lobbyScreenPanel.add(playButton, BorderLayout.SOUTH);
         playButton.addActionListener(this);
         namePanel.setLayout(new BorderLayout());
         namePanel.setBorder(new EmptyBorder(10,10,10,10));
@@ -74,10 +72,30 @@ public class App extends JFrame implements ActionListener {
         totalScorePanel.setBorder(new EmptyBorder(10,30,10,30));
         categoryAndPointPanel.add(totalScorePanel);
 
+
+        questionScreenPanel.setLayout(new BorderLayout());
+        questionLabel.setFont(font);
+        questionScreenPanel.add(questionLabel, BorderLayout.NORTH);
+        questionScreenPanel.add(answerButtonPanel, BorderLayout.CENTER);
+        answerButtonPanel.setLayout(new GridLayout(2,2));
+        addButtonsToList(answerButtonList,4,"Answer");
+        addButtonsToPanel(answerButtonList,answerButtonPanel);
+
+
+        categoryScreenPanel.setLayout(new BorderLayout());
+        categoryLabel.setFont(font);
+        categoryScreenPanel.add(categoryLabel, BorderLayout.NORTH);
+        categoryScreenPanel.add(categoryButtonPanel, BorderLayout.CENTER);
+        categoryButtonPanel.setLayout(new GridLayout(2,3));
+        addButtonsToList(categoryButtonList,6,"Category");
+        addButtonsToPanel(categoryButtonList,categoryButtonPanel);
+
         setTitle("Quizkampen");
-        setSize(300,400);
+        setSize(350,400);
         setLocationRelativeTo(null);
         setVisible(true);
+        categoryScreenPanel.setVisible(false);
+        questionScreenPanel.setVisible(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public JPanel addPointPanel(JPanel pointPanel) {
@@ -87,80 +105,47 @@ public class App extends JFrame implements ActionListener {
         pointPanel.setBorder(new EmptyBorder(10,30,10,30));
         return pointPanel;
     }
-    public void appQuestions () {
-        questionLabel.setFont(font);
-        mainPanel.add(questionLabel, BorderLayout.NORTH);
-        mainPanel.add(answerButtonPanel, BorderLayout.CENTER);
-        answerButtonPanel.setLayout(new FlowLayout());
-        answerButtonPanel.add(answerButton1);
-        answerButton1.addActionListener(this);
-        answerButton1.setPreferredSize(new Dimension(100,100));
-        answerButtonPanel.add(answerButton2);
-        answerButton2.addActionListener(this);
-        answerButton2.setPreferredSize(new Dimension(100,100));
-        answerButtonPanel.add(answerButton3);
-        answerButton3.addActionListener(this);
-        answerButton3.setPreferredSize(new Dimension(100,100));
-        answerButtonPanel.add(answerButton4);
-        answerButton4.addActionListener(this);
-        answerButton4.setPreferredSize(new Dimension(100,100));
-
-        setVisible(true);
+    public void addButtonsToList(java.util.List<JButton> buttons, Integer amount, String buttonText) {
+        if (!buttons.isEmpty()) {
+            buttons.clear();
+        }
+        for (int i = 0; i < amount; i++) {
+            buttons.add(new JButton(buttonText + " " + (i + 1)));
+        }
     }
-    public void appCategories () {
-        categoryLabel.setFont(font);
-        mainPanel.add(categoryLabel, BorderLayout.NORTH);
-        mainPanel.add(categoryButtonPanel, BorderLayout.CENTER);
-        categoryButtonPanel.setLayout(new FlowLayout());
-        categoryButtonPanel.add(categoryButton1);
-        categoryButton1.addActionListener(this);
-        categoryButton1.setPreferredSize(new Dimension(100,100));
-        categoryButtonPanel.add(categoryButton2);
-        categoryButton2.addActionListener(this);
-        categoryButton2.setPreferredSize(new Dimension(100,100));
-        categoryButtonPanel.add(categoryButton3);
-        categoryButton3.addActionListener(this);
-        categoryButton3.setPreferredSize(new Dimension(100,100));
-        categoryButtonPanel.add(categoryButton4);
-        categoryButton4.addActionListener(this);
-        categoryButton4.setPreferredSize(new Dimension(100,100));
-        categoryButtonPanel.add(categoryButton5);
-        categoryButton5.addActionListener(this);
-        categoryButton5.setPreferredSize(new Dimension(100,100));
-        categoryButtonPanel.add(categoryButton6);
-        categoryButton6.addActionListener(this);
-        categoryButton6.setPreferredSize(new Dimension(100,100));
-
-        setVisible(true);
+    public void addButtonsToPanel(List<JButton> buttons, JPanel buttonPanel) {
+        for (JButton button : buttons) {
+            buttonPanel.add(button);
+            button.setPreferredSize(new Dimension(100, 100));
+            button.addActionListener(this);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        for (JButton button : categoryButtonList) {
+            if (e.getSource() == button) {
+                categoryScreenPanel.setVisible(false);
+                questionScreenPanel.setVisible(true);
+                repaint();
+                revalidate();
+            }
+            for (JButton jButton : answerButtonList) {
+                if (e.getSource() == jButton) {
+                    questionScreenPanel.setVisible(false);
+                    lobbyScreenPanel.setVisible(true);
+                    repaint();
+                    revalidate();
+                }
+            }
+        }
         if (e.getSource() == playButton) {
-            mainPanel.remove(namePanel);
-            mainPanel.remove(categoryAndPointPanel);
-            mainPanel.remove(playButton);
-            appCategories();
-            repaint();
-            revalidate();
-        }
-        else if (e.getSource() == categoryButton1 || e.getSource() == categoryButton2 || e.getSource() == categoryButton3
-                || e.getSource() == categoryButton4 || e.getSource() == categoryButton5 || e.getSource() == categoryButton6) {
-            mainPanel.remove(categoryLabel);
-            mainPanel.remove(categoryButtonPanel);
-            appQuestions();
-            repaint();
-            revalidate();
-        }
-        else if (e.getSource() == answerButton1 ||e.getSource() == answerButton2 ||e.getSource() == answerButton3 ||e.getSource() == answerButton4) {
-            mainPanel.remove(questionLabel);
-            mainPanel.remove(answerButtonPanel);
-            appScoreBoard();
+            lobbyScreenPanel.setVisible(false);
+            categoryScreenPanel.setVisible(true);
             repaint();
             revalidate();
         }
     }
-
     public static class Main {
         public static void main(String[] args) {
             App app = new App();
