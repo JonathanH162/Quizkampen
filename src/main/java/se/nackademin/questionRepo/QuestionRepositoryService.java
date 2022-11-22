@@ -1,20 +1,20 @@
-package se.nackademin;
+package se.nackademin.questionRepo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import se.nackademin.model.Card;
-import se.nackademin.model.Category;
-import se.nackademin.model.QuestionsRepository;
+import se.nackademin.questionRepo.model.Card;
+import se.nackademin.questionRepo.model.Category;
+import se.nackademin.questionRepo.model.QuestionsRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionManager {
+public class QuestionRepositoryService {
 
     private List<Category> categories;
 
-    public QuestionManager() {
+    public QuestionRepositoryService() {
         categories = getCategories("categories.json");
     }
 
