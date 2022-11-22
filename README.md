@@ -1,6 +1,20 @@
 # Quizkampen
 Inlämningsuppgift 4 av Bahareh, John, Jonathan Hellgren och Pontus.
 
+Detta program är en simulering av mobilspelet (Quiz Battle) för studieändamål.
+I den här applikationen har vi försökt skapa en enkel funktionalitet för "Hem" och "Klassiskt läge" som i riktiga spel.
+
+Länken för spel:
+* [För Android](https://play.google.com/store/apps/details?id=se.maginteractive.quizduel2&hl=sv&gl=US&pli=1)
+* [För Mac](https://apps.apple.com/se/app/quizkampen/id1484354626)
+
+### Beskrivning:
+
+Spelet går ut på att man tävlar, två och två per spel, om att svara rätt på quiz-frågor.
+Frågorna har olika kategorier och man turas om att välja vilken kategori man ska få frågor
+ifrån. Under en omgång får man frågor från en vald kategori, efter varje omgång summeras
+poängställningen. Man spelar ett visst antal omgångar innan den totala poängen räknas.
+Den spelare som har flest poäng när spelet är slut har vunnit.
 ## Git workflow:
 
 Få ner koden till datorn (görs bara en gång):

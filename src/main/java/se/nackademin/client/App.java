@@ -1,4 +1,4 @@
-package quizkampen.client;
+package se.nackademin.client;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
