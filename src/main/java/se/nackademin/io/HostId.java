@@ -1,7 +1,7 @@
 package se.nackademin.io;
 
-public enum Destination {
-	SELF,
+public enum HostId {
+	EMPTY,
 	SERVER,
 	CLIENT_ONE,
 	CLIENT_TWO

@@ -1,15 +1,11 @@
 package se.nackademin.client;
 
-import se.nackademin.io.eventrouters.ClientEventRouter;
-import se.nackademin.io.eventrouters.ServerEventRouter;
+import se.nackademin.io.eventmanagers.ClientEventManager;
 import se.nackademin.protocol.Protocol;
-import se.nackademin.server.Server;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client {
 
@@ -21,7 +17,7 @@ public class Client {
 			while (true) {
 
 				System.out.println("Assigning IO streams.");
-				var eventRouter = new ClientEventRouter(socket);
+				var eventRouter = new ClientEventManager(socket);
 
 				System.out.println("Starting protocol thread.");
 				new Thread(new Protocol(eventRouter)).start();

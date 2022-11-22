@@ -1,13 +1,15 @@
 package se.nackademin.model;
 
-import se.nackademin.model.events.ReadyEvent;
-import se.nackademin.model.events.SetSourceIdEvent;
-import se.nackademin.io.eventrouters.EventRouter;
+import se.nackademin.io.eventmanagers.EventManager;
 
-public interface State {
+public abstract class State {
 
-    State process(SetSourceIdEvent event, EventRouter eventRouter);
-    State process(ReadyEvent event, EventRouter eventRouter);
+    protected final EventManager eventManager;
 
-    // TODO add all possible events.
+    public State(EventManager eventManager) {
+        this.eventManager = eventManager;
+    }
+
+    public abstract State transitionToNextState();
+
 }

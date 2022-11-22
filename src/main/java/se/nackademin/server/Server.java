@@ -1,6 +1,6 @@
 package se.nackademin.server;
 
-import se.nackademin.io.eventrouters.ServerEventRouter;
+import se.nackademin.io.eventmanagers.ServerEventManager;
 import se.nackademin.protocol.Protocol;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class Server {
 				System.out.println(clientTwo + " has connected.");
 
 				System.out.println("Assigning IO streams.");
-				var eventRouter = new ServerEventRouter(clientOne, clientTwo);
+				var eventRouter = new ServerEventManager(clientOne, clientTwo);
 
 				System.out.println("Assigning client ID's");
 
