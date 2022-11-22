@@ -1,26 +1,38 @@
 package se.nackademin.client;
 
+import se.nackademin.io.eventrouters.ClientEventRouter;
+import se.nackademin.io.eventrouters.ServerEventRouter;
+import se.nackademin.protocol.Protocol;
+import se.nackademin.server.Server;
+
 import java.io.*;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
-    private Socket socket;
-    private static int PORT = 1337;
-    private InetAddress IP;
 
-    private ObjectInputStream objectInputStream;
-    private ObjectOutputStream objectOutputStream;
+	private final int port = 1337;
 
-    public Client() throws IOException {
-        IP = InetAddress.getLocalHost();
-        socket = new Socket(IP, PORT);
-        objectInputStream = new ObjectInputStream(socket.getInputStream());
-        objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-    }
+	public Client() {
+		System.out.println("Client started.");
+		try (var socket = new Socket(InetAddress.getLocalHost(), port)) {
+			while (true) {
 
-    public static void main(String[] args) throws IOException {
-        new Client();
-    }
+				System.out.println("Assigning IO streams.");
+				var eventRouter = new ClientEventRouter(socket);
+
+				System.out.println("Starting protocol thread.");
+				new Thread(new Protocol(eventRouter)).start();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static void main(String[] args) {
+		new Client();
+	}
+
 }

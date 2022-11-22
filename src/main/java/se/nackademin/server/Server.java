@@ -1,6 +1,7 @@
 package se.nackademin.server;
 
-import se.nackademin.server.io.EventRouter;
+import se.nackademin.io.eventrouters.ServerEventRouter;
+import se.nackademin.protocol.Protocol;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,12 +9,9 @@ import java.net.Socket;
 
 public class Server {
 
-	private ServerSocket serverSocket;
-
-	public Server() throws IOException {
-		serverSocket = new ServerSocket(1337);
+	public Server() {
 		System.out.println("Server started.");
-		try {
+		try (var serverSocket = new ServerSocket(1337)) {
 			while (true) {
 				Socket clientOne = serverSocket.accept();
 				System.out.println(clientOne + " has connected.");
@@ -22,17 +20,19 @@ public class Server {
 				System.out.println(clientTwo + " has connected.");
 
 				System.out.println("Assigning IO streams.");
-				var eventRouter = new EventRouter(clientOne, clientTwo);
+				var eventRouter = new ServerEventRouter(clientOne, clientTwo);
 
-				System.out.println("Starting client-handler thread.");
+				System.out.println("Assigning client ID's");
+
+				System.out.println("Starting protocol thread.");
 				new Thread(new Protocol(eventRouter)).start();
 			}
-		} finally {
-			serverSocket.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		new Server();
 	}
 

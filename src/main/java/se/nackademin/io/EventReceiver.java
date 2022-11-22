@@ -1,6 +1,6 @@
-package se.nackademin.server.io;
+package se.nackademin.io;
 
-import se.nackademin.events.Event;
+import se.nackademin.model.events.Event;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
