@@ -1,13 +1,23 @@
 package se.nackademin.server;
 
-import se.nackademin.server.events.Event;
+import se.nackademin.server.io.EventRouter;
 import se.nackademin.server.states.InitialState;
 import se.nackademin.server.states.State;
 
-public class Protocol {
+public class Protocol implements Runnable {
     private State currentState = new InitialState();
 
-    public void transition(Event event) {
-        currentState = event.processMe(currentState);
+private final EventRouter eventRouter;
+
+    public Protocol(EventRouter eventRouter) {
+        this.eventRouter = eventRouter;
     }
+
+    @Override
+    public void run() {
+        while(true) {
+                currentState = eventRouter.getEvent().processMe(currentState, eventRouter);
+        }
+    }
+
 }

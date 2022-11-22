@@ -1,7 +1,7 @@
 package se.nackademin.server.states;
 
-import se.nackademin.server.events.ClientOneReady;
-import se.nackademin.server.events.ClientTwoReady;
+import se.nackademin.events.ClientOneReady;
+import se.nackademin.events.ClientTwoReady;
 
 public class InitialState implements State {
 
