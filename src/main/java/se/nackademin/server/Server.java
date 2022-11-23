@@ -2,7 +2,7 @@ package se.nackademin.server;
 
 import se.nackademin.server.states.InitialState;
 import se.nackademin.io.eventmanagers.ServerEventManager;
-import se.nackademin.protocol.Protocol;
+//import se.nackademin.protocol.Protocol;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -29,7 +29,7 @@ public class Server {
 
 				System.out.println("Starting protocol thread.");
 				var initialState = new InitialState(eventManager);
-				new Thread(new Protocol(initialState)).start();
+				//new Thread(new Protocol(initialState)).start();
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
