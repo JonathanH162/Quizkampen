@@ -1,5 +1,6 @@
 package se.nackademin.server;
 
+import se.nackademin.server.states.InitialState;
 import se.nackademin.io.eventmanagers.ServerEventManager;
 import se.nackademin.protocol.Protocol;
 
@@ -9,7 +10,11 @@ import java.net.Socket;
 
 public class Server {
 
-	public Server() {
+	public static void main(String[] args) {
+		new Server().run();
+	}
+
+	private void run() {
 		System.out.println("Server started.");
 		try (var serverSocket = new ServerSocket(1337)) {
 			while (true) {
@@ -20,20 +25,14 @@ public class Server {
 				System.out.println(clientTwo + " has connected.");
 
 				System.out.println("Assigning IO streams.");
-				var eventRouter = new ServerEventManager(clientOne, clientTwo);
-
-				System.out.println("Assigning client ID's");
+				var eventManager = new ServerEventManager(clientOne, clientTwo);
 
 				System.out.println("Starting protocol thread.");
-				new Thread(new Protocol(eventRouter)).start();
+				var initialState = new InitialState(eventManager);
+				new Thread(new Protocol(initialState)).start();
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
-
-	public static void main(String[] args) {
-		new Server();
-	}
-
 }

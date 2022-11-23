@@ -7,7 +7,7 @@ public interface EventManager {
 
 	void setSourceId(HostId hostIdId);
 
-	Event getEvent();
+	Event getNextEvent();
 
 	void sendEvent(Event event);
 

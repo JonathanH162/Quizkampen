@@ -23,16 +23,13 @@ public class ServerEventManager implements EventManager {
 		new Thread(clientTwoSocketOutputQueue).start();
 
 		this.clientSharedSocketInputQueue = new SharedSocketInputQueue<>(socketOne,socketTwo);
-
-		sendEvent(Event.toClientOne(EventType.NEW_ID, HostId.CLIENT_ONE));
-		sendEvent(Event.toClientTwo(EventType.NEW_ID, HostId.CLIENT_TWO));
 	}
 
 	public void setSourceId(HostId hostIdId) {
 		this.hostId = hostIdId;
 	}
 
-	public Event getEvent() {
+	public Event getNextEvent() {
 		return clientSharedSocketInputQueue.take();
 	}
 

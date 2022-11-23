@@ -1,5 +1,6 @@
 package se.nackademin.client;
 
+import se.nackademin.client.states.InitialState;
 import se.nackademin.io.eventmanagers.ClientEventManager;
 import se.nackademin.protocol.Protocol;
 
@@ -11,24 +12,25 @@ public class Client {
 
 	private final int port = 1337;
 
-	public Client() {
+	public static void main(String[] args) {
+		new Client().run();
+	}
+
+	private void run() {
 		System.out.println("Client started.");
-		try (var socket = new Socket(InetAddress.getLocalHost(), port)) {
+		try (var socket = new Socket(InetAddress.getLocalHost().getHostAddress(), port)) {
 			while (true) {
 
 				System.out.println("Assigning IO streams.");
-				var eventRouter = new ClientEventManager(socket);
+				var eventManager = new ClientEventManager(socket);
 
 				System.out.println("Starting protocol thread.");
-				new Thread(new Protocol(eventRouter)).start();
+				var initialState = new InitialState(eventManager);
+				new Thread(new Protocol(initialState)).start();
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public static void main(String[] args) {
-		new Client();
 	}
 
 }

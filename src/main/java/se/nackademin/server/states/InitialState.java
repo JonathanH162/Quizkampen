@@ -1,10 +1,15 @@
 package se.nackademin.server.states;
 
-import se.nackademin.client.states.ClientReadyState;
+import se.nackademin.io.Event;
+import se.nackademin.io.EventType;
 import se.nackademin.io.HostId;
 import se.nackademin.io.eventmanagers.EventManager;
 import se.nackademin.model.State;
 
+/**
+ * The initial state of the server. Sends ID's to the clients to that they know what to put as sender when they send
+ * events to the server.
+ */
 public class InitialState extends State {
 
 	public InitialState(EventManager eventManager) {
@@ -13,14 +18,13 @@ public class InitialState extends State {
 
 	@Override
 	public State transitionToNextState() {
-		var event = eventManager.getEvent();
-		switch (event.getEventType()) {
-			case READY -> {
-				eventManager.setSourceId((HostId) event.getData()); // Set this client's ID to the one in the event.
-				return new ClientReadyState(); // Return the next state.
-			}
-			default -> throw new RuntimeException("Unexpected event: " + event);
-		}
+		var eventToClientOne = Event.toClientOne(EventType.NEW_ID, HostId.CLIENT_ONE);
+		var eventToClientTwo = Event.toClientTwo(EventType.NEW_ID, HostId.CLIENT_TWO);
+
+		eventManager.sendEvent(eventToClientOne);
+		eventManager.sendEvent(eventToClientTwo);
+
+		return new EndState(eventManager);
 	}
 
 }

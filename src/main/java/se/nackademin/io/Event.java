@@ -29,12 +29,24 @@ public class Event implements Serializable {
 		return eventType;
 	}
 
+	public static Event toClientOne(EventType eventType) {
+		return new Event(eventType, HostId.CLIENT_ONE, HostId.EMPTY, new Object());
+	}
+
 	public static Event toClientOne(EventType eventType, Object data) {
 		return new Event(eventType, HostId.CLIENT_ONE, HostId.EMPTY, data);
 	}
 
+	public static Event toClientTwo(EventType eventType) {
+		return new Event(eventType, HostId.CLIENT_TWO, HostId.EMPTY, new Object());
+	}
+
 	public static Event toClientTwo(EventType eventType, Object data) {
 		return new Event(eventType, HostId.CLIENT_TWO, HostId.EMPTY, data);
+	}
+
+	public static Event toServer(EventType eventType) {
+		return new Event(eventType, HostId.SERVER, HostId.EMPTY, new Object());
 	}
 
 	public static Event toServer(EventType eventType, Object data) {

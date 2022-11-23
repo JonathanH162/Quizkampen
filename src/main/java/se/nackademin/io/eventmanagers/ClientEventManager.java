@@ -24,7 +24,7 @@ public class ClientEventManager implements EventManager {
 		this.clientId = hostIdId;
 	}
 
-	public Event getEvent() {
+	public Event getNextEvent() {
 		return socketInputQueue.take();
 	}
 
