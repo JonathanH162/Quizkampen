@@ -9,8 +9,7 @@ import java.util.concurrent.BlockingQueue;
 public abstract class State {
 
 
-    public State() {
-    }
+
 
     public State(View view, BlockingQueue<Event> eventQueue) {
     }
@@ -21,6 +20,6 @@ public abstract class State {
 
     public abstract void setEventManager(EventManager eventManager);
 
-    public abstract State transitionToNextState();
+    public abstract void transitionToNextState();
 
 }

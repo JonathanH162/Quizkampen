@@ -22,11 +22,11 @@ public class InitialState extends State {
 	}
 
 	@Override
-	public State transitionToNextState() {
+	public void transitionToNextState() {
 		BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
 		var view = new View(eventQueue);
 
-		return new WelcomeScreenState(view,eventQueue);
+		new WelcomeScreenState(view,eventQueue).transitionToNextState();
 	}
 
 

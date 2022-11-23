@@ -8,14 +8,10 @@ import se.nackademin.model.State;
 
 import java.util.concurrent.BlockingQueue;
 
-public class WelcomeScreenState extends State {
+public class WaitingScreenState extends State {
 
-	private final View view;
-	private final BlockingQueue<Event> eventQueue;
-
-	public WelcomeScreenState(View view, BlockingQueue<Event> eventQueue) {
-		this.view = view;
-		this.eventQueue = eventQueue;
+	public WaitingScreenState(View view, BlockingQueue<Event> eventQueue) {
+		super(view, eventQueue);
 	}
 
 	@Override
@@ -28,10 +24,13 @@ public class WelcomeScreenState extends State {
 		try {
 			var event = eventQueue.take();
 
-			if (event.getEventType().equals(EventType.START_BUTTON_PRESSED)) {
-				// TODO return next state
+			if (event.getEventType().equals(EventType.CONNECTION_SUCCESS)) {
 				System.out.println("sldkfjslkdjfdlksj");
-				new WaitingScreenState(view,eventQueue).transitionToNextState();
+				new SuccessfulConnectionState(view,eventQueue).transitionToNextState();
+			}
+			else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {
+				System.out.println("FAIL");
+				new UnsuccessfulConnectionState(view,eventQueue).transitionToNextState();
 			}
 
 			throw new RuntimeException("Unexpected event: " + event);

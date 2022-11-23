@@ -15,10 +15,9 @@ public class EndState extends State {
 	}
 
 	@Override
-	public State transitionToNextState() {
+	public void transitionToNextState() {
 		System.out.println("Endstate reached by client.");
 		Thread.currentThread().interrupt();
-		return null;
 	}
 
 }

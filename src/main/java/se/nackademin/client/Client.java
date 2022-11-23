@@ -1,12 +1,6 @@
 package se.nackademin.client;
 
 import se.nackademin.client.states.InitialState;
-import se.nackademin.io.eventmanagers.ClientEventManager;
-import se.nackademin.protocol.Protocol;
-
-import java.io.*;
-import java.net.InetAddress;
-import java.net.Socket;
 
 public class Client {
 
@@ -18,7 +12,7 @@ public class Client {
 
 	private void run() {
 
-		new Thread(new Protocol(new InitialState())).start();
+		new InitialState().transitionToNextState();
 
 
 
