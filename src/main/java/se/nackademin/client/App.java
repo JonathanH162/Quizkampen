@@ -146,9 +146,9 @@ public class App extends JFrame implements ActionListener {
             revalidate();
         }
     }
-    public static class Main {
-        public static void main(String[] args) {
-            App app = new App();
-        }
+
+    public static void main(String[] args) {
+        new App();
     }
+
 }

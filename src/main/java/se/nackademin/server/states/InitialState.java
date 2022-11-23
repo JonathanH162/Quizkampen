@@ -17,14 +17,21 @@ public class InitialState extends State {
 	}
 
 	@Override
+	public void setEventManager(EventManager eventManager) {
+
+	}
+
+	@Override
 	public State transitionToNextState() {
-		var eventToClientOne = Event.toClientOne(EventType.NEW_ID, HostId.CLIENT_ONE);
+
+		return null;
+/*		var eventToClientOne = Event.toClientOne(EventType.NEW_ID, HostId.CLIENT_ONE);
 		var eventToClientTwo = Event.toClientTwo(EventType.NEW_ID, HostId.CLIENT_TWO);
 
 		eventManager.sendEvent(eventToClientOne);
 		eventManager.sendEvent(eventToClientTwo);
 
-		return new EndState(eventManager);
+		return new EndState(eventManager);*/
 	}
 
 }

@@ -1,14 +1,25 @@
 package se.nackademin.model;
 
+import se.nackademin.client.view.View;
+import se.nackademin.io.Event;
 import se.nackademin.io.eventmanagers.EventManager;
+
+import java.util.concurrent.BlockingQueue;
 
 public abstract class State {
 
-    protected final EventManager eventManager;
+
+    public State() {
+    }
+
+    public State(View view, BlockingQueue<Event> eventQueue) {
+    }
 
     public State(EventManager eventManager) {
-        this.eventManager = eventManager;
+        setEventManager(eventManager);
     }
+
+    public abstract void setEventManager(EventManager eventManager);
 
     public abstract State transitionToNextState();
 

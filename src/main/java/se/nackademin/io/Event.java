@@ -53,7 +53,7 @@ public class Event implements Serializable {
 		return new Event(eventType, HostId.SERVER, HostId.EMPTY, data);
 	}
 
-	private Event(EventType eventType, HostId destination, HostId source, Object data) {
+	public Event(EventType eventType, HostId destination, HostId source, Object data) {
 		this.eventType = eventType;
 		this.destination = destination;
 		this.source = source;

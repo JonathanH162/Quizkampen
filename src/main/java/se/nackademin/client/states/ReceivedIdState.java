@@ -10,14 +10,20 @@ public class ReceivedIdState extends State {
 	}
 
 	@Override
+	public void setEventManager(EventManager eventManager) {
+
+	}
+
+	@Override
 	public State transitionToNextState() {
-		System.out.println("Client is waiting for the next event.");
+/*		System.out.println("Client is waiting for the next event.");
 		var event = eventManager.getNextEvent();
 		switch (event.getEventType()) {
 			case GAME_OVER -> {
 				return new EndState(eventManager);
 			}
 			default -> throw new RuntimeException("Unexpected event: " + event);
-		}
+		}*/
+		return null;
 	}
 }

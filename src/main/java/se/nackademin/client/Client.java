@@ -17,7 +17,12 @@ public class Client {
 	}
 
 	private void run() {
-		System.out.println("Client started.");
+
+		new Thread(new Protocol(new InitialState())).start();
+
+
+
+/*		System.out.println("Client started.");
 		try (var socket = new Socket(InetAddress.getLocalHost().getHostAddress(), port)) {
 			while (true) {
 
@@ -31,6 +36,8 @@ public class Client {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}*/
+
 	}
 
 }

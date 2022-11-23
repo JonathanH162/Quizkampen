@@ -5,8 +5,13 @@ import se.nackademin.model.State;
 
 public class EndState extends State {
 
-	public EndState(EventManager eventManager) {
-		super(eventManager);
+	public EndState() {
+		super();
+	}
+
+	@Override
+	public void setEventManager(EventManager eventManager) {
+
 	}
 
 	@Override

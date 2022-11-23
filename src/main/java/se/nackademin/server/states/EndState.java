@@ -10,6 +10,11 @@ public class EndState extends State {
 	}
 
 	@Override
+	public void setEventManager(EventManager eventManager) {
+
+	}
+
+	@Override
 	public State transitionToNextState() {
 		System.out.println("Endstate reached by server.");
 		Thread.currentThread().interrupt();
