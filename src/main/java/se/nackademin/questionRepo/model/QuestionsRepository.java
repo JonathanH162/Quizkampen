@@ -1,4 +1,4 @@
-package se.nackademin.model;
+package se.nackademin.questionRepo.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

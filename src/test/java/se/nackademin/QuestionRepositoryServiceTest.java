@@ -1,14 +1,15 @@
 package se.nackademin;
 
 import org.junit.jupiter.api.Test;
-import se.nackademin.model.Category;
+import se.nackademin.questionRepo.QuestionRepositoryService;
+import se.nackademin.questionRepo.model.Category;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QuestionManagerTest {
-    private QuestionManager sut = new QuestionManager();
+class QuestionRepositoryServiceTest {
+    private QuestionRepositoryService sut = new QuestionRepositoryService();
 
     @Test
     void should_return_correct_List_of_json_File() {
