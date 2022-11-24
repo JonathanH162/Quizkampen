@@ -3,11 +3,11 @@ package se.nackademin.client.states;
 import se.nackademin.io.Event;
 import se.nackademin.client.view.View;
 import se.nackademin.io.EventType;
-
+import se.nackademin.io.eventmanagers.ClientEventManager;
 
 public class InitialState implements ClientState {
 	@Override
-	public ClientState transitionToNextState(Event event, View view) {
+	public ClientState transitionToNextState(Event event, View view, ClientEventManager eventManager) {
 		if (event.getEventType().equals(EventType.INITIAL_EVENT)) {
 			view.initiateView();
 		} else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {

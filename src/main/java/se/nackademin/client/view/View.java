@@ -12,7 +12,35 @@ public class View extends JFrame {
 	private JPanel mainPanel;
 	JButton playButton;
 	JLabel welcomeLabel;
-	BlockingQueue<Event> eventQueue;
+	ClientEventManager clientEventManager;
+	int player1RoundPoints = 0;
+	int player2RoundPoints = 0;
+	int player1TotalPoints = 0;
+	int player2TotalPoints = 0;
+	String category = "Category";
+	Font font = new Font("", Font.PLAIN, 20);
+	JPanel mainPanel = new JPanel();
+	JPanel lobbyScreenPanel = new JPanel();
+	JPanel questionScreenPanel = new JPanel();
+	JPanel categoryScreenPanel = new JPanel();
+	JPanel namePanel = new JPanel();
+	JPanel totalScorePanel = new JPanel();
+	JPanel pointPanel1 = new JPanel();
+	JPanel pointPanel2 = new JPanel();
+	JPanel pointPanel3 = new JPanel();
+	JPanel categoryAndPointPanel = new JPanel();
+	JLabel nameLabel1 = new JLabel("Player 1");
+	JLabel nameLabel2 = new JLabel("Player 2");
+	JLabel totalScoreLabel = new JLabel("Total Score", SwingConstants.CENTER);
+	JButton playButton = new JButton("Next Round");
+	JLabel totalScoreCounter1 = new JLabel(String.valueOf(player1TotalPoints));
+	JLabel totalScoreCounter2 = new JLabel(String.valueOf(player2TotalPoints));
+	JPanel answerButtonPanel = new JPanel();
+	JLabel questionLabel = new JLabel("Question", SwingConstants.CENTER);
+	JPanel categoryButtonPanel = new JPanel();
+	JLabel categoryLabel = new JLabel("Choose a Category!", SwingConstants.CENTER);
+	ArrayList<JButton> categoryButtonList = new ArrayList<>();
+	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
 	public View(BlockingQueue<Event> eventQueue) throws HeadlessException {
 		this.eventQueue = eventQueue;
@@ -28,14 +56,7 @@ public class View extends JFrame {
 		mainPanel.add(welcomeLabel);
 		mainPanel.add(playButton);
 
-		playButton.addActionListener(e -> {
-			var event = new Event(EventType.START_BUTTON_PRESSED, HostId.EMPTY,HostId.EMPTY,new Object());
-			try {
-				eventQueue.put(event);
-			} catch (InterruptedException ex) {
-				throw new RuntimeException(ex);
-			}
-		});
+		playButton.addActionListener(e -> clientEventManager.sendEvent(Event.toSelf(EventType.START_BUTTON_PRESSED)));
 		setTitle("Quizkampen");
 		setSize(350, 400);
 		setLocationRelativeTo(null);
@@ -149,4 +170,8 @@ public class View extends JFrame {
 			revalidate();
 		}
 	}
+
+	public void unsuccessfulConnectionScreen() {
+	}
+
 }

@@ -2,13 +2,20 @@ package se.nackademin.client.states;
 
 import se.nackademin.client.view.View;
 import se.nackademin.io.Event;
+import se.nackademin.io.EventType;
+import se.nackademin.io.eventmanagers.ClientEventManager;
 
 public class SuccessfulConnectionState implements ClientState {
 
 	@Override
-	public ClientState transitionToNextState(Event event, View view) {
-		return null;
+	public ClientState transitionToNextState(Event event, View view, ClientEventManager eventManager) {
+		if (event.getEventType().equals(EventType.TWO_PLAYER_CONNECTED)) {
+			view.lobbyScreen();
+			return new LobbyState();
+		}
+		return  null;
 	}
+}
 
 /*
 	public void transitionToNextState() {
@@ -24,5 +31,3 @@ public class SuccessfulConnectionState implements ClientState {
 			throw new RuntimeException(e);
 		}
 	}*/
-
-}
