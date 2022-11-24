@@ -12,24 +12,12 @@ public class Client {
 
 	private final int port = 1337;
 	private static final Logger logger = LogManager.getLogger(Client.class);
-	//private static Logger logger = LogManager.getRootLogger();
 
 	public static void main(String[] args) {
 		new Client().run();
 	}
 
 	private void run() {
-
-		//logger.debug("Debug log message");
-		//logger.debug("{}", this::blabla);
-
-		try {
-			int i = 1/0;
-			System.out.println(i);
-
-		} catch (ArithmeticException e) {
-			logger.debug("{}", e);
-		}
 
 		new ClientStateMachine(new InitialState()).run();
 	}

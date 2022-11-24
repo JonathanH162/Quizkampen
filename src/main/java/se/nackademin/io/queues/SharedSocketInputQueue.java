@@ -1,19 +1,21 @@
 package se.nackademin.io.queues;
 
+import se.nackademin.io.Event;
+
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SharedSocketInputQueue<T> {
+public class SharedSocketInputQueue {
 
-	private final BlockingQueue<T> sharedQueue = new LinkedBlockingQueue<>();
+	private final BlockingQueue<Event> sharedQueue = new LinkedBlockingQueue<>();
 
 	public SharedSocketInputQueue(Socket socketOne, Socket socketTwo) {
-		new Thread(new SocketInputQueue<T>(socketOne, sharedQueue)).start();
-		new Thread(new SocketInputQueue<T>(socketTwo, sharedQueue)).start();
+		new Thread(new SocketInputQueue(socketOne, sharedQueue)).start();
+		new Thread(new SocketInputQueue(socketTwo, sharedQueue)).start();
 	}
 
-	public T take() {
+	public Event take() {
 		try {
 			return sharedQueue.take();
 		} catch (InterruptedException e) {
@@ -21,7 +23,7 @@ public class SharedSocketInputQueue<T> {
 		}
 	}
 
-	public void put(T e) {
+	public void put(Event e) {
 		try {
 			sharedQueue.put(e);
 		} catch (InterruptedException ex) {

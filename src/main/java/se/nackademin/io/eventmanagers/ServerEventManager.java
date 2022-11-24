@@ -12,7 +12,7 @@ public class ServerEventManager implements EventManager {
 
 	private final SocketOutputQueue<Event> clientOneSocketOutputQueue;
 	private final SocketOutputQueue<Event> clientTwoSocketOutputQueue;
-	private final SharedSocketInputQueue<Event> clientSharedSocketInputQueue;
+	private final SharedSocketInputQueue clientSharedSocketInputQueue;
 
 	private HostId hostId = HostId.SERVER;
 
@@ -22,7 +22,7 @@ public class ServerEventManager implements EventManager {
 		new Thread(clientOneSocketOutputQueue).start();
 		new Thread(clientTwoSocketOutputQueue).start();
 
-		this.clientSharedSocketInputQueue = new SharedSocketInputQueue<>(socketOne,socketTwo);
+		this.clientSharedSocketInputQueue = new SharedSocketInputQueue(socketOne,socketTwo);
 	}
 
 	public void setSourceId(HostId hostIdId) {

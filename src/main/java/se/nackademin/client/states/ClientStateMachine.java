@@ -13,30 +13,30 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientStateMachine {
 
-	private ClientState currentState;
-	private final ClientEventManager clientEventManager = new ClientEventManager();
-	private final View view = new View(clientEventManager);
+    private ClientState currentState;
+    private final ClientEventManager clientEventManager = new ClientEventManager();
+    private final View view = new View(clientEventManager);
 
-	private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
+    private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
 
-	public ClientStateMachine(ClientState currentState) {
-		this.currentState = currentState;
-	}
+    public ClientStateMachine(ClientState currentState) {
+        this.currentState = currentState;
+    }
 
-	public void run() {
-		logger.debug("StateMachine started.");
-			clientEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
+    public void run() {
+        logger.info("StateMachine started.");
+        clientEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
 
-		while (true) {
+        while (true) {
 
-			logger.debug("Current state: " + currentState.getClass());
-			logger.debug("Looking for events..");
-			var event = clientEventManager.getNextEvent();
-			logger.debug("Event found: " + event.getEventType());
+            logger.info("Current state: " + currentState.getClass());
+            logger.info("Looking for events..");
+            var event = clientEventManager.getNextEvent();
+            logger.info("Event found: " + event.getEventType());
 
-			currentState = currentState.transitionToNextState(event, view, clientEventManager);
-		}
-	}
+            currentState = currentState.transitionToNextState(event, view, clientEventManager);
+        }
+    }
 
 }
 

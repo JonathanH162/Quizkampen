@@ -12,11 +12,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class ClientEventManager implements EventManager {
 
 	private SocketOutputQueue<Event> socketOutputQueue;
-	private SocketInputQueue<Event> socketInputQueue;
+	private SocketInputQueue socketInputQueue;
 	private HostId clientId;
 
 	public ClientEventManager() {
-		this.socketInputQueue = new SocketInputQueue<>();
+		this.socketInputQueue = new SocketInputQueue();
 		new Thread(socketInputQueue).start();
 	}
 
