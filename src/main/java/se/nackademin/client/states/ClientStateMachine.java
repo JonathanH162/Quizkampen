@@ -22,8 +22,8 @@ public class ClientStateMachine {
 	}
 
 	public void run() {
+		logger.debug("StateMachine started.");
 		while (true) {
-			logger.debug("StateMachine started.");
 			try {
 
 				logger.debug("Current state: " + currentState.getClass());
