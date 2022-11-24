@@ -15,7 +15,8 @@ public class Server {
 	}
 
 	private void run() {
-		System.out.println("Server started.");
+
+/*		System.out.println("Server started.");
 		try (var serverSocket = new ServerSocket(1337)) {
 			while (true) {
 				Socket clientOne = serverSocket.accept();
@@ -33,6 +34,7 @@ public class Server {
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
-		}
+		}*/
 	}
+
 }

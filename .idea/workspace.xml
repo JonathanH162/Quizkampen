@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/states/InitialState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/states/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/ClientConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/ClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/Protocol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/Server.java" afterDir="false" />
+    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Changes through code with me.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/ServerStateMachine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quizkampen/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quizkampen/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quizkampen/Test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quizkampen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Quizkampen.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/EndState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/EndState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ReceivedIdState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ReceivedIdState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/RoundFinishedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/RoundFinishedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/model/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/model/StateOLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/EndState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/EndState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/InitialState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/InitialState.java" afterDir="false" />
     </list>
-    <list id="f378f29a-cbc2-422a-8c4e-15b49ec63996" name="Changes by johnnoren" comment="">
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/events/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/client/events/TestEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/ClientOneReady.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/ClientTwoReady.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/events/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/states/InitialState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quizkampen/server/states/State.java" afterDir="false" />
+    <list id="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" name="Changes by forsm" comment="Changes by forsm">
+      <change afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/TestLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientStateMachine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/server/states/ServerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingForStatisticsState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingForStatisticsState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" afterDir="false" />
     </list>
-    <list id="eaa77889-f9f6-4ad6-9491-092ff06344fb" name="Changes by jonat" comment="" />
+    <list id="f378f29a-cbc2-422a-8c4e-15b49ec63996" name="Changes by johnnoren" comment="" />
+    <list id="ac3675b9-d5ef-4481-8853-0f0c3988ca03" name="Changes by jonat" comment="Changes by jonat">
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,16 +59,110 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="easier_to_understand_code" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java">
+      <ranges>
+        <range start1="4" end1="6" start2="4" end2="4" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="7" end1="13" start2="5" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="15" end1="17" start2="8" end2="10" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="18" end1="21" start2="11" end2="12" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="37" end1="38" start2="28" end2="29" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java">
+      <ranges>
+        <range start1="5" end1="15" start2="5" end2="5" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="16" end1="20" start2="6" end2="7" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="22" end1="25" start2="9" end2="11" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="26" end1="34" start2="12" end2="20" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="35" end1="39" start2="21" end2="22" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java">
+      <ranges>
+        <range start1="4" end1="8" start2="4" end2="4" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="9" end1="16" start2="5" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="18" end1="20" start2="8" end2="10" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="22" end1="41" start2="12" end2="13" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="42" end1="43" start2="14" end2="14" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java">
+      <ranges>
+        <range start1="4" end1="8" start2="4" end2="4" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="9" end1="18" start2="5" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="20" end1="37" start2="8" end2="10" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java">
+      <ranges>
+        <range start1="4" end1="9" start2="4" end2="4" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="10" end1="15" start2="5" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="17" end1="19" start2="8" end2="10" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="21" end1="22" start2="12" end2="13" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="34" end1="35" start2="25" end2="26" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java">
+      <ranges>
+        <range start1="3" end1="7" start2="3" end2="3" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="9" end1="11" start2="5" end2="5" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="12" end1="17" start2="6" end2="7" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="18" end1="22" start2="8" end2="8" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="24" end1="29" start2="10" end2="12" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java">
+      <ranges>
+        <range start1="4" end1="19" start2="4" end2="5" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="21" end1="23" start2="7" end2="9" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="25" end1="41" start2="11" end2="27" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java">
+      <ranges>
+        <range start1="5" end1="6" start2="5" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="9" end1="18" start2="9" end2="10" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="20" end1="37" start2="12" end2="14" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/Client.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="5" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="3" end1="3" start2="6" end2="8" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="7" end1="7" start2="12" end2="14" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="14" end1="15" start2="21" end2="27" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="16" end1="16" start2="28" end2="31" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="17" end1="17" start2="32" end2="36" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="34" end1="35" start2="53" end2="54" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="36" end1="37" start2="55" end2="56" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2HiNthjH0Hz0zvECLSmg5J01Q9G" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -59,17 +178,41 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "/Users/johnnoren/Repositories/oopj/assignments/Quizkampen",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "CodeWithMe",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="se.nackademin.server.io" />
+      <recent name="se.nackademin.server" />
       <recent name="quizkampen" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="se.nackademin.server.states" />
+      <recent name="se.nackademin.io" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.se.nackademin.client.Client">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="se.nackademin.client.App" />
+      <module name="Quizkampen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="se.nackademin.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="quizkampen.client.Client" />
       <module name="Quizkampen" />
@@ -96,12 +239,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="quizkampen.server.ServerApp" />
+    <configuration name="TestLog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="se.nackademin.TestLog" />
       <module name="Quizkampen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="quizkampen.server.*" />
+          <option name="PATTERN" value="se.nackademin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="se.nackademin.client.Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="se.nackademin.client.Client" />
+      <module name="Quizkampen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="se.nackademin.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,15 +266,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.TestLog" />
+      <item itemvalue="Application.se.nackademin.client.Client" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApp" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.se.nackademin.client.Client" />
+        <item itemvalue="Application.TestLog" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +299,91 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1668766286247</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add github workflow suggestion to readme">
+      <created>1669036535693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669036535693</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add github workflow suggestion to readme">
+      <created>1669036645508</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669036645508</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Feature: Event routing between clients and server">
+      <created>1669103732796</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669103732796</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Change Event to abstract class. Cleanup.">
+      <created>1669105615646</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669105615646</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add client event management. Refactored to more shared classes.">
+      <created>1669117192616</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669117192616</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactoring">
+      <created>1669151766153</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669151766153</updated>
+    </task>
+    <task id="LOCAL-00008" summary="More refactoring">
+      <created>1669190061469</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669190061469</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Changes through code with me.">
+      <created>1669209047545</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669209047545</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Changes through code with me.">
+      <created>1669219227623</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669219227623</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changes by jonat">
+      <created>1669219252175</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669219252175</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changes by forsm">
+      <created>1669219259153</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669219259153</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Changes through code with me.">
+      <created>1669219342185</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669219342185</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +402,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Add github workflow suggestion to readme" />
+    <MESSAGE value="Feature: Event routing between clients and server" />
+    <MESSAGE value="Change Event to abstract class. Cleanup." />
+    <MESSAGE value="Add client event management. Refactored to more shared classes." />
+    <MESSAGE value="Refactoring" />
+    <MESSAGE value="More refactoring" />
+    <MESSAGE value="Changes by jonat" />
+    <MESSAGE value="Changes by forsm" />
+    <MESSAGE value="Changes through code with me." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes through code with me." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

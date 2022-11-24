@@ -1,25 +1,13 @@
 package se.nackademin.client.states;
 
 import se.nackademin.io.Event;
-import se.nackademin.io.HostId;
-import se.nackademin.io.eventmanagers.EventManager;
-import se.nackademin.model.State;
-
 import se.nackademin.client.view.View;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class InitialState extends State {
+public class InitialState implements ClientState {
 
-	public InitialState() {
-		super();
-	}
-
-	@Override
-	public void setEventManager(EventManager eventManager) {
-
-	}
 
 	@Override
 	public void transitionToNextState() {

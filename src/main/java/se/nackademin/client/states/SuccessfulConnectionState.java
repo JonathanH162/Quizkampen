@@ -2,21 +2,12 @@ package se.nackademin.client.states;
 
 import se.nackademin.client.view.View;
 import se.nackademin.io.Event;
-import se.nackademin.io.EventType;
-import se.nackademin.io.eventmanagers.EventManager;
-import se.nackademin.model.State;
 
-import java.util.concurrent.BlockingQueue;
-
-public class SuccessfulConnectionState extends State {
-
-	public SuccessfulConnectionState(View view, BlockingQueue<Event> eventQueue) {
-		super(view, eventQueue);
-	}
+public class SuccessfulConnectionState implements ClientState {
 
 	@Override
-	public void setEventManager(EventManager eventManager) {
-
+	public ClientState transitionToNextState(Event event, View view) {
+		return null;
 	}
 
 	@Override

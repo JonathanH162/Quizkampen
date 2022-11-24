@@ -1,21 +1,11 @@
 package se.nackademin.server.states;
 
-import se.nackademin.io.eventmanagers.EventManager;
-import se.nackademin.model.State;
+import se.nackademin.io.Event;
 
-public class EndState extends State {
-
-	public EndState(EventManager eventManager) {
-		super(eventManager);
-	}
+public class EndState implements ServerState {
 
 	@Override
-	public void setEventManager(EventManager eventManager) {
-
-	}
-
-	@Override
-	public State transitionToNextState() {
+	public ServerState transitionToNextState(Event event) {
 		System.out.println("Endstate reached by server.");
 		Thread.currentThread().interrupt();
 		return null;

@@ -1,23 +1,13 @@
 package se.nackademin.client.states;
 
-import se.nackademin.io.eventmanagers.EventManager;
-import se.nackademin.model.State;
+import se.nackademin.client.view.View;
+import se.nackademin.io.Event;
 
-public class EndState extends State {
-
-	public EndState() {
-		super();
-	}
+public class EndState implements ClientState {
 
 	@Override
-	public void setEventManager(EventManager eventManager) {
-
-	}
-
-	@Override
-	public void transitionToNextState() {
-		System.out.println("Endstate reached by client.");
-		Thread.currentThread().interrupt();
+	public ClientState transitionToNextState(Event event, View view) {
+		return null;
 	}
 
 }

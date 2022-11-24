@@ -3,19 +3,11 @@ package se.nackademin.client.states;
 import se.nackademin.client.view.View;
 import se.nackademin.io.Event;
 import se.nackademin.io.eventmanagers.EventManager;
-import se.nackademin.model.State;
+import se.nackademin.model.StateOLD;
 
 import java.util.concurrent.BlockingQueue;
 
-public class LobbyState extends State {
-	public LobbyState(View view, BlockingQueue<Event> eventQueue) {
-		super(view, eventQueue);
-	}
-
-	@Override
-	public void setEventManager(EventManager eventManager) {
-
-	}
+public class LobbyState implements ClientState {
 
 	@Override
 	public void transitionToNextState() {
