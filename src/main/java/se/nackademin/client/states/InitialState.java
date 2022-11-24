@@ -8,11 +8,8 @@ public class InitialState implements ClientState {
 
 
 	@Override
-	public void transitionToNextState() {
-		BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-		var view = new View(eventQueue);
-
-		new WelcomeScreenState(view,eventQueue).transitionToNextState();
+	public ClientState transitionToNextState(Event event, View view) {
+		return null;
 	}
 
 

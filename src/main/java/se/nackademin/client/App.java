@@ -43,6 +43,7 @@ public class App extends JFrame implements ActionListener {
 
     App() {
         this.add(mainPanel);
+        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.PAGE_AXIS));
         mainPanel.add(lobbyScreenPanel);
         mainPanel.add(questionScreenPanel);
         mainPanel.add(categoryScreenPanel);
