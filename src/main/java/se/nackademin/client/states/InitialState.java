@@ -3,8 +3,6 @@ package se.nackademin.client.states;
 import se.nackademin.io.Event;
 import se.nackademin.client.view.View;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class InitialState implements ClientState {
 

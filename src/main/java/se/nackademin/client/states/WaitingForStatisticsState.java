@@ -1,5 +1,12 @@
 package se.nackademin.client.states;
 
-public class WaitingForStatisticsState {
+import se.nackademin.client.view.View;
+import se.nackademin.io.Event;
+
+public class WaitingForStatisticsState implements ClientState{
+	@Override
+	public ClientState transitionToNextState(Event event, View view) {
+		return null;
+	}
 
 }

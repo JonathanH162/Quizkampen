@@ -9,21 +9,21 @@ public class WelcomeScreenState implements ClientState {
 		return null;
 	}
 
-	@Override
-	public void transitionToNextState() {
-		try {
-			var event = eventQueue.take();
-
-			if (event.getEventType().equals(EventType.START_BUTTON_PRESSED)) {
-				// TODO return next state
-				System.out.println("sldkfjslkdjfdlksj");
-				new WaitingScreenState(view,eventQueue).transitionToNextState();
-			}
-
-			throw new RuntimeException("Unexpected event: " + event);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-	}
+//	@Override
+//	public void transitionToNextState() {
+//		try {
+//			var event = eventQueue.take();
+//
+//			if (event.getEventType().equals(EventType.START_BUTTON_PRESSED)) {
+//				// TODO return next state
+//				System.out.println("sldkfjslkdjfdlksj");
+//				new WaitingScreenState(view,eventQueue).transitionToNextState();
+//			}
+//
+//			throw new RuntimeException("Unexpected event: " + event);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
 
 }

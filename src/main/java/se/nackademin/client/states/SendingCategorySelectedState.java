@@ -26,6 +26,6 @@ public class SendingCategorySelectedState implements ClientState {
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 }

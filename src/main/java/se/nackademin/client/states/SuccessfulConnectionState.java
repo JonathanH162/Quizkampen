@@ -10,7 +10,7 @@ public class SuccessfulConnectionState implements ClientState {
 		return null;
 	}
 
-	@Override
+/*
 	public void transitionToNextState() {
 		try {
 			var event = eventQueue.take();
@@ -23,6 +23,6 @@ public class SuccessfulConnectionState implements ClientState {
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 }
