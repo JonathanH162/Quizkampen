@@ -13,11 +13,14 @@ public class WaitingScreenState implements ClientState {
 		if (event.getEventType().equals(EventType.CONNECTION_SUCCESS)) {
 			System.out.println("sldkfjslkdjfdlksj");
 			//new SuccessfulConnectionState(view,eventQueue).transitionToNextState();
-		}
-		else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {
-			System.out.println("FAIL");
-			//new UnsuccessfulConnectionState(view,eventQueue).transitionToNextState();
-		}
+		} else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {
+			//view.getWelcomeLabel().setText("Connection Failed");
+			try {
+				Thread.sleep(5000);
+				return new InitialState();
+			} catch (InterruptedException ie) {
+				System.out.println("Thread error");
+			}
 
 		throw new RuntimeException("Unexpected event: " + event);
 	}

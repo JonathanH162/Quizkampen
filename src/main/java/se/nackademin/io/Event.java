@@ -29,6 +29,10 @@ public class Event implements Serializable {
 		return eventType;
 	}
 
+	public static Event toSelf(EventType eventType) {
+		return new Event(eventType, HostId.SELF, HostId.SELF, new Object());
+	}
+
 	public static Event toClientOne(EventType eventType) {
 		return new Event(eventType, HostId.CLIENT_ONE, HostId.EMPTY, new Object());
 	}

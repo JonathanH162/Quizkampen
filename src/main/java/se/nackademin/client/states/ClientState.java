@@ -2,8 +2,10 @@ package se.nackademin.client.states;
 
 import se.nackademin.client.view.View;
 import se.nackademin.io.Event;
+import se.nackademin.io.eventmanagers.ClientEventManager;
+import se.nackademin.io.eventmanagers.EventManager;
 
 interface ClientState {
 
-		ClientState transitionToNextState(Event event, View view);
+		ClientState transitionToNextState(Event event, View view, ClientEventManager eventManager);
 }

@@ -13,9 +13,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientStateMachine {
 
-	private final BlockingQueue<Event> eventBlockingQueue = new LinkedBlockingQueue<>();
 	private ClientState currentState;
-	private final View view = new View(eventBlockingQueue);
+	private final ClientEventManager clientEventManager = new ClientEventManager();
+	private final View view = new View(clientEventManager);
 
 	private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
 
@@ -25,25 +25,16 @@ public class ClientStateMachine {
 
 	public void run() {
 		logger.debug("StateMachine started.");
-		try {
-			eventBlockingQueue.put(new Event(EventType.INITIAL_EVENT, HostId.EMPTY, HostId.EMPTY, new Object()));
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			clientEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
+
 		while (true) {
-			try {
 
-				logger.debug("Current state: " + currentState.getClass());
-				logger.debug("Looking for events..");
-				var event = eventBlockingQueue.take();
-				logger.debug("Event found: " + event.getEventType());
+			logger.debug("Current state: " + currentState.getClass());
+			logger.debug("Looking for events..");
+			var event = clientEventManager.getNextEvent();
+			logger.debug("Event found: " + event.getEventType());
 
-				currentState = currentState.transitionToNextState(event, view);
-
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
-
+			currentState = currentState.transitionToNextState(event, view, clientEventManager);
 		}
 	}
 

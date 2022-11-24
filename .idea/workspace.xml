@@ -4,13 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Changes through code with me. New StateManager and State interfaces.">
+    <list default="true" id="a8639f47-75d4-4988-a9a3-08c6ec146c72" name="Changes" comment="Moved logging statement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientStateMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ClientStateMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/EndState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/EndState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/LobbyState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SendingCategorySelectedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/io/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/io/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/io/HostId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/io/HostId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/io/eventmanagers/ClientEventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/io/eventmanagers/ClientEventManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/io/queues/SocketInputQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/io/queues/SocketInputQueue.java" afterDir="false" />
     </list>
-    <list id="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" name="Changes by forsm" comment="Changes by forsm" />
+    <list id="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" name="Changes by forsm" comment="Changes by forsm">
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/InitialState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/RoundFinishedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/RoundFinishedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/SuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingForStatisticsState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingForStatisticsState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WelcomeScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" afterDir="false" />
+    </list>
     <list id="f378f29a-cbc2-422a-8c4e-15b49ec63996" name="Changes by johnnoren" comment="" />
-    <list id="ac3675b9-d5ef-4481-8853-0f0c3988ca03" name="Changes by jonat" comment="Changes by jonat" />
+    <list id="ac3675b9-d5ef-4481-8853-0f0c3988ca03" name="Changes by jonat" comment="Changes by jonat">
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/CategoryWaitingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/NewRoundButtonPressedState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ReceivedIdState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/ReceivedIdState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/se/nackademin/io/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/se/nackademin/io/EventType.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,11 +58,53 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="easier_to_understand_code" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/UnsuccessfulConnectionState.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="5" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="6" end1="6" start2="7" end2="9" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="7" end1="9" start2="10" end2="19" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/WaitingScreenState.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="9" end1="10" start2="10" end2="11" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="13" end1="14" start2="14" end2="16" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="15" end1="20" start2="17" end2="25" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="21" end1="22" start2="26" end2="29" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/states/QuestionState.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="6" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="8" end1="9" start2="10" end2="11" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/se/nackademin/client/view/View.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="4" end1="5" start2="5" end2="9" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="8" end1="9" start2="12" end2="13" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="10" end1="13" start2="14" end2="18" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="14" end1="15" start2="19" end2="48" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="16" end1="18" start2="49" end2="51" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="19" end1="19" start2="52" end2="53" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="21" end1="23" start2="55" end2="57" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="25" end1="28" start2="59" end2="62" changelist="ac3675b9-d5ef-4481-8853-0f0c3988ca03" />
+        <range start1="29" end1="37" start2="63" end2="64" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+        <range start1="38" end1="39" start2="65" end2="66" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="43" end1="45" start2="70" end2="133" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="47" end1="49" start2="135" end2="176" changelist="a8639f47-75d4-4988-a9a3-08c6ec146c72" />
+        <range start1="50" end1="50" start2="177" end2="181" changelist="9caa7ad5-3a70-48f9-8fec-e1502ef63c15" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -284,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669293627190</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Moved logging statement">
+      <created>1669296369444</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669296369444</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +392,8 @@
     <MESSAGE value="Changes through code with me. New StateManager and State interfaces." />
     <MESSAGE value="Changes by forsm" />
     <MESSAGE value="Changes by jonat" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by jonat" />
+    <MESSAGE value="Moved logging statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved logging statement" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

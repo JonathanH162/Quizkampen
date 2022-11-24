@@ -8,22 +8,27 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class SocketInputQueue<T> implements Runnable {
 
-	private final ObjectInputStream objectInputStream;
+	private ObjectInputStream objectInputStream;
 	private final BlockingQueue<T> receivedObjectsQueue;
+	private boolean connected = false;
 
-	public SocketInputQueue(Socket socket) {
-		try {
-			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+	public SocketInputQueue() {
 			this.receivedObjectsQueue = new LinkedBlockingQueue<>();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	public SocketInputQueue(Socket socket, BlockingQueue<T> receivedObjectsQueue) {
 		try {
 			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
 			this.receivedObjectsQueue = receivedObjectsQueue;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void connect(Socket socket) {
+		try {
+			objectInputStream = new ObjectInputStream(socket.getInputStream());
+			connected = true;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -52,13 +57,16 @@ public class SocketInputQueue<T> implements Runnable {
 	@Override
 	@SuppressWarnings({"unchecked", "InfiniteLoopStatement"})
 	public void run() {
-		while (true) {
-			try {
-				receivedObjectsQueue.put((T) objectInputStream.readObject());
-			} catch (InterruptedException | ClassNotFoundException | IOException e) {
-				throw new RuntimeException(e);
+		if (connected) {
+			while (true) {
+				try {
+					receivedObjectsQueue.put((T) objectInputStream.readObject());
+				} catch (InterruptedException | ClassNotFoundException | IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		}
+
 	}
 
 }
