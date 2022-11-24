@@ -1,6 +1,7 @@
 *.class
 *.iml
-.idea/*.*
+.idea/**/*.xml
+.idea/*.xml
 .idea
 target
 # Log file
