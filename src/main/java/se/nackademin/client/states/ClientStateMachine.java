@@ -6,6 +6,7 @@ import se.nackademin.client.view.View;
 import se.nackademin.io.Event;
 import se.nackademin.io.EventType;
 import se.nackademin.io.HostId;
+import se.nackademin.io.eventmanagers.ClientEventManager;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -15,6 +16,7 @@ public class ClientStateMachine {
 	private final BlockingQueue<Event> eventBlockingQueue = new LinkedBlockingQueue<>();
 	private ClientState currentState;
 	private final View view = new View(eventBlockingQueue);
+
 	private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
 
 	public ClientStateMachine(ClientState currentState) {
@@ -23,6 +25,11 @@ public class ClientStateMachine {
 
 	public void run() {
 		logger.debug("StateMachine started.");
+		try {
+			eventBlockingQueue.put(new Event(EventType.INITIAL_EVENT, HostId.EMPTY, HostId.EMPTY, new Object()));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		while (true) {
 			try {
 

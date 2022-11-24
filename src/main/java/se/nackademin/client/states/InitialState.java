@@ -2,14 +2,18 @@ package se.nackademin.client.states;
 
 import se.nackademin.io.Event;
 import se.nackademin.client.view.View;
+import se.nackademin.io.EventType;
 
 
 public class InitialState implements ClientState {
-
-
 	@Override
 	public ClientState transitionToNextState(Event event, View view) {
-		return null;
+		if (event.getEventType().equals(EventType.INITIAL_EVENT)) {
+			view.initiateView();
+		} else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {
+			view.initiateView();
+		}
+		return new WelcomeScreenState();
 	}
 
 

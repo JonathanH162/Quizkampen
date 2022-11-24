@@ -9,13 +9,20 @@ import se.nackademin.io.EventType;
 import se.nackademin.io.HostId;
 
 public class View extends JFrame {
-	private JPanel mainPanel = new JPanel();
-	JButton playButton = new JButton("Nytt spel");
-	JLabel welcomeLabel = new JLabel("Välkommen till Quizkampen");
+	private JPanel mainPanel;
+	JButton playButton;
+	JLabel welcomeLabel;
 	BlockingQueue<Event> eventQueue;
 
 	public View(BlockingQueue<Event> eventQueue) throws HeadlessException {
 		this.eventQueue = eventQueue;
+	}
+	public void initiateView() {
+		getContentPane().removeAll();
+		mainPanel = new JPanel();
+		playButton = new JButton("Nytt spel");
+		welcomeLabel = new JLabel("Välkommen till Quizkampen");
+
 		add(mainPanel);
 		mainPanel.add(welcomeLabel);
 		mainPanel.add(playButton);
@@ -28,11 +35,17 @@ public class View extends JFrame {
 				throw new RuntimeException(ex);
 			}
 		});
-
 		setTitle("Quizkampen");
 		setSize(350,400);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
+	public JButton getPlayButton() {
+		return playButton;
+	}
+
+	public JLabel getWelcomeLabel() {
+		return welcomeLabel;
+	}
 }

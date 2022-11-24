@@ -6,6 +6,7 @@ import se.nackademin.client.states.ClientStateMachine;
 import se.nackademin.client.states.InitialState;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import se.nackademin.io.eventmanagers.ClientEventManager;
 
 public class Client {
 
