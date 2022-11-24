@@ -1,6 +1,7 @@
 package se.nackademin.io;
 
 public enum EventType {
+
 	INITIAL_EVENT,
 	TWO_PLAYER_CONNECTED,
 	CONNECTION_SUCCESS,

@@ -1,16 +1,21 @@
 package se.nackademin.client.view;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.concurrent.BlockingQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import se.nackademin.io.Event;
 import se.nackademin.io.EventType;
 import se.nackademin.io.eventmanagers.ClientEventManager;
 
-public class View extends JFrame {
-	private JPanel mainPanel;
-	JButton playButton;
+public class View extends JFrame implements ActionListener {
+
+	private JPanel startPanel;
+	JButton startButton;
 	JLabel welcomeLabel;
 	ClientEventManager clientEventManager;
 	int player1RoundPoints = 0;
@@ -42,19 +47,19 @@ public class View extends JFrame {
 	ArrayList<JButton> categoryButtonList = new ArrayList<>();
 	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
-	public View(BlockingQueue<Event> eventQueue) throws HeadlessException {
-		this.eventQueue = eventQueue;
+	public View(ClientEventManager clientEventManager) throws HeadlessException {
+		this.clientEventManager = clientEventManager;
 	}
 
 	public void initiateView() {
 		getContentPane().removeAll();
-		mainPanel = new JPanel();
-		playButton = new JButton("Nytt spel");
+		startPanel = new JPanel();
+		startButton = new JButton("Nytt spel");
 		welcomeLabel = new JLabel("Välkommen till Quizkampen");
 
-		add(mainPanel);
-		mainPanel.add(welcomeLabel);
-		mainPanel.add(playButton);
+		add(startPanel);
+		startPanel.add(welcomeLabel);
+		startPanel.add(playButton);
 
 		playButton.addActionListener(e -> clientEventManager.sendEvent(Event.toSelf(EventType.START_BUTTON_PRESSED)));
 		setTitle("Quizkampen");

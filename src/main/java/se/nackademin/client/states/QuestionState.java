@@ -8,7 +8,7 @@ import se.nackademin.io.eventmanagers.EventManager;
 public class QuestionState implements ClientState {
 
 	@Override
-	public ClientState transitionToNextState(Event event, View view) {
+	public ClientState transitionToNextState(Event event, View view, ClientEventManager eventManager) {
 		return null;
 	}
 }
