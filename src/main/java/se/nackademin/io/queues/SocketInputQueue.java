@@ -59,12 +59,8 @@ public class SocketInputQueue implements Runnable {
         }
     }
 
-    public BlockingQueue<Event> getReceivedObjectsQueue() {
-        return receivedObjectsQueue;
-    }
-
     @Override
-    @SuppressWarnings({"unchecked", "InfiniteLoopStatement"})
+    @SuppressWarnings({"InfiniteLoopStatement"})
     public void run() {
         if (connected) {
             while (true) {

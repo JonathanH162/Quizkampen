@@ -11,20 +11,17 @@ import java.net.Socket;
 
 public class ServerEventManager implements EventManager {
 
-	private  SocketOutputQueue<Event> clientOneSocketOutputQueue;
-	private  SocketOutputQueue<Event> clientTwoSocketOutputQueue;
+	private SocketOutputQueue<Event> clientOneSocketOutputQueue;
+	private SocketOutputQueue<Event> clientTwoSocketOutputQueue;
 	private final SharedSocketInputQueue clientSharedSocketInputQueue = new SharedSocketInputQueue();
-
 	private HostId hostId = HostId.SERVER;
-
-
 
 	public void connect(Socket clientOne, Socket clientTwo) {
 		clientOneSocketOutputQueue = new SocketOutputQueue<>(clientOne);
 		new Thread(clientOneSocketOutputQueue).start();
 		clientTwoSocketOutputQueue = new SocketOutputQueue<>(clientOne);
 		new Thread(clientTwoSocketOutputQueue).start();
-		clientSharedSocketInputQueue.connect(clientOne,clientTwo);
+		clientSharedSocketInputQueue.connect(clientOne, clientTwo);
 	}
 
 	public void setSourceId(HostId hostIdId) {
@@ -47,7 +44,5 @@ public class ServerEventManager implements EventManager {
 			case CLIENT_TWO -> clientTwoSocketOutputQueue.put(event);
 		}
 	}
-
-
 
 }

@@ -10,7 +10,7 @@ import java.net.Socket;
 public class ClientEventManager implements EventManager {
 
 	private SocketOutputQueue<Event> socketOutputQueue;
-	private SocketInputQueue socketInputQueue;
+	private final SocketInputQueue socketInputQueue;
 	private HostId clientId;
 
 	public ClientEventManager() {
