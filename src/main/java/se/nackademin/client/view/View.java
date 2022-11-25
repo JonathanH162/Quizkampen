@@ -178,5 +178,8 @@ public class View extends JFrame implements ActionListener {
 
 	public void unsuccessfulConnectionScreen() {
 	}
+	public JLabel getWelcomeLabel() {
+		return welcomeLabel;
+	}
 
 }

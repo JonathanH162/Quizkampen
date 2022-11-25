@@ -10,7 +10,7 @@ public class SharedSocketInputQueue {
 
 	private final BlockingQueue<Event> sharedQueue = new LinkedBlockingQueue<>();
 
-	public SharedSocketInputQueue(Socket socketOne, Socket socketTwo) {
+	public void connect(Socket socketOne, Socket socketTwo){
 		new Thread(new SocketInputQueue(socketOne, sharedQueue)).start();
 		new Thread(new SocketInputQueue(socketTwo, sharedQueue)).start();
 	}

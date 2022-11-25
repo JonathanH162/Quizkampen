@@ -7,6 +7,7 @@ import se.nackademin.io.Event;
 import se.nackademin.io.EventType;
 import se.nackademin.io.eventmanagers.ServerEventManager;
 
+import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -23,6 +24,8 @@ public class ServerStateMachine {
 
 	public ServerStateMachine(ServerState currentState, Socket clientOne, Socket clientTwo, EventType eventType) {
 		this.currentState = currentState;
+		this.serverEventManager.connect(clientOne,clientTwo);
+		serverEventManager.sendEvent(Event.toSelf(eventType));
 	}
 
 	public void run() {

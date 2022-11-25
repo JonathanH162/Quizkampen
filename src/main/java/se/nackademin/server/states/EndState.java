@@ -9,11 +9,11 @@ public class EndState implements ServerState {
 		return null;
 	}
 
-	@Override
+/*	@Override
 	public ServerState transitionToNextState(Event event) {
 		System.out.println("Endstate reached by server.");
 		Thread.currentThread().interrupt();
 		return null;
-	}
+	}*/
 
 }

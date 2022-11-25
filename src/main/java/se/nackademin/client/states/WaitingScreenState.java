@@ -12,11 +12,11 @@ public class WaitingScreenState implements ClientState {
 		//event = eventQueue.take();
 
 		if (event.getEventType().equals(EventType.CONNECTION_SUCCESS)) {
-			System.out.println("Connection Successful");
+			view.getWelcomeLabel().setText("Connection Successful");
 			return new SuccessfulConnectionState();
 			//new SuccessfulConnectionState(view,eventQueue).transitionToNextState();
 		} else if (event.getEventType().equals(EventType.CONNECTION_FAILED)) {
-			//view.getWelcomeLabel().setText("Connection Failed");
+			view.getWelcomeLabel().setText("Connection Failed");
 			try {
 				Thread.sleep(5000);
 				return new InitialState();

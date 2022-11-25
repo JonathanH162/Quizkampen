@@ -6,8 +6,6 @@ import se.nackademin.io.queues.SocketInputQueue;
 import se.nackademin.io.queues.SocketOutputQueue;
 
 import java.net.Socket;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientEventManager implements EventManager {
 
@@ -20,7 +18,7 @@ public class ClientEventManager implements EventManager {
 		new Thread(socketInputQueue).start();
 	}
 
-	public void activate(Socket socket) {
+	public void connect(Socket socket) {
 		socketOutputQueue = new SocketOutputQueue<>(socket);
 		new Thread(socketOutputQueue).start();
 		socketInputQueue.connect(socket);

@@ -4,25 +4,27 @@ import se.nackademin.io.HostId;
 import se.nackademin.io.Event;
 import se.nackademin.io.EventType;
 import se.nackademin.io.queues.SharedSocketInputQueue;
+import se.nackademin.io.queues.SocketInputQueue;
 import se.nackademin.io.queues.SocketOutputQueue;
 
 import java.net.Socket;
 
 public class ServerEventManager implements EventManager {
 
-	private final SocketOutputQueue<Event> clientOneSocketOutputQueue;
-	private final SocketOutputQueue<Event> clientTwoSocketOutputQueue;
-	private final SharedSocketInputQueue clientSharedSocketInputQueue;
+	private  SocketOutputQueue<Event> clientOneSocketOutputQueue;
+	private  SocketOutputQueue<Event> clientTwoSocketOutputQueue;
+	private final SharedSocketInputQueue clientSharedSocketInputQueue = new SharedSocketInputQueue();
 
 	private HostId hostId = HostId.SERVER;
 
-	public ServerEventManager(Socket socketOne, Socket socketTwo) {
-		this.clientOneSocketOutputQueue = new SocketOutputQueue<>(socketOne);
-		this.clientTwoSocketOutputQueue = new SocketOutputQueue<>(socketTwo);
-		new Thread(clientOneSocketOutputQueue).start();
-		new Thread(clientTwoSocketOutputQueue).start();
 
-		this.clientSharedSocketInputQueue = new SharedSocketInputQueue(socketOne,socketTwo);
+
+	public void connect(Socket clientOne, Socket clientTwo) {
+		clientOneSocketOutputQueue = new SocketOutputQueue<>(clientOne);
+		new Thread(clientOneSocketOutputQueue).start();
+		clientTwoSocketOutputQueue = new SocketOutputQueue<>(clientOne);
+		new Thread(clientTwoSocketOutputQueue).start();
+		clientSharedSocketInputQueue.connect(clientOne,clientTwo);
 	}
 
 	public void setSourceId(HostId hostIdId) {
@@ -40,10 +42,12 @@ public class ServerEventManager implements EventManager {
 
 	private void putIntoQueueForSending(Event event) {
 		switch (event.getDestination()) {
-			case SERVER -> clientSharedSocketInputQueue.put(event);
+			case SELF -> clientSharedSocketInputQueue.put(event);
 			case CLIENT_ONE -> clientOneSocketOutputQueue.put(event);
 			case CLIENT_TWO -> clientTwoSocketOutputQueue.put(event);
 		}
 	}
+
+
 
 }
