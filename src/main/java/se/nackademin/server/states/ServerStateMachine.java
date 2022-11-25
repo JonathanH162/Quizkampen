@@ -20,6 +20,7 @@ public class ServerStateMachine implements Runnable{
 
 	public ServerStateMachine(ServerState currentState) {
 		this.currentState = currentState;
+		serverEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
 	}
 
 	public ServerStateMachine(ServerState currentState, Socket clientOne, Socket clientTwo, EventType eventType) {
