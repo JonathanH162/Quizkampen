@@ -21,7 +21,8 @@ public class WelcomeScreenState implements ClientState {
 	}
 
 	private ClientState connectToServer(View view, ClientEventManager eventManager) {
-		view.getWelcomeLabel().setText("Connecting to Server");
+		view.getStartButton().setVisible(false);
+		view.getWelcomeLabel().setText("Connecting to Server...");
 		try {
 			eventManager.connect(new Socket(InetAddress.getLocalHost(), 1337));
 		} catch (IOException e) {

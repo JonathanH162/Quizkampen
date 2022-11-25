@@ -59,9 +59,9 @@ public class View extends JFrame implements ActionListener {
 
 		add(startPanel);
 		startPanel.add(welcomeLabel);
-		startPanel.add(playButton);
+		startPanel.add(startButton);
 
-		playButton.addActionListener(e -> clientEventManager.sendEvent(Event.toSelf(EventType.START_BUTTON_PRESSED)));
+		startButton.addActionListener(e -> clientEventManager.sendEvent(Event.toSelf(EventType.START_BUTTON_PRESSED)));
 		setTitle("Quizkampen");
 		setSize(350, 400);
 		setLocationRelativeTo(null);
@@ -180,6 +180,9 @@ public class View extends JFrame implements ActionListener {
 	}
 	public JLabel getWelcomeLabel() {
 		return welcomeLabel;
+	}
+	public JButton getStartButton() {
+		return startButton;
 	}
 
 }

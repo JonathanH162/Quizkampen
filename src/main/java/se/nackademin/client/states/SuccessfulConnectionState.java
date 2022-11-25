@@ -9,7 +9,7 @@ public class SuccessfulConnectionState implements ClientState {
 
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventManager eventManager) {
-		if (event.getEventType().equals(EventType.TWO_PLAYER_CONNECTED)) {
+		if (event.getEventType().equals(EventType.TWO_PLAYERS_CONNECTED)) {
 			view.lobbyScreen();
 			return new LobbyState();
 		}
