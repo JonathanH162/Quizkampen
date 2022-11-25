@@ -11,12 +11,12 @@ import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class ServerStateMachine {
+public class ServerStateMachine implements Runnable{
 
 	private ServerState currentState;
 	private ServerEventManager serverEventManager = new ServerEventManager();
 
-	private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
+	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
 
 	public ServerStateMachine(ServerState currentState) {
 		this.currentState = currentState;
@@ -43,27 +43,3 @@ public class ServerStateMachine {
 
 
 }
-
-//	private ServerState currentState;
-//	private final serverEventManager serverEventManager = new serverEventManager();
-//
-//	private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
-//
-//	public ClientStateMachine(ServerState currentState) {
-//		this.currentState = currentState;
-//	}
-//
-//	public void run() {
-//		logger.info("ServerStateMachine started.");
-//		clientEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
-//
-//		while (true) {
-//
-//			logger.info("Current state: " + currentState.getClass());
-//			logger.info("Looking for events..");
-//			var event = serverEventManager.getNextEvent();
-//			logger.info("Event found: " + event.getEventType());
-//
-//			currentState = currentState.transitionToNextState(event, clientEventManager);
-//		}
-//	}

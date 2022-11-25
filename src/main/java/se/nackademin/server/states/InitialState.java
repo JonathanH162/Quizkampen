@@ -1,58 +1,45 @@
 package se.nackademin.server.states;
 
 import se.nackademin.io.Event;
+import se.nackademin.io.EventType;
 import se.nackademin.io.eventmanagers.ServerEventManager;
 
-/**
- * The initial state of the server. Sends ID's to the clients to that they know what to put as sender when they send
- * events to the server.
- */
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class InitialState implements ServerState {
+
+	private final ServerSocket serverSocket;
+
+	public InitialState() {
+		try {
+			this.serverSocket = new ServerSocket(1337);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Override
 	public ServerState transitionToNextState(Event event, ServerEventManager eventManager) {
-		return null;
+		switch (event.getEventType()) {
+			case INITIAL_EVENT -> {
+				new Thread(new ServerStateMachine(new ClientsConnectedState(), getClientSocket(), getClientSocket(),
+						EventType.INITIAL_EVENT)).start();
+				return this;
+			}
+			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
+		}
+	}
+
+	private Socket getClientSocket() {
+		try {
+			Socket client = serverSocket.accept();
+			System.out.println("Client connected: " + client);
+			return client;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
-// Server
-// serversocket server = new server(port)
-// clientOne = server.accept()
-// clientTwo = server.accept()
-// Thread clientHandler = new ClientHandler(clientOne, clientTwo))
-// cH.start();
-
-
-
-
-
-//	public ServerState transitionToNextState(Event event, ServerEventManager eventManager) {
-
-// serversocket server = new server(port)
-// clientOne = server.accept()
-// clientTwo = server.accept()
-// new Thread(new ServerStateMachine(clientOne,clientTwo)).start;
-// skicka nytt initialevent
-// return new initialstate
-
-
-//		if (event.getEventType().equals(EventType.INITIAL_EVENT)) {
-//			Socket clientOne = server.accept()
-//          Socket clientTwo = server.accept();
-//          eventManager.connect(clientOne, clientTwo);
-//
-//          eventManager.sendEvent(new Event(EventType.TWO_PLAYER_CONNECT, CLIENTONE.ID,CLIENTTWO.TWO, new Object()));
-//
-//		} else if (event.getEventType().equals(EventType.CLIENT_DISCONNECT)) {
-//			// do something else
-//		}
-//		return new InitialState();
-//	}
-
-/*		var eventToClientOne = Event.toClientOne(EventType.NEW_ID, HostId.CLIENT_ONE);
-		var eventToClientTwo = Event.toClientTwo(EventType.NEW_ID, HostId.CLIENT_TWO);
-
-		eventManager.sendEvent(eventToClientOne);
-		eventManager.sendEvent(eventToClientTwo);
-
-		return new EndState(eventManager);*/
