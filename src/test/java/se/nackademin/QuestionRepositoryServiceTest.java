@@ -1,8 +1,8 @@
 package se.nackademin;
 
 import org.junit.jupiter.api.Test;
-import se.nackademin.questionRepo.QuestionRepositoryService;
-import se.nackademin.questionRepo.model.Category;
+import se.nackademin.repositories.questionrepository.QuestionRepositoryService;
+import se.nackademin.repositories.questionrepository.models.Category;
 
 import java.util.List;
 

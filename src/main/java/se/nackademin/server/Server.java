@@ -1,7 +1,7 @@
 package se.nackademin.server;
 
-import se.nackademin.server.states.InitialState;
-import se.nackademin.server.states.ServerStateMachine;
+import se.nackademin.server.serverstatemachine.InitialState;
+import se.nackademin.server.serverstatemachine.ServerStateMachine;
 
 public class Server {
 
