@@ -9,8 +9,8 @@ public class SharedSocketInputQueue<T> {
 	private final BlockingQueue<T> sharedQueue = new LinkedBlockingQueue<>();
 
 	public void connect(Socket socketOne, Socket socketTwo){
-		new Thread(new SocketInputQueue<T>(socketOne, sharedQueue)).start();
-		new Thread(new SocketInputQueue<T>(socketTwo, sharedQueue)).start();
+		new Thread(new SocketInputQueue<>(socketOne, sharedQueue)).start();
+		new Thread(new SocketInputQueue<>(socketTwo, sharedQueue)).start();
 	}
 
 	public T take() {

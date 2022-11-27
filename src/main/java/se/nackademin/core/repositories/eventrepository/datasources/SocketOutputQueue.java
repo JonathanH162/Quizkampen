@@ -19,9 +19,9 @@ public class SocketOutputQueue<T> implements Runnable {
 		}
 	}
 
-	public void put(T e) {
+	public void put(T object) {
 		try {
-			objectsToSendQueue.put(e);
+			objectsToSendQueue.put(object);
 		} catch (InterruptedException ex) {
 			throw new RuntimeException(ex);
 		}
