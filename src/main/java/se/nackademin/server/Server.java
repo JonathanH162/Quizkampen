@@ -8,4 +8,5 @@ public class Server {
 	public static void main(String[] args) {
 		new ServerStateMachine(new InitialState()).run();
 	}
+
 }

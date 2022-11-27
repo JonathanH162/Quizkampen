@@ -3,7 +3,6 @@ package se.nackademin.client.domain;
 import se.nackademin.client.presentation.View;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.client.data.ClientEventRepository;
 
 import java.io.IOException;
@@ -27,18 +26,18 @@ public class WelcomeScreenState implements ClientState {
 			eventManager.connect(new Socket(InetAddress.getLocalHost(), 1337));
 		} catch (IOException e) {
 			view.getWelcomeLabel().setText("Connection failed");
-			eventManager.sendEvent(new Event(EventType.CONNECTION_FAILED, HostId.SELF, HostId.SELF, new Object()));
-			waitForReturn();
+			eventManager.sendEvent(Event.toSelf(EventType.CONNECTION_FAILED));
+			sleepFiveSeconds();
 			return new InitialState();
 		}
 		return new SuccessfulConnectionState();
 	}
 
-	private void waitForReturn() {
+	private void sleepFiveSeconds() {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException();
 		}
 	}
 

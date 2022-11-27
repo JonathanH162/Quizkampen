@@ -11,8 +11,8 @@ public class ClientsConnectedState implements ServerState {
 	public ServerState transitionToNextState(Event event, ServerEventRepository eventManager) {
 		switch (event.getEventType()) {
 			case INITIAL_EVENT-> {
-				eventManager.sendEvent(new Event(EventType.TWO_PLAYERS_CONNECTED, HostId.SERVER, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
-				eventManager.sendEvent(new Event(EventType.TWO_PLAYERS_CONNECTED, HostId.SERVER, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+				eventManager.sendEvent(Event.toClient(EventType.TWO_PLAYERS_CONNECTED, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
+				eventManager.sendEvent(Event.toClient(EventType.TWO_PLAYERS_CONNECTED, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
 				return new NewRoundButtonPressedState();
 			}
 			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
