@@ -30,11 +30,11 @@ public class Event implements Serializable {
 	}
 
 	public static Event toSelf(EventType eventType) {
-		return new Event(eventType, HostId.SELF, HostId.SELF, new Object());
+		return new Event(eventType, HostId.SELF, HostId.SELF, HostId.EMPTY);
 	}
 
 	public static Event toClient(EventType eventType, HostId client) {
-		return new Event(eventType, client, HostId.EMPTY, new Object());
+		return new Event(eventType, client, HostId.EMPTY, HostId.EMPTY);
 	}
 
 	public static Event toClient(EventType eventType, HostId client, Object data) {
@@ -42,7 +42,7 @@ public class Event implements Serializable {
 	}
 
 	public static Event toServer(EventType eventType) {
-		return new Event(eventType, HostId.SERVER, HostId.EMPTY, new Object());
+		return new Event(eventType, HostId.SERVER, HostId.EMPTY, HostId.EMPTY);
 	}
 
 	public static Event toServer(EventType eventType, Object data) {
@@ -54,6 +54,12 @@ public class Event implements Serializable {
 		this.destination = destination;
 		this.source = source;
 		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return "Event{" + "eventType=" + eventType + ", destination=" + destination + ", source=" + source + ", data="
+				+ data + '}';
 	}
 
 }

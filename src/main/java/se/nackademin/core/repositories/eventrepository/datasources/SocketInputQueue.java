@@ -16,13 +16,8 @@ public class SocketInputQueue<T> implements Runnable {
 		this.receivedObjectsQueue = new LinkedBlockingQueue<>();
 	}
 
-	public SocketInputQueue(Socket socket, BlockingQueue<T> receivedObjectsQueue) {
-		try {
-			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
-			this.receivedObjectsQueue = receivedObjectsQueue;
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public SocketInputQueue(BlockingQueue<T> receivedObjectsQueue) {
+		this.receivedObjectsQueue = receivedObjectsQueue;
 	}
 
 	public void connect(Socket socket) {
@@ -54,12 +49,14 @@ public class SocketInputQueue<T> implements Runnable {
 	@SuppressWarnings({"unchecked", "InfiniteLoopStatement"})
 	public void run() {
 		while (true) {
-			if (connected) {
-				try {
-					receivedObjectsQueue.put((T) objectInputStream.readObject());
-				} catch (InterruptedException | ClassNotFoundException | IOException e) {
-					throw new RuntimeException(e);
+			try {
+				Thread.sleep(1000);
+				if (connected) {
+					T receivedObject = (T) objectInputStream.readObject();
+					receivedObjectsQueue.put(receivedObject);
 				}
+			} catch (InterruptedException | ClassNotFoundException | IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}

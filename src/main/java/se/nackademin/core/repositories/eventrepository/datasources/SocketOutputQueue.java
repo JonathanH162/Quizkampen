@@ -32,7 +32,9 @@ public class SocketOutputQueue<T> implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				objectOutputStream.writeObject(objectsToSendQueue.take());
+				T objectToSend = objectsToSendQueue.take();
+				objectOutputStream.writeObject(objectToSend);
+				objectOutputStream.flush();
 			} catch (IOException | InterruptedException e) {
 				throw new RuntimeException(e);
 			}

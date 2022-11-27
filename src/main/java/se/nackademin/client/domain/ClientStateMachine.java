@@ -26,7 +26,6 @@ public class ClientStateMachine {
         while (true) {
 
             logger.info("Current state: " + currentState.getClass());
-            logger.info("Looking for events..");
             var event = clientEventManager.getEvent();
             logger.info("Event found: " + event.getEventType());
 

@@ -7,10 +7,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class SharedSocketInputQueue<T> {
 
 	private final BlockingQueue<T> sharedQueue = new LinkedBlockingQueue<>();
+	SocketInputQueue<T> socketInputQueueOne = new SocketInputQueue<>(sharedQueue);
+	SocketInputQueue<T> socketInputQueueTwo = new SocketInputQueue<>(sharedQueue);
+
+	public SharedSocketInputQueue() {
+		new Thread(socketInputQueueOne).start();
+		new Thread(socketInputQueueTwo).start();
+	}
 
 	public void connect(Socket socketOne, Socket socketTwo){
-		new Thread(new SocketInputQueue<>(socketOne, sharedQueue)).start();
-		new Thread(new SocketInputQueue<>(socketTwo, sharedQueue)).start();
+		socketInputQueueOne.connect(socketOne);
+		socketInputQueueTwo.connect(socketTwo);
 	}
 
 	public T take() {

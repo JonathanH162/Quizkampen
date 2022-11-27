@@ -22,7 +22,7 @@ public class ServerStateMachine implements Runnable{
 
 	public ServerStateMachine(ServerState currentState, Socket clientOne, Socket clientTwo, EventType eventType) {
 		this.currentState = currentState;
-		this.eventRepository.connect(clientOne,clientTwo);
+		eventRepository.connect(clientOne,clientTwo);
 		eventRepository.sendEvent(Event.toSelf(eventType));
 	}
 
@@ -31,7 +31,6 @@ public class ServerStateMachine implements Runnable{
 		while (true) {
 
 			logger.info("Current state: " + currentState.getClass());
-			logger.info("Looking for events..");
 			var event = eventRepository.getEvent();
 			logger.info("Event found: " + event.getEventType());
 
