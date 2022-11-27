@@ -1,16 +1,16 @@
 package se.nackademin.server.domain;
 
-import se.nackademin.core.utils.ConfigProperty;
+import se.nackademin.core.utils.ConfigProperties;
 
 public class ScoreTable {
 
-    private ConfigProperty property;
+    private ConfigProperties property;
     private boolean[][] score;
 
     private static int row;
     private static int column;
 
-    public ScoreTable(ConfigProperty property) {
+    public ScoreTable(ConfigProperties property) {
         row = 0;
         column = 0;
         this.property = property;

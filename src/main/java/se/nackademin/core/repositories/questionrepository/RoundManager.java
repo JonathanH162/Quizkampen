@@ -1,7 +1,7 @@
 package se.nackademin.core.repositories.questionrepository;
 
 import se.nackademin.core.repositories.questionrepository.models.RoundQuestion;
-import se.nackademin.core.utils.ConfigProperty;
+import se.nackademin.core.utils.ConfigProperties;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,11 +9,11 @@ import java.util.List;
 
 public class RoundManager {
 
-    private ConfigProperty property;
+    private ConfigProperties property;
     private QuestionRepositoryService service;
 
     public RoundManager() {
-        this.property = new ConfigProperty();
+        this.property = new ConfigProperties();
         this.service = new QuestionRepositoryService();
     }
 

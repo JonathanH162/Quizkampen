@@ -2,6 +2,7 @@ package se.nackademin.server.domain;
 
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
+import se.nackademin.core.utils.ConfigProperties;
 import se.nackademin.server.data.ServerEventRepository;
 
 import java.io.IOException;
@@ -14,14 +15,15 @@ public class InitialState implements ServerState {
 
 	public InitialState() {
 		try {
-			this.serverSocket = new ServerSocket(1337);
+			var serverPort = new ConfigProperties().getServerPort();
+			this.serverSocket = new ServerSocket(serverPort);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	@Override
-	public ServerState transitionToNextState(Event event, ServerEventRepository eventManager) {
+	public ServerState transitionToNextState(Event event, ServerEventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case INITIAL_EVENT -> {
 				new Thread(new ServerStateMachine(new ClientsConnectedState(), getClientSocket(), getClientSocket(),

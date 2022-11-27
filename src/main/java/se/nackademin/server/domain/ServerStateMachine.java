@@ -11,19 +11,19 @@ import java.net.Socket;
 public class ServerStateMachine implements Runnable{
 
 	private ServerState currentState;
-	private ServerEventRepository serverEventManager = new ServerEventRepository();
+	private final ServerEventRepository eventRepository = new ServerEventRepository();
 
 	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
 
 	public ServerStateMachine(ServerState currentState) {
 		this.currentState = currentState;
-		serverEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
+		eventRepository.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
 	}
 
 	public ServerStateMachine(ServerState currentState, Socket clientOne, Socket clientTwo, EventType eventType) {
 		this.currentState = currentState;
-		this.serverEventManager.connect(clientOne,clientTwo);
-		serverEventManager.sendEvent(Event.toSelf(eventType));
+		this.eventRepository.connect(clientOne,clientTwo);
+		eventRepository.sendEvent(Event.toSelf(eventType));
 	}
 
 	public void run() {
@@ -32,10 +32,10 @@ public class ServerStateMachine implements Runnable{
 
 			logger.info("Current state: " + currentState.getClass());
 			logger.info("Looking for events..");
-			var event = serverEventManager.getEvent();
+			var event = eventRepository.getEvent();
 			logger.info("Event found: " + event.getEventType());
 
-			currentState = currentState.transitionToNextState(event, serverEventManager);
+			currentState = currentState.transitionToNextState(event, eventRepository);
 		}
 	}
 

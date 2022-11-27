@@ -6,7 +6,7 @@ import se.nackademin.server.data.ServerEventRepository;
 public class NewRoundButtonPressedState implements ServerState {
 
 	@Override
-	public ServerState transitionToNextState(Event event, ServerEventRepository eventManager) {
+	public ServerState transitionToNextState(Event event, ServerEventRepository eventRepository) {
 		return null;
 	}
 }

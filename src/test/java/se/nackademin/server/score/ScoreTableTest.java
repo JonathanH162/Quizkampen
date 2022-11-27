@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.nackademin.server.domain.ScoreTable;
-import se.nackademin.core.utils.ConfigProperty;
+import se.nackademin.core.utils.ConfigProperties;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +18,7 @@ class ScoreTableTest {
     ScoreTable sut;
 
     @Mock
-    private ConfigProperty property;
+    private ConfigProperties property;
 
     @BeforeEach
     void setUp() {
