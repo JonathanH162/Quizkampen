@@ -1,7 +1,7 @@
 package se.nackademin.questionrepository;
 
 import org.junit.jupiter.api.Test;
-import se.nackademin.repositories.questionrepository.RoundManager;
+import se.nackademin.core.repositories.questionrepository.RoundManager;
 
 class RoundManagerTest {
 

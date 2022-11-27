@@ -1,7 +1,7 @@
 package se.nackademin.client;
 
-import se.nackademin.client.clientstatemachine.ClientStateMachine;
-import se.nackademin.client.clientstatemachine.InitialState;
+import se.nackademin.client.domain.ClientStateMachine;
+import se.nackademin.client.domain.InitialState;
 
 public class Client {
 

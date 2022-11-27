@@ -1,6 +1,7 @@
 package se.nackademin.utils;
 
 import org.junit.jupiter.api.Test;
+import se.nackademin.core.utils.ConfigProperty;
 
 import static org.junit.jupiter.api.Assertions.*;
 

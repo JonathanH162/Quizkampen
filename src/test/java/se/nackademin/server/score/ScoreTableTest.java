@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import se.nackademin.utils.ConfigProperty;
+import se.nackademin.server.domain.ScoreTable;
+import se.nackademin.core.utils.ConfigProperty;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
