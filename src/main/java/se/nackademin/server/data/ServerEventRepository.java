@@ -12,7 +12,7 @@ public class ServerEventRepository implements EventRepository {
 
 	private SocketOutputQueue<Event> clientOneSocketOutputQueue;
 	private SocketOutputQueue<Event> clientTwoSocketOutputQueue;
-	private final SharedSocketInputQueue clientSharedSocketInputQueue = new SharedSocketInputQueue();
+	private final SharedSocketInputQueue<Event> clientSharedSocketInputQueue = new SharedSocketInputQueue<>();
 
 	public void connect(Socket clientOne, Socket clientTwo) {
 		clientOneSocketOutputQueue = new SocketOutputQueue<>(clientOne);

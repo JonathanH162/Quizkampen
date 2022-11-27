@@ -11,11 +11,11 @@ import java.net.Socket;
 public class ClientEventRepository implements EventRepository {
 
 	private SocketOutputQueue<Event> socketOutputQueue;
-	private final SocketInputQueue socketInputQueue;
+	private final SocketInputQueue<Event> socketInputQueue;
 	private HostId clientId;
 
 	public ClientEventRepository() {
-		this.socketInputQueue = new SocketInputQueue();
+		this.socketInputQueue = new SocketInputQueue<>();
 		new Thread(socketInputQueue).start();
 	}
 
