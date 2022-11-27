@@ -2,7 +2,6 @@ package se.nackademin.core.repositories.eventrepository.datasources;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import se.nackademin.core.repositories.eventrepository.models.Event;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,10 +9,10 @@ import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SocketInputQueue implements Runnable {
+public class SocketInputQueue<T> implements Runnable {
 
     private ObjectInputStream objectInputStream;
-    private BlockingQueue<Event> receivedObjectsQueue;
+    private BlockingQueue<T> receivedObjectsQueue;
     private boolean connected = false;
 
     private static final Logger logger = LogManager.getLogger(SocketInputQueue.class);
@@ -23,7 +22,7 @@ public class SocketInputQueue implements Runnable {
         this.receivedObjectsQueue = new LinkedBlockingQueue<>();
     }
 
-    public SocketInputQueue(Socket socket, BlockingQueue<Event> receivedObjectsQueue) {
+    public SocketInputQueue(Socket socket, BlockingQueue<T> receivedObjectsQueue) {
         try {
             this.objectInputStream = new ObjectInputStream(socket.getInputStream());
             this.receivedObjectsQueue = receivedObjectsQueue;
@@ -41,7 +40,7 @@ public class SocketInputQueue implements Runnable {
         }
     }
 
-    public Event take() {
+    public T take() {
         try {
             return receivedObjectsQueue.take();
         } catch (InterruptedException e) {
@@ -51,21 +50,21 @@ public class SocketInputQueue implements Runnable {
         }
     }
 
-    public void put(Event event) {
+    public void put(T object) {
         try {
-            receivedObjectsQueue.put(event);
+            receivedObjectsQueue.put(object);
         } catch (InterruptedException e) {
-            logger.error("receivedObjectsQueue.put({}) goes wrong: {}", event, e.getMessage());
+            logger.error("receivedObjectsQueue.put({}) goes wrong: {}", object, e.getMessage());
         }
     }
 
     @Override
-    @SuppressWarnings({"InfiniteLoopStatement"})
+    @SuppressWarnings({"unchecked", "InfiniteLoopStatement"})
     public void run() {
         if (connected) {
             while (true) {
                 try {
-                    receivedObjectsQueue.put((Event) objectInputStream.readObject());
+                    receivedObjectsQueue.put((T) objectInputStream.readObject());
                 } catch (InterruptedException | ClassNotFoundException | IOException e) {
                     throw new RuntimeException(e);
                 }

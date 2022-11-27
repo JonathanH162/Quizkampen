@@ -7,7 +7,6 @@ import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.utils.ConfigProperties;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class WelcomeScreenState implements ClientState {
