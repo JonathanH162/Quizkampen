@@ -1,6 +1,6 @@
 package se.nackademin.server.domain;
 
-import se.nackademin.core.utils.ConfigProperty;
+import se.nackademin.common.ConfigProperty;
 
 public class ScoreTable {
 

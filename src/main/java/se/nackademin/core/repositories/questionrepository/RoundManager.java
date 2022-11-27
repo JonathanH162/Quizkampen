@@ -1,7 +1,7 @@
 package se.nackademin.core.repositories.questionrepository;
 
 import se.nackademin.core.repositories.questionrepository.models.RoundQuestion;
-import se.nackademin.core.utils.ConfigProperty;
+import se.nackademin.common.ConfigProperty;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package se.nackademin.core.utils;
+package se.nackademin.common;
 
 import java.io.FileInputStream;
 import java.io.IOException;
