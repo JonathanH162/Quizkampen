@@ -8,16 +8,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.client.data.ClientEventRepository;
 
 public class View extends JFrame implements ActionListener {
 
 	private JPanel startPanel;
 	JButton startButton;
 	JLabel welcomeLabel;
-	ClientEventRepository clientEventManager;
+	EventRepository clientEventManager;
 	int player1RoundPoints = 0;
 	int player2RoundPoints = 0;
 	int player1TotalPoints = 0;
@@ -47,7 +47,7 @@ public class View extends JFrame implements ActionListener {
 	ArrayList<JButton> categoryButtonList = new ArrayList<>();
 	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
-	public View(ClientEventRepository clientEventManager) throws HeadlessException {
+	public View(EventRepository clientEventManager) throws HeadlessException {
 		this.clientEventManager = clientEventManager;
 	}
 

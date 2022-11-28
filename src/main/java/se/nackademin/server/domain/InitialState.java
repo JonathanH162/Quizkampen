@@ -2,10 +2,10 @@ package se.nackademin.server.domain;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.utils.ConfigProperties;
-import se.nackademin.server.data.ServerEventRepository;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -27,7 +27,7 @@ public class InitialState implements ServerState {
 	}
 
 	@Override
-	public ServerState transitionToNextState(Event event, ServerEventRepository eventRepository) {
+	public ServerState transitionToNextState(Event event, EventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case INITIAL_EVENT -> {
 				new Thread(new ServerStateMachine(new ClientsConnectedState(), getClientSocket(), getClientSocket(),
