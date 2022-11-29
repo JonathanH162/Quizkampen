@@ -8,6 +8,7 @@ import se.nackademin.core.repositories.questionrepository.models.QuestionsReposi
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuestionRepositoryService {
@@ -51,6 +52,7 @@ public class QuestionRepositoryService {
                 }
             }
         }
+        Collections.shuffle(questions);
         return questions;
     }
     public List<String> getAllPossibleAnswers(String question){
