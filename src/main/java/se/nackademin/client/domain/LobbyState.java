@@ -46,6 +46,9 @@ public class LobbyState implements ClientState {
 			case CATEGORY_CHOSEN -> {
 				return new QuestionState();
 			}
+			case ROUND_FINISHED -> {
+				System.out.println(event.getData());
+			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}
 		return null;

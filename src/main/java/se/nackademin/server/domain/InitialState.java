@@ -28,14 +28,9 @@ public class InitialState implements ServerState {
 
 	@Override
 	public ServerState transitionToNextState(Event event, EventRepository eventRepository) {
-		switch (event.getEventType()) {
-			case INITIAL_EVENT -> {
-				new Thread(new ServerStateMachine(new ClientsConnectedState(), getClientSocket(), getClientSocket(),
-						EventType.INITIAL_EVENT)).start();
-				return this;
-			}
-			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
-		}
+		new Thread(new ServerStateMachine(new ServerGame(), getClientSocket(), getClientSocket(),
+						EventType.START_ROUND)).start();
+		return this;
 	}
 
 	private Socket getClientSocket() {

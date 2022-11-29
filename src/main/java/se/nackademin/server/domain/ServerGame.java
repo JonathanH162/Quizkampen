@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ServerGame {
+public class ServerGame implements ServerState{
+    QuestionRepositoryService questionService = new QuestionRepositoryService();
+    ConfigProperties properties = new ConfigProperties();
     private HostId currentPlayer;
     private boolean bothPlayersDone = false;
     private int roundsDone;
