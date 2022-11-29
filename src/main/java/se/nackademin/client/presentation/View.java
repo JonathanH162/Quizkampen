@@ -146,7 +146,6 @@ public class View extends JFrame implements ActionListener {
 		for (JButton button : buttons) {
 			buttonPanel.add(button);
 			button.setPreferredSize(new Dimension(100, 100));
-			button.addActionListener(this);
 		}
 	}
 

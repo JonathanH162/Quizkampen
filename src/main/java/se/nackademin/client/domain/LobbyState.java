@@ -1,6 +1,7 @@
 package se.nackademin.client.domain;
 
 import se.nackademin.client.presentation.View;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
@@ -12,6 +13,9 @@ import javax.swing.*;
 import java.util.Collections;
 
 public class LobbyState implements ClientState {
+	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
+	private final EventRepository eventRepository = new ClientEventRepository();
+	private final ConfigProperties configProperties = new ConfigProperties();
 
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
