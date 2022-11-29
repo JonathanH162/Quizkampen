@@ -172,7 +172,6 @@ public class View extends JFrame implements ActionListener {
 			lobbyScreenPanel.setVisible(false);
 			categoryScreenPanel.setVisible(true);
 			repaint();
-			revalidate();
 		}
 	}
 

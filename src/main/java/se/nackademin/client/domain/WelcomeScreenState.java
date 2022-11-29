@@ -13,10 +13,20 @@ public class WelcomeScreenState implements ClientState {
 
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
-		return switch (event.getEventType()) {
+		switch (event.getEventType()) {
+			case INITIAL_EVENT -> view.initiateView();
 			case START_BUTTON_PRESSED -> connectToServer(view, eventRepository);
+			case CONNECTION_SUCCESS -> {
+				view.lobbyScreen();
+				return new LobbyState();
+			}
+			case CONNECTION_FAILED -> {
+				sleepFiveSeconds();
+				return this;
+			}
 			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
-		};
+		}
+		return null;
 	}
 
 	private ClientState connectToServer(View view, ClientEventRepository eventRepository) {
