@@ -27,8 +27,11 @@ public class QuestionRepositoryService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return questionsRepository.getCategories();
+    }
+
+    public List<Category> getCategories() {
+        return getCategories("categories.json");
     }
 
     public List<String> getAllCategoriesName() {

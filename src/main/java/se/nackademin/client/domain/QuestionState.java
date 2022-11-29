@@ -19,6 +19,9 @@ import java.util.List;
 
 public class QuestionState implements ClientState {
 
+	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
+	private final ConfigProperties configProperties = new ConfigProperties();
+
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
