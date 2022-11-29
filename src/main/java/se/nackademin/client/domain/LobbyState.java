@@ -48,6 +48,7 @@ public class LobbyState implements ClientState {
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}
+		return null;
 	}
 
 }

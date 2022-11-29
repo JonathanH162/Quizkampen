@@ -42,13 +42,14 @@ public class QuestionState implements ClientState {
 				// Take the needed number of questions
 				var questionsToBeUsed = questions.subList(0, numberOfQuestionsNeeded - 1);
 
-
 				// TODO rest of steps
 				//Choose a question to be used
-				String question = questions.get(0);
+				String question1 = questions.get(0);
+				String question2 = questions.get(1);
+				String question3 = questions.get(2);
 
 				// SET QUESTIONLABEL TO QUESTION
-				view.getQuestionLabel().setText(question);
+				view.getQuestionLabel().setText("");
 				//View fixar med svaren till respektive fråga.
 				view.questionScreen();
 

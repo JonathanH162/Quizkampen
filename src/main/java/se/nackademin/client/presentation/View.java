@@ -21,7 +21,6 @@ public class View extends JFrame implements ActionListener {
 	JButton startButton;
 	JLabel welcomeLabel;
 	ClientEventRepository clientEventManager;
-	int roundCounter;
 	int player1RoundPoints = 0;
 	int player2RoundPoints = 0;
 	int player1TotalPoints = 0;
@@ -47,7 +46,7 @@ public class View extends JFrame implements ActionListener {
 	JPanel answerButtonPanel = new JPanel();
 	JLabel questionLabel = new JLabel("Question", SwingConstants.CENTER);
 	JPanel categoryButtonPanel = new JPanel();
-	JLabel categoryLabel = new JLabel("Välj en Kategori!", SwingConstants.CENTER);
+	JLabel categoryLabel = new JLabel("Välj en Kategori", SwingConstants.CENTER);
 	ArrayList<JButton> categoryButtonList = new ArrayList<>();
 	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
@@ -177,9 +176,8 @@ public class View extends JFrame implements ActionListener {
 		for (int i = 0; i < buttonNameList.size(); i++) {
 			final String answer = buttonNameList.get(i);
 			var button = new JButton(answer);
-			button.addActionListener(this);
+			button.addActionListener((e) -> clientEventManager.sendEvent(Event.toSelf(EventType.ANSWER_CHOSEN_BUTTON, button.getText())));
 			buttons.add(button);
-
 		}
 	}
 
@@ -194,10 +192,8 @@ public class View extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == playButton) {
 			clientEventManager.sendEvent(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON));
-			roundCounter++;
 			revalidate();
 			repaint();
-			revalidate();
 		}
 	}
 
@@ -213,5 +209,7 @@ public class View extends JFrame implements ActionListener {
 	public JLabel getQuestionLabel() {
 		return questionLabel;
 	}
-
+	public List<JButton> getAnswerButtonList() {
+		return answerButtonList;
+	}
 }

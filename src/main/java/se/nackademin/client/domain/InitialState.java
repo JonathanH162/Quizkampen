@@ -9,7 +9,7 @@ public class InitialState implements ClientState {
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 
 		switch (event.getEventType()) {
-			case INITIAL_EVENT, CONNECTION_FAILED -> {
+			case SHOW_GUI, CONNECTION_FAILED -> {
 				view.initiateView();
 				return new WelcomeScreenState();
 			}
