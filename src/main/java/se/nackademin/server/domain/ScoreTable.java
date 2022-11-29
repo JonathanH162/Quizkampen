@@ -50,4 +50,8 @@ public class ScoreTable {
         }
         return sumOfScore;
     }
+
+    public static void main(String[] args) {
+        ScoreTable st = new ScoreTable(new ConfigProperties());
+    }
 }
