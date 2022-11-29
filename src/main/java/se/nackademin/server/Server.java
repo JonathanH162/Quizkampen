@@ -36,4 +36,13 @@ public class Server implements Runnable{
 		}
 	}
 
+	private Socket getClientSocket() {
+		try {
+			Socket client = serverSocket.accept();
+			logger.info("Client connected: " + client);
+			return client;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

@@ -20,7 +20,8 @@ public class WelcomeScreenState implements ClientState {
 			case SHOW_GUI -> view.initiateView();
 			case START_BUTTON_PRESSED -> connectToServer(view, eventRepository);
 			case CONNECTION_SUCCESS -> {
-				view.lobbyScreen();
+				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
+				view.showPanel(lobbyPanel);
 				return new LobbyState();
 			}
 			case CONNECTION_FAILED -> {
@@ -32,8 +33,9 @@ public class WelcomeScreenState implements ClientState {
 	}
 
 	private ClientState connectToServer(View view, ClientEventRepository eventRepository) {
-		view.getStartButton().setVisible(false);
-		view.getWelcomeLabel().setText("Connecting to Server...");
+		view.showPanel(welcomePanel);
+		welcomePanel.getStartButton().setVisible(false);
+		welcomePanel.getWelcomeLabel().setText("Connecting to Server...");
 		try {
 			var properties = new ConfigProperties();
 			eventRepository.connect(new Socket(properties.getServerIp(), properties.getServerPort()));

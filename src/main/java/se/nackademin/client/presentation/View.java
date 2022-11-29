@@ -50,8 +50,13 @@ public class View extends JFrame implements ActionListener {
 	ArrayList<JButton> categoryButtonList = new ArrayList<>();
 	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
-	public View(ClientEventRepository clientEventManager) throws HeadlessException {
-		this.clientEventManager = clientEventManager;
+	public View(ClientEventRepository eventRepository) throws HeadlessException {
+		this.eventRepository = eventRepository;
+		setTitle("Quizkampen");
+		setSize(350, 400);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
 	public void showPanel(JPanel panel) {

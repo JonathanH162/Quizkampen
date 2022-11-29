@@ -18,6 +18,7 @@ public class LobbyState implements ClientState {
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case WAITING_FOR_CHOICE -> {
+				view.showWaitingPanel();
 				eventRepository.setSourceId((HostId) event.getData());
 				view.getPlayButton().setVisible(false);
 				JOptionPane.showMessageDialog(null, "Motståndarens tur att välja kategori, var god vänta.");
