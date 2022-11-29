@@ -25,7 +25,7 @@
         },
         {
           "question": "Under vilket namn är Manfred Freiherr von Richthofen bättre känd?",
-          "possibleAnswer": ["Röde baronen", "Napoleon", "Hitler", "Bismarck", "Röde baronen"],
+          "possibleAnswer": ["Napoleon", "Hitler", "Bismarck", "Röde baronen"],
           "correctAnswer": "Röde baronen"
         }
       ]
@@ -35,7 +35,7 @@
       "cards": [
         {
           "question": "Hur lång är distansen för ett maratonlopp?",
-          "possibleAnswer": ["26,2 mil","26,3 mil", "26 mil", "27,2 mil", "27 mil"],
+          "possibleAnswer": ["26,2 mil", "26 mil", "27,2 mil", "27 mil"],
           "correctAnswer": "26,2 mil"
         },
         {
@@ -55,7 +55,7 @@
         },
         {
           "question": " Vilken OS -sport innefattar tuckar och gäddor?",
-          "possibleAnswer": ["simning","fäktning","simning", "bowling", "polo"],
+          "possibleAnswer": ["simning","fäktning", "bowling", "polo"],
           "correctAnswer": "simning"
         },
         {
@@ -64,8 +64,146 @@
           "correctAnswer": "Filippinerna"
         }
       ]
+    },
+    {
+      "name": "Djur",
+      "cards": [
+        {
+          "question": "Hur många månader tar det innan en dräktig val föder barn?",
+          "possibleAnswer": ["9 månader","4 månader", "16 månader", "36 månader"],
+          "correctAnswer": "16 månader"
+        },
+        {
+          "question": "Vilket är det största djuret i världen?",
+          "possibleAnswer": ["Afrikansk elefant", "Blåval i Antarktis", "Kolossal bläckfisk", "Giraff"],
+          "correctAnswer": "Blåval i Antarktis"
+        },
+        {
+          "question": " Vilket är det längsta djuret i världen?",
+          "possibleAnswer": ["Afrikansk elefant", "Blåval i Antarktis", "Kolossal bläckfisk", "Giraff"],
+          "correctAnswer": "Giraff"
+        },
+        {
+          "question": " I vilken riktning flyger nordliga fåglar på vintern?",
+          "possibleAnswer": ["North","Öst", "West", "Syd"],
+          "correctAnswer": "Syd"
+        },
+        {
+          "question": " Vad kallar man en påfågelhona?",
+          "possibleAnswer": [" Peafowl","Peananny","Peahens", "Pioner"],
+          "correctAnswer": "Peahens"
+        },
+        {
+          "question": " Vilken hundras är störst i storlek?",
+          "possibleAnswer": ["Tysk schäfer", "Teacup Chihuahua", "Engelsk mastiff", "Golden Retriever"],
+          "correctAnswer": "Engelsk mastiff"
+        }
+      ]
+    },
+    {
+      "name": "Film",
+      "cards": [
+        {
+          "question": " Vad hette Harry Potters husdjursuggla?",
+          "possibleAnswer": [" Errol","Hedwig", "Skurthanks", "Skabbar"],
+          "correctAnswer": "Hedwig"
+        },
+        {
+          "question": " Vart tog Edward Cullen vägen för att provocera Volturi?",
+          "possibleAnswer": ["Volterra", "Milano", "Paris", "Vancouver"],
+          "correctAnswer": "Volterra"
+        },
+        {
+          "question": " Daenerys Targaryen är för alltid känt för att vara…",
+          "possibleAnswer": ["Nordens drottning", "Drakarnas mor", "Drakarnas drottning", "Nordens mor"],
+          "correctAnswer": "Drakarnas mor"
+        },
+        {
+          "question": " Vad var symbolen för Katniss Everdeen i Hungerspelen?",
+          "possibleAnswer": ["Mockingjay","Örn", "Lejoninna", "Svan"],
+          "correctAnswer": "Mockingjay"
+        },
+        {
+          "question": " Vad är mellannamnet på Christian Gray i Fifty Shades of Grey?",
+          "possibleAnswer": ["Huntington","Vanderbilt","Trevelyan", "Vadställe"],
+          "correctAnswer": "Trevelyan"
+        },
+        {
+          "question": " Vilka är de fem fraktionerna i Divergent?",
+          "possibleAnswer": ["Erudite, Uppriktighet, Försakelse, Dauntless och Factionless", "Erudite, Uppriktighet, Försakelse, Dauntless och Amity", "Arodite, Cander, Abnegation, Dauntful och Amity", "Arudite, Cander, Abnegation, Dauntless och Factionless"],
+          "correctAnswer": "Erudite, Uppriktighet, Försakelse, Dauntless och Amity"
+        }
+      ]
+    },
+    {
+      "name": "Vetenskap",
+      "cards": [
+        {
+          "question": " Det är allt som upptar utrymme och har massa.",
+          "possibleAnswer": [" atom","materia", "begrepp", "hypotes"],
+          "correctAnswer": "Materia"
+        },
+        {
+          "question": " Det är det största organet i vår kropp..",
+          "possibleAnswer": ["lungor", "mage", "hud", "hjärna"],
+          "correctAnswer": "hud"
+        },
+        {
+          "question": " Vilken kraft håller oss alla grundad?",
+          "possibleAnswer": ["allvar", "friktion", "motstånd", "spänning"],
+          "correctAnswer": "allvar"
+        },
+        {
+          "question": " Vad kallar du en utbildad gissning?",
+          "possibleAnswer": ["begrepp","aning", "åsikt", "hypotes"],
+          "correctAnswer": "Hypotes"
+        },
+        {
+          "question": " Hur många planeter finns det i solsystemet?",
+          "possibleAnswer": ["8","9","10", "15"],
+          "correctAnswer": "8"
+        },
+        {
+          "question": " Vem uppfann telefonen?",
+          "possibleAnswer": ["John Peirce", "Alexander Graham Bell", "Joseph Henry", "Antonio Meucci"],
+          "correctAnswer": "Alexander Graham Bell"
+        }
+      ]
+    },
+    {
+      "name": "Mat",
+      "cards": [
+        {
+          "question": " Vilket är det dyraste köttet i världen?",
+          "possibleAnswer": [" Fläsk","Sushi", "Wagyu", "Kyckling"],
+          "correctAnswer": "Wagyu"
+        },
+        {
+          "question": " Vilken är den dyraste frukten i världen?",
+          "possibleAnswer": ["Yubari melon", "Bananer", "Drakfrukt", "Litchi"],
+          "correctAnswer": "Yubari melon"
+        },
+        {
+          "question": " Vilken läsk var mest känd 1892?",
+          "possibleAnswer": ["Pepsi Cola", "Coca Cola", "Dr.Pepper", "Mountain Dew"],
+          "correctAnswer": "Coca Cola"
+        },
+        {
+          "question": " Vad är den långa versionen av ordet Spam?",
+          "possibleAnswer": ["Special skinka","Spinnad skinka", "Kryddad skinka", "Kryddig skinka"],
+          "correctAnswer": "Kryddad skinka"
+        },
+        {
+          "question": " Vad är den bokstavliga innebörden av Dorito?",
+          "possibleAnswer": ["Smaskiga grejer","Små gyllene saker","Ostaktig godhet", "Liten och smaskig"],
+          "correctAnswer": "Små gyllene saker"
+        },
+        {
+          "question": " Vilken är den första maten i rymden?",
+          "possibleAnswer": ["Hamburgare", "Corned beef", "Äggröra", "Äppelmos"],
+          "correctAnswer": "Äppelmos"
+        }
+      ]
     }
-
-
   ]
 }
