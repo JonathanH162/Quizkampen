@@ -8,6 +8,12 @@ public class CategoryScreenState implements ClientState {
 
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+		switch (event.getEventType()) {
+			case CATEGORY_CHOSEN -> {
+				return new QuestionState();
+			}
+		}
 		return null;
 	}
 }
+

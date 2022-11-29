@@ -39,10 +39,10 @@ public class WelcomeScreenState implements ClientState {
 		} catch (IOException e) {
 			view.getWelcomeLabel().setText("Connection failed");
 			eventRepository.sendEvent(Event.toSelf(EventType.CONNECTION_FAILED));
-			sleepFiveSeconds();
-			return new InitialState();
+			return this;
 		}
-		return new SuccessfulConnectionState();
+		eventRepository.sendEvent(Event.toSelf(EventType.CONNECTION_SUCCESS));
+		return this;
 	}
 
 	private void sleepFiveSeconds() {

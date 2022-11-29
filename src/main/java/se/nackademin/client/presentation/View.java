@@ -8,16 +8,20 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
+import se.nackademin.client.data.ClientEventRepository;
+import se.nackademin.core.repositories.eventrepository.models.HostId;
+import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
 
 public class View extends JFrame implements ActionListener {
 
+	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
 	private JPanel startPanel;
 	JButton startButton;
 	JLabel welcomeLabel;
-	EventRepository clientEventManager;
+	ClientEventRepository clientEventManager;
+	int roundCounter;
 	int player1RoundPoints = 0;
 	int player2RoundPoints = 0;
 	int player1TotalPoints = 0;
@@ -34,20 +38,20 @@ public class View extends JFrame implements ActionListener {
 	JPanel pointPanel2 = new JPanel();
 	JPanel pointPanel3 = new JPanel();
 	JPanel categoryAndPointPanel = new JPanel();
-	JLabel nameLabel1 = new JLabel("Player 1");
-	JLabel nameLabel2 = new JLabel("Player 2");
-	JLabel totalScoreLabel = new JLabel("Total Score", SwingConstants.CENTER);
-	JButton playButton = new JButton("Next Round");
+	JLabel nameLabel1 = new JLabel("Spelare 1");
+	JLabel nameLabel2 = new JLabel("Spelare 2");
+	JLabel totalScoreLabel = new JLabel("Totalpoäng", SwingConstants.CENTER);
+	JButton playButton = new JButton("Ny Runda");
 	JLabel totalScoreCounter1 = new JLabel(String.valueOf(player1TotalPoints));
 	JLabel totalScoreCounter2 = new JLabel(String.valueOf(player2TotalPoints));
 	JPanel answerButtonPanel = new JPanel();
 	JLabel questionLabel = new JLabel("Question", SwingConstants.CENTER);
 	JPanel categoryButtonPanel = new JPanel();
-	JLabel categoryLabel = new JLabel("Choose a Category!", SwingConstants.CENTER);
+	JLabel categoryLabel = new JLabel("Välj en Kategori!", SwingConstants.CENTER);
 	ArrayList<JButton> categoryButtonList = new ArrayList<>();
 	ArrayList<JButton> answerButtonList = new ArrayList<>();
 
-	public View(EventRepository clientEventManager) throws HeadlessException {
+	public View(ClientEventRepository clientEventManager) throws HeadlessException {
 		this.clientEventManager = clientEventManager;
 	}
 
@@ -105,25 +109,47 @@ public class View extends JFrame implements ActionListener {
 		questionScreenPanel.add(questionLabel, BorderLayout.NORTH);
 		questionScreenPanel.add(answerButtonPanel, BorderLayout.CENTER);
 		answerButtonPanel.setLayout(new GridLayout(2, 2));
-		addButtonsToList(answerButtonList, 4, "Answer");
-		addButtonsToPanel(answerButtonList, answerButtonPanel);
+
+
 
 		categoryScreenPanel.setLayout(new BorderLayout());
 		categoryLabel.setFont(font);
 		categoryScreenPanel.add(categoryLabel, BorderLayout.NORTH);
 		categoryScreenPanel.add(categoryButtonPanel, BorderLayout.CENTER);
 		categoryButtonPanel.setLayout(new GridLayout(2, 3));
-		addButtonsToList(categoryButtonList, 6, "Category");
-		addButtonsToPanel(categoryButtonList, categoryButtonPanel);
+
 
 		setTitle("Quizkampen");
 		setSize(350, 400);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		categoryScreenPanel.setVisible(false);
+		pointPanel1.setVisible(false);
+		pointPanel2.setVisible(false);
+		pointPanel3.setVisible(false);
 		questionScreenPanel.setVisible(false);
+		categoryScreenPanel.setVisible(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		revalidate();
+		repaint();
 	}
+
+	public void questionScreen() {
+		// Sätter värde innan på questionlabel med frågan som ska ställas, görs i questionState
+		addAnswerButtonsToList(answerButtonList, questionService.getAllPossibleAnswers(questionLabel.getText()));
+		addButtonsToPanel(answerButtonList, answerButtonPanel);
+		lobbyScreenPanel.setVisible(false);
+		categoryScreenPanel.setVisible(false);
+		questionScreenPanel.setVisible(true);
+	}
+
+	public void categoryScreen() {
+		addCategoryButtonsToList(categoryButtonList, questionService.getAllCategoriesName());
+		addButtonsToPanel(categoryButtonList, categoryButtonPanel);
+		lobbyScreenPanel.setVisible(false);
+		categoryScreenPanel.setVisible(true);
+		questionScreenPanel.setVisible(false);
+	}
+
 
 	public JPanel addPointPanel(JPanel pointPanel) {
 		pointPanel.add(new JLabel(String.valueOf(player1RoundPoints)), BorderLayout.WEST);
@@ -133,16 +159,31 @@ public class View extends JFrame implements ActionListener {
 		return pointPanel;
 	}
 
-	public void addButtonsToList(java.util.List<JButton> buttons, Integer amount, String buttonText) {
+	public void addCategoryButtonsToList(java.util.List<JButton> buttons,List<String> buttonNameList) { //Lägger till kategori knappar i en lista
 		if (!buttons.isEmpty()) {
 			buttons.clear();
 		}
-		for (int i = 0; i < amount; i++) {
-			buttons.add(new JButton(buttonText + " " + (i + 1)));
+		for (int i = 0; i < buttonNameList.size(); i++) {
+			final String categoryName = buttonNameList.get(i);
+			var button = new JButton(categoryName);
+			button.addActionListener((e) -> clientEventManager.sendEvent(Event.toSelf(EventType.CATEGORY_CHOSEN_BUTTON, categoryName)));
+			buttons.add(button);
+		}
+	}
+	public void addAnswerButtonsToList(java.util.List<JButton> buttons,List<String> buttonNameList) { //Lägger till svarsknappar i en lista
+		if (!buttons.isEmpty()) {
+			buttons.clear();
+		}
+		for (int i = 0; i < buttonNameList.size(); i++) {
+			final String answer = buttonNameList.get(i);
+			var button = new JButton(answer);
+			button.addActionListener(this);
+			buttons.add(button);
+
 		}
 	}
 
-	public void addButtonsToPanel(List<JButton> buttons, JPanel buttonPanel) {
+	public void addButtonsToPanel(List<JButton> buttons, JPanel buttonPanel) { //Skapar upp knappar i respektive panel ifrån en lista av knappar
 		for (JButton button : buttons) {
 			buttonPanel.add(button);
 			button.setPreferredSize(new Dimension(100, 100));
@@ -151,36 +192,26 @@ public class View extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		for (JButton button : categoryButtonList) {
-			if (e.getSource() == button) {
-				categoryScreenPanel.setVisible(false);
-				questionScreenPanel.setVisible(true);
-				repaint();
-				revalidate();
-			}
-			for (JButton jButton : answerButtonList) {
-				if (e.getSource() == jButton) {
-					questionScreenPanel.setVisible(false);
-					lobbyScreenPanel.setVisible(true);
-					repaint();
-					revalidate();
-				}
-			}
-		}
 		if (e.getSource() == playButton) {
-			lobbyScreenPanel.setVisible(false);
-			categoryScreenPanel.setVisible(true);
+			clientEventManager.sendEvent(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON));
+			roundCounter++;
+			revalidate();
 			repaint();
+			revalidate();
 		}
 	}
 
-	public void unsuccessfulConnectionScreen() {
-	}
 	public JLabel getWelcomeLabel() {
 		return welcomeLabel;
 	}
 	public JButton getStartButton() {
 		return startButton;
+	}
+	public JButton getPlayButton() {
+		return playButton;
+	}
+	public JLabel getQuestionLabel() {
+		return questionLabel;
 	}
 
 }

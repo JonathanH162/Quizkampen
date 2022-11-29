@@ -73,4 +73,4 @@ public class QuestionState implements ClientState {
 			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}
 	}
-}
+	}

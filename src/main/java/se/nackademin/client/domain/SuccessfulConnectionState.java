@@ -6,6 +6,8 @@ import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
+import javax.swing.*;
+
 public class SuccessfulConnectionState implements ClientState {
 
 	@Override
