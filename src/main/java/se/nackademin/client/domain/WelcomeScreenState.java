@@ -17,8 +17,12 @@ public class WelcomeScreenState implements ClientState {
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
-			case SHOW_GUI -> view.initiateView();
-			case START_BUTTON_PRESSED -> connectToServer(view, eventRepository);
+			case INITIAL -> {
+				view.showPanel(welcomePanel);
+				welcomePanel.setStartButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.START_BUTTON_PRESSED)));
+				return this;
+			}
+			case START_BUTTON_PRESSED -> { connectToServer(view, eventRepository); return this; }
 			case CONNECTION_SUCCESS -> {
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);

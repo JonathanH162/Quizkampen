@@ -1,6 +1,8 @@
 package se.nackademin.client.domain;
 
+import se.nackademin.client.presentation.CategoryPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.WaitingPanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
@@ -20,18 +22,15 @@ public class LobbyState implements ClientState {
 			case WAITING_FOR_CHOICE -> {
 				view.showWaitingPanel();
 				eventRepository.setSourceId((HostId) event.getData());
-				view.getPlayButton().setVisible(false);
-				JOptionPane.showMessageDialog(null, "Motståndarens tur att välja kategori, var god vänta.");
-				return this;
+				return new QuestionState();
 			}
 			case NEXT_TO_CHOOSE -> {
 				eventRepository.setSourceId((HostId) event.getData());
-				view.getPlayButton().setVisible(true);
 				return this;
 			}
 
 			case SHOW_CATEGORIES_BUTTON -> {
-				view.categoryScreen();
+				view.showPanel(categoryPanel);
 				return this;
 			}
 
