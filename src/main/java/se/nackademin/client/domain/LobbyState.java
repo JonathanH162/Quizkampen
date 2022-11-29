@@ -9,14 +9,11 @@ import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
 import se.nackademin.core.utils.ConfigProperties;
 
-import javax.swing.*;
-import java.util.Collections;
-
 public class LobbyState implements ClientState {
 	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
 	private final EventRepository eventRepository = new ClientEventRepository();
 	private final ConfigProperties configProperties = new ConfigProperties();
-
+	private final CategoryPanel categoryPanel = new CategoryPanel(eventRepository);
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
@@ -39,7 +36,7 @@ public class LobbyState implements ClientState {
 
 			case CATEGORY_CHOSEN_BUTTON -> {
 				var selectedCategory = (String) event.getData();
-				eventRepository.sendEvent(Event.toServer(EventType.CATEGORY_CHOSEN, selectedCategory));
+				eventRepository.add(Event.toServer(EventType.CATEGORY_CHOSEN, selectedCategory));
 				return this;
 			}
 
@@ -48,10 +45,10 @@ public class LobbyState implements ClientState {
 			}
 			case ROUND_FINISHED -> {
 				System.out.println(event.getData());
+				return null;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}
-		return null;
 	}
 
 }

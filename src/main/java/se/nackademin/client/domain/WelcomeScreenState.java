@@ -1,6 +1,8 @@
 package se.nackademin.client.domain;
 
+import se.nackademin.client.presentation.LobbyPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.WelcomePanel;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.client.data.ClientEventRepository;
@@ -10,7 +12,8 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class WelcomeScreenState implements ClientState {
-
+	private final WelcomePanel welcomePanel = new WelcomePanel();
+	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
@@ -26,7 +29,6 @@ public class WelcomeScreenState implements ClientState {
 			}
 			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}
-		return null;
 	}
 
 	private ClientState connectToServer(View view, ClientEventRepository eventRepository) {
@@ -37,11 +39,11 @@ public class WelcomeScreenState implements ClientState {
 			eventRepository.connect(new Socket(properties.getServerIp(), properties.getServerPort()));
 
 		} catch (IOException e) {
-			view.getWelcomeLabel().setText("Connection failed");
-			eventRepository.sendEvent(Event.toSelf(EventType.CONNECTION_FAILED));
+			welcomePanel.getWelcomeLabel().setText("Connection failed");
+			eventRepository.add(Event.toSelf(EventType.CONNECTION_FAILED));
 			return this;
 		}
-		eventRepository.sendEvent(Event.toSelf(EventType.CONNECTION_SUCCESS));
+		eventRepository.add(Event.toSelf(EventType.CONNECTION_SUCCESS));
 		return this;
 	}
 

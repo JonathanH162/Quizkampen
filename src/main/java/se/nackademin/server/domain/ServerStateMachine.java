@@ -15,15 +15,10 @@ public class ServerStateMachine implements Runnable{
 
 	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
 
-	public ServerStateMachine(ServerState currentState) {
-		this.currentState = currentState;
-		eventRepository.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
-	}
-
 	public ServerStateMachine(ServerState currentState, Socket clientOne, Socket clientTwo, EventType eventType) {
 		this.currentState = currentState;
 		eventRepository.connect(clientOne,clientTwo);
-		eventRepository.sendEvent(Event.toSelf(eventType));
+		eventRepository.add(Event.toSelf(eventType));
 	}
 
 	public void run() {
@@ -31,7 +26,7 @@ public class ServerStateMachine implements Runnable{
 		while (true) {
 
 			logger.info("Current state: " + currentState.getClass());
-			var event = eventRepository.getEvent();
+			var event = eventRepository.get();
 			logger.info("Event found: " + event.getEventType());
 
 			currentState = currentState.transitionToNextState(event, eventRepository);

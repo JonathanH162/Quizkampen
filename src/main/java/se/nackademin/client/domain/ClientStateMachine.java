@@ -10,8 +10,8 @@ import se.nackademin.client.data.ClientEventRepository;
 public class ClientStateMachine {
 
     private ClientState currentState;
-    private final ClientEventRepository clientEventManager = new ClientEventRepository();
-    private final View view = new View(clientEventManager);
+    private final ClientEventRepository eventRepository = new ClientEventRepository();
+    private final View view = new View(eventRepository);
 
     private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
 
@@ -21,15 +21,15 @@ public class ClientStateMachine {
 
     public void run() {
         logger.info("StateMachine started.");
-        clientEventManager.sendEvent(Event.toSelf(EventType.INITIAL_EVENT));
+        eventRepository.add(Event.toSelf(EventType.INITIAL));
 
         while (true) {
 
             logger.info("Current state: " + currentState.getClass());
-            var event = clientEventManager.getEvent();
+            var event = eventRepository.get();
             logger.info("Event found: " + event.getEventType());
 
-            currentState = currentState.transitionToNextState(event, view, clientEventManager);
+            currentState = currentState.transitionToNextState(event, view, eventRepository);
         }
     }
 

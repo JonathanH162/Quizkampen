@@ -1,77 +1,107 @@
 package se.nackademin.client.domain;
 
-import com.fasterxml.jackson.core.JsonParser;
+import se.nackademin.client.data.ClientEventRepository;
+import se.nackademin.client.presentation.QuestionPanel;
 import se.nackademin.client.presentation.View;
 import se.nackademin.core.repositories.eventrepository.models.Event;
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
-import se.nackademin.core.repositories.questionrepository.models.Category;
-import se.nackademin.core.repositories.questionrepository.models.QuestionsRepository;
-import se.nackademin.core.utils.ConfigProperties;
 
-import javax.swing.*;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class QuestionState implements ClientState {
+    QuestionRepositoryService questionService = new QuestionRepositoryService();
+    // private List<String> questions = new ArrayList<>();
+    private final List<Boolean> answerResults = new ArrayList<>();
+    private String currentQuestion;
+    private List<String> remainingQuestions = Collections.emptyList();
+    private final QuestionPanel questionPanel = new QuestionPanel();
 
-	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
-	private final ConfigProperties configProperties = new ConfigProperties();
+    @Override
+    public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+        switch (event.getEventType()) {
+            case SHOW_QUESTION -> {
+                if (!remainingQuestions.isEmpty()) {
+                    remainingQuestions = (List<String>) event.getData();
+                }
 
-	@Override
-	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
-		switch (event.getEventType()) {
-			case CATEGORY_CHOSEN -> {
+                // Ta en fråga
+                // Sätt currentQuestion till frågan
+                currentQuestion = remainingQuestions.remove(0);
 
-				// GET CATEGORY FROM EVENT
-				var category = (String) event.getData();
+                //System.out.println(questionService.getAllPossibleAnswers(currentQuestion));
 
-				// GET QUESTIONS FROM THAT CATEGORY
-				var questions = questionService.getAllQuestionInCategory(category);
+                questionPanel.getQuestionLabel().setText(currentQuestion);
+                questionPanel.addAnswerButtonsToList(questionPanel.getAnswerButtonList(), questionService.getAllPossibleAnswers(currentQuestion));
+                questionPanel.addButtonsToPanel(questionPanel.getAnswerButtonList(), questionPanel.getButtonPanel());
 
-				// GET THE NUMBER OF QUESTIONS FROM CONFIG
-				var numberOfQuestionsNeeded = configProperties.getNumberOfQuestion();
+                view.showPanel(questionPanel);
 
-				// Randomize the list of questions
-				Collections.shuffle(questions);
-
-				// Take the needed number of questions
-				var questionsToBeUsed = questions.subList(0, numberOfQuestionsNeeded - 1);
-
-				// TODO rest of steps
-				//Choose a question to be used
-				String question1 = questions.get(0);
-				String question2 = questions.get(1);
-				String question3 = questions.get(2);
-
-				// SET QUESTIONLABEL TO QUESTION
-				view.getQuestionLabel().setText("");
-				//View fixar med svaren till respektive fråga.
-				view.questionScreen();
-
-				// SET ACTIONLISTENERS -> WRONG/RIGHT ANSWER
-				questionService.getCorrectAnswer("");
-				questionService.getAllPossibleAnswers("");
-
-				// SET ACTIONLISTENER -> NEXT QUESTION
+                // Visa frågan
+                //view.getCurrentPanel().questionLabel().setText(currentQuestion);
+                //view.showQuestionPanel(currentQuestion);
 
 
-				//eventRepository.sendEvent(Event.toServer(EventType.ROUND_FINISHED));
-				eventRepository.sendEvent(Event.toSelf(EventType.WAITING_FOR_CHOICE));
-				return new LobbyState();
+                return null;
 
-			}
-			case WAITING_FOR_CHOICE -> {
-				//view.waitForCategory();
-				return new LobbyState();
-				// TODO Informera användaren att motståndaren väljer kategori.
-				//view.waitForCategory();
-			}
-			default -> throw new RuntimeException("Event not handled: " + event.getEventType());
-		}
-	}
-	}
+            }
+            case ANSWER_CHOSEN_BUTTON -> {
+
+                // Kolla om svaret är rätt
+                var correctAnswer = questionService.getCorrectAnswer(currentQuestion);
+                var result = event.getData().equals(correctAnswer);
+
+                answerResults.add(result);
+
+                // Uppdatera vyn baserat på om svaret var rätt eller fel
+                updateViewBasedOnResult(view,event,result,correctAnswer);
+
+                sleepFiveSeconds();
+                if(remainingQuestions.isEmpty()) {
+                    eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
+                    return new LobbyState();
+                } else {
+                    eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));
+                    return this;
+                }
+
+            }
+            default -> throw new RuntimeException("Event not handled: " + event.getEventType());
+        }
+
+    }
+
+    private void sleepFiveSeconds() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void updateViewBasedOnResult(View view, Event event, Boolean result, String correctAnswer){
+        if (result) {
+            for (int i = 0; i <questionPanel.getAnswerButtonList().size() ; i++) {
+                if (questionPanel.getAnswerButtonList().get(i).getText().equals(correctAnswer)) {
+                    questionPanel.getAnswerButtonList().get(i).setBackground(Color.green);
+                    view.revalidate();
+                    view.repaint();
+                    //Om det inte uppdateras ändra till självstående knappar.
+                }
+            }
+        }
+        else {
+            for (int i = 0; i <questionPanel.getAnswerButtonList().size() ; i++) {
+                if (questionPanel.getAnswerButtonList().get(i).getText().equals(event.getData())) {
+                    questionPanel.getAnswerButtonList().get(i).setBackground(Color.red);
+                    view.revalidate();
+                    view.repaint();
+                    //Om det inte uppdateras ändra till självstående knappar.
+                }
+            }
+        }
+    }
+}

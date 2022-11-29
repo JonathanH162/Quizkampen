@@ -5,8 +5,8 @@ import se.nackademin.core.repositories.eventrepository.models.Event;
 
 public interface EventRepository {
 
-	Event getEvent();
+	Event get();
 
-	void sendEvent(Event event);
+	void add(Event event);
 
 }

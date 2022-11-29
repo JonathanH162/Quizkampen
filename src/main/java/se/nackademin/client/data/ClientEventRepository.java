@@ -34,11 +34,11 @@ public class ClientEventRepository implements EventRepository {
 		this.clientId = hostIdId;
 	}
 
-	public Event getEvent() {
+	public Event get() {
 		return socketInputQueue.take();
 	}
 
-	public void sendEvent(Event event) {
+	public void add(Event event) {
 		event.setSource(clientId);
 		switch (event.getDestination()) {
 			case SELF -> socketInputQueue.put(event);

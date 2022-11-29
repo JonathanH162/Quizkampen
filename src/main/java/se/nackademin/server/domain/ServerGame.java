@@ -7,7 +7,6 @@ import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
 import se.nackademin.core.utils.ConfigProperties;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +26,9 @@ public class ServerGame implements ServerState{
         switch (event.getEventType()) {
             case START_ROUND -> {
                 //currentPlayer = ??
-                eventRepository.sendEvent(Event.toClient(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
-                eventRepository.sendEvent(Event.toClient(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+                eventRepository.add(Event.toClient(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
+                eventRepository.add(Event.toClient(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+                return this;
             }
             case CATEGORY_CHOSEN -> {
                 String category = event.getData().toString();
@@ -36,8 +36,9 @@ public class ServerGame implements ServerState{
                 var numberOfQuestionsNeeded = properties.getNumberOfQuestion();
                 Collections.shuffle(questions);
                 var questionsToBeUsed = questions.subList(0, numberOfQuestionsNeeded - 1);
-                eventRepository.sendEvent(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_ONE, questionsToBeUsed));
-                eventRepository.sendEvent(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_TWO, questionsToBeUsed));
+                eventRepository.add(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_ONE, questionsToBeUsed));
+                eventRepository.add(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_TWO, questionsToBeUsed));
+                return this;
             }
             case ROUND_FINISHED -> {
 
@@ -65,8 +66,8 @@ public class ServerGame implements ServerState{
                 //event.getData() == [true, false, true]
 
                 if (bothPlayersDone) {
-                    eventRepository.sendEvent(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(1)));
-                    eventRepository.sendEvent(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(0)));
+                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(1)));
+                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(0)));
 
                 }
 
@@ -81,16 +82,20 @@ public class ServerGame implements ServerState{
                 Om båda spelarna är klara och det var sista omgången skickas GAME_FINISHED till båda spelarna och statistik bifogas i eventet. Tråden avslutas.*/
 
 
-                if (bothPlayersDone && roundsDone <= properties.getNumberOfRound()) {
 
-                    eventRepository.sendEvent(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, Statistics));
-                    eventRepository.sendEvent(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, Statistics));
+/*                if (bothPlayersDone && roundsDone <= properties.getNumberOfRound()) {
+
+                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, Statistics));
+                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, Statistics));
                 }
                 else {
-                    eventRepository.sendEvent(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
-                    eventRepository.sendEvent(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
+                    eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
+                    eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
                     Thread.currentThread().interrupt();
-                }
+                }*/
+
+
+
             }
 
 

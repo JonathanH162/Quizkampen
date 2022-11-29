@@ -26,11 +26,11 @@ public class ServerEventRepository implements EventRepository {
 		clientSharedSocketInputQueue.connect(clientOne, clientTwo);
 	}
 
-	public Event getEvent() {
+	public Event get() {
 		return clientSharedSocketInputQueue.take();
 	}
 
-	public void sendEvent(Event event) {
+	public void add(Event event) {
 		event.setSource(HostId.SERVER);
 		putIntoQueueForSending(event);
 	}
