@@ -62,7 +62,7 @@ public class QuestionState implements ClientState {
                 sleepFiveSeconds();
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
-                    return new LobbyState();
+                    return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));
                     return this;

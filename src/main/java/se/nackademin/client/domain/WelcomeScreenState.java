@@ -26,7 +26,7 @@ public class WelcomeScreenState implements ClientState {
 			case CONNECTION_SUCCESS -> {
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
-				return new LobbyState();
+				return new LobbyState(eventRepository);
 			}
 			case CONNECTION_FAILED -> {
 				sleepFiveSeconds();

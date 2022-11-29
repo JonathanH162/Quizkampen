@@ -36,6 +36,7 @@ public class ServerGame implements ServerState{
                 var numberOfQuestionsNeeded = properties.getNumberOfQuestion();
                 Collections.shuffle(questions);
                 var questionsToBeUsed = questions.subList(0, numberOfQuestionsNeeded - 1);
+                // TODO Fix exception: https://stackoverflow.com/questions/26568205/resolve-a-java-util-arraylistsublist-notserializable-exception
                 eventRepository.add(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_ONE, questionsToBeUsed));
                 eventRepository.add(Event.toClient(EventType.SHOW_QUESTION, HostId.CLIENT_TWO, questionsToBeUsed));
                 return this;

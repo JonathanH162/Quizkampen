@@ -2,7 +2,6 @@ package se.nackademin.client.domain;
 
 import se.nackademin.client.presentation.CategoryPanel;
 import se.nackademin.client.presentation.View;
-import se.nackademin.client.presentation.WaitingPanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
@@ -13,9 +12,15 @@ import se.nackademin.core.utils.ConfigProperties;
 
 public class LobbyState implements ClientState {
 	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
-	private final EventRepository eventRepository = new ClientEventRepository();
+	private final EventRepository eventRepository;
 	private final ConfigProperties configProperties = new ConfigProperties();
-	private final CategoryPanel categoryPanel = new CategoryPanel(eventRepository);
+	private final CategoryPanel categoryPanel;
+
+	public LobbyState(EventRepository eventRepository) {
+		this.eventRepository = eventRepository;
+		this.categoryPanel = new CategoryPanel(eventRepository);
+	}
+
 	@Override
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
@@ -37,7 +42,7 @@ public class LobbyState implements ClientState {
 			case CATEGORY_CHOSEN_BUTTON -> {
 				var selectedCategory = (String) event.getData();
 				eventRepository.add(Event.toServer(EventType.CATEGORY_CHOSEN, selectedCategory));
-				return this;
+				return new QuestionState();
 			}
 
 			case CATEGORY_CHOSEN -> {
