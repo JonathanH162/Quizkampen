@@ -1,6 +1,7 @@
 package se.nackademin.client.domain;
 
 import se.nackademin.client.presentation.CategoryPanel;
+import se.nackademin.client.presentation.FinishPanel;
 import se.nackademin.client.presentation.LobbyPanel;
 import se.nackademin.client.presentation.View;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
@@ -18,6 +19,7 @@ public class LobbyState implements ClientState {
 	private final CategoryPanel categoryPanel;
 	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	private String category;
+	private int roundCounter;
 
 	public LobbyState(EventRepository eventRepository) {
 		this.eventRepository = eventRepository;
@@ -66,15 +68,15 @@ public class LobbyState implements ClientState {
 				System.out.println(otherPlayerPoints);
 
 				var thisPlayerPointsLastRound = thisPlayerPoints.get(thisPlayerPoints.size()-1);
-				var otherPlayerPointsLastRound = otherPlayerPoints.get(thisPlayerPoints.size()-1);
+				var otherPlayerPointsLastRound = otherPlayerPoints.get(otherPlayerPoints.size()-1);
+
+				lobbyPanel.getScorePanel().display(tempMap);
+
+				//lobbyPanel.getScorePanel().setRound(roundNumber, thisPlayerPointsLastRound, otherPlayerPointsLastRound, category);
+
 				var thisPlayerSum = thisPlayerPoints.stream().mapToInt(Integer::intValue).sum();
 				var otherPlayerSum = otherPlayerPoints.stream().mapToInt(Integer::intValue).sum();
 
-
-
-				lobbyPanel.addPointPanel(new JPanel(),thisPlayerPointsLastRound,otherPlayerPointsLastRound,category);
-				//lobbyPanel.getTotalScoreCounter1().setText(String.valueOf(thisPlayerSum));
-				//lobbyPanel.getTotalScoreCounter2().setText(String.valueOf(otherPlayerSum));
 				lobbyPanel.setPlayerSum(1, thisPlayerSum);
 				lobbyPanel.setPlayerSum(2, otherPlayerSum);
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
@@ -84,7 +86,7 @@ public class LobbyState implements ClientState {
 				return new LobbyState(eventRepository);
 			}
 			case GAME_FINISHED -> {
-				// TODO
+				// TODO skicka till en slutlig resultatskärm samt räkna ut vem som har vunnit.
 				return this;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());

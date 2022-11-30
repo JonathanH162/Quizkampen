@@ -1,6 +1,7 @@
 package se.nackademin.core.repositories.eventrepository.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Event implements Serializable {
 
