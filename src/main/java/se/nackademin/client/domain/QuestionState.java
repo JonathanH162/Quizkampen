@@ -15,10 +15,8 @@ import java.util.List;
 
 public class QuestionState implements ClientState {
     QuestionRepositoryService questionService = new QuestionRepositoryService();
-    // private List<String> questions = new ArrayList<>();
     private final List<Boolean> answerResults = new ArrayList<>();
     private String currentQuestion;
-    //private List<String> remainingQuestions = Collections.emptyList();
     private List<String> remainingQuestions = new ArrayList<>();
     private final QuestionPanel questionPanel;
     private final EventRepository eventRepository;
@@ -32,11 +30,9 @@ public class QuestionState implements ClientState {
     public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
         switch (event.getEventType()) {
             case SHOW_QUESTION -> {
-                System.out.println(event.getData());
                 if (remainingQuestions.isEmpty()) {
                     remainingQuestions = (ArrayList<String>) event.getData();
                 }
-                System.out.println(remainingQuestions);
 
                 // Ta en fråga
                 // Sätt currentQuestion till frågan
@@ -96,7 +92,6 @@ public class QuestionState implements ClientState {
                     questionPanel.getAnswerButtonList().get(i).setBackground(Color.green);
                     view.revalidate();
                     view.repaint();
-                    //Om det inte uppdateras ändra till självstående knappar.
                 }
             }
         }
@@ -106,7 +101,6 @@ public class QuestionState implements ClientState {
                     questionPanel.getAnswerButtonList().get(i).setBackground(Color.red);
                     view.revalidate();
                     view.repaint();
-                    //Om det inte uppdateras ändra till självstående knappar.
                 }
             }
         }

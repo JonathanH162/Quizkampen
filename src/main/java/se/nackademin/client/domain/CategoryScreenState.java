@@ -10,7 +10,7 @@ public class CategoryScreenState implements ClientState {
 	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case CATEGORY_CHOSEN -> {
-				return new QuestionState();
+				return new QuestionState(eventRepository);
 			}
 		}
 		return null;

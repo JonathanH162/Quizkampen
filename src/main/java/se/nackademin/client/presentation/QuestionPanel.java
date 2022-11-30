@@ -32,6 +32,7 @@ public class QuestionPanel extends JPanel {
 	public void addAnswerButtonsToList(java.util.List<JButton> buttons, List<String> buttonNameList) { //Lägger till svarsknappar i en lista
 		if (!buttons.isEmpty()) {
 			buttons.clear();
+			buttonPanel.removeAll();
 		}
 		for (int i = 0; i < buttonNameList.size(); i++) {
 			final String answer = buttonNameList.get(i);

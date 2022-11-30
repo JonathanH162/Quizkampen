@@ -56,7 +56,7 @@ public class View extends JFrame {
 		showPanel(new LobbyPanel());
 	}
 	public void showQuestionPanel(String question) {
-		showPanel(new QuestionPanel());
+                		showPanel(new QuestionPanel(eventRepository));
 	}
 
 	public JLabel getWelcomeLabel() {

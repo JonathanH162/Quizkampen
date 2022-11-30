@@ -29,9 +29,16 @@ public class ServerGame implements ServerState{
     public ServerState transitionToNextState(Event event, EventRepository eventRepository) {
         switch (event.getEventType()) {
             case START_ROUND -> {
-                //currentPlayer = ??
-                eventRepository.add(Event.toClient(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
-                eventRepository.add(Event.toClient(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+
+                if (clientOneShouldStart){
+                    eventRepository.add(Event.toClient(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
+                    eventRepository.add(Event.toClient(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+                    clientOneShouldStart = false;
+                } else {
+                    eventRepository.add(Event.toClient(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_TWO, HostId.CLIENT_TWO));
+                    eventRepository.add(Event.toClient(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_ONE, HostId.CLIENT_ONE));
+                    clientOneShouldStart = true;
+                }
                 return this;
             }
             case CATEGORY_CHOSEN -> {

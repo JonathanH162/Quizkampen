@@ -10,5 +10,5 @@ public class WaitingPanel extends JPanel {
 		add(waitingLabel);
 	}
 
-
 }
+
