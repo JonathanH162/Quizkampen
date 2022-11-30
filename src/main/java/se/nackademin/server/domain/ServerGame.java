@@ -7,6 +7,8 @@ import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
 import se.nackademin.core.utils.ConfigProperties;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

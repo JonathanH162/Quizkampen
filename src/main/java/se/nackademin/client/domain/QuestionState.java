@@ -17,15 +17,17 @@ public class QuestionState implements ClientState {
     // private List<String> questions = new ArrayList<>();
     private final List<Boolean> answerResults = new ArrayList<>();
     private String currentQuestion;
-    private List<String> remainingQuestions = Collections.emptyList();
+    //private List<String> remainingQuestions = Collections.emptyList();
+    private List<String> remainingQuestions = new ArrayList<>();
     private final QuestionPanel questionPanel = new QuestionPanel();
 
     @Override
     public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
         switch (event.getEventType()) {
             case SHOW_QUESTION -> {
-                if (!remainingQuestions.isEmpty()) {
-                    remainingQuestions = (List<String>) event.getData();
+                System.out.println(event.getData());
+                if (remainingQuestions.isEmpty()) {
+                    remainingQuestions = (ArrayList<String>) event.getData();
                 }
                 System.out.println(remainingQuestions);
 
@@ -40,11 +42,6 @@ public class QuestionState implements ClientState {
                 questionPanel.addButtonsToPanel(questionPanel.getAnswerButtonList(), questionPanel.getButtonPanel());
 
                 view.showPanel(questionPanel);
-
-                // Visa frågan
-                //view.getCurrentPanel().questionLabel().setText(currentQuestion);
-                //view.showQuestionPanel(currentQuestion);
-
 
                 return null;
 
