@@ -30,6 +30,7 @@ public class CategoryPanel extends JPanel {
 	public void addCategoryButtonsToList(java.util.List<JButton> buttons, List<String> buttonNameList) { //Lägger till kategori knappar i en lista
 		if (!buttons.isEmpty()) {
 			buttons.clear();
+			buttonPanel.removeAll();
 		}
 		for (int i = 0; i < buttonNameList.size(); i++) {
 			final String categoryName = buttonNameList.get(i);

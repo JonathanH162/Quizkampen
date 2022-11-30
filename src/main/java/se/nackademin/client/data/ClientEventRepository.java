@@ -34,6 +34,9 @@ public class ClientEventRepository implements EventRepository {
 		this.clientId = hostIdId;
 	}
 
+	public HostId getHostId(){
+		return clientId;
+	}
 	public Event get() {
 		return socketInputQueue.take();
 	}

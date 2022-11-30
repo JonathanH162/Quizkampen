@@ -20,7 +20,7 @@
         },
         {
           "question": "I vilken fransk stad evakuerades nästan 350.000 allierade soldater under Andra världskriget?",
-          "possibleAnswer": ["Dunkerque","Brest", "Dunkerque", "Calais", "Le Havre"],
+          "possibleAnswer": ["Dunkerque","Brest", "Calais", "Le Havre"],
           "correctAnswer": "Dunkerque"
         },
         {

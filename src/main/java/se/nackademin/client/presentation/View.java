@@ -46,7 +46,7 @@ public class View extends JFrame {
 	}
 
 	public void showWaitingPanel() {
-		showPanel(new WaitingPanel());
+		showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
 	}
 
 	public void showCategoryPanel() {
@@ -56,7 +56,7 @@ public class View extends JFrame {
 		showPanel(new LobbyPanel());
 	}
 	public void showQuestionPanel(String question) {
-		showPanel(new QuestionPanel());
+                		showPanel(new QuestionPanel(eventRepository));
 	}
 
 	public JLabel getWelcomeLabel() {

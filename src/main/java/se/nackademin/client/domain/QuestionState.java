@@ -3,6 +3,7 @@ package se.nackademin.client.domain;
 import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.client.presentation.QuestionPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
@@ -14,22 +15,24 @@ import java.util.List;
 
 public class QuestionState implements ClientState {
     QuestionRepositoryService questionService = new QuestionRepositoryService();
-    // private List<String> questions = new ArrayList<>();
     private final List<Boolean> answerResults = new ArrayList<>();
     private String currentQuestion;
-    //private List<String> remainingQuestions = Collections.emptyList();
     private List<String> remainingQuestions = new ArrayList<>();
-    private final QuestionPanel questionPanel = new QuestionPanel();
+    private final QuestionPanel questionPanel;
+    private final EventRepository eventRepository;
+
+    public QuestionState(EventRepository eventRepository){
+        this.eventRepository = eventRepository;
+        this.questionPanel= new QuestionPanel(eventRepository);
+    }
 
     @Override
     public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
         switch (event.getEventType()) {
             case SHOW_QUESTION -> {
-                System.out.println(event.getData());
                 if (remainingQuestions.isEmpty()) {
                     remainingQuestions = (ArrayList<String>) event.getData();
                 }
-                System.out.println(remainingQuestions);
 
                 // Ta en fråga
                 // Sätt currentQuestion till frågan
@@ -43,7 +46,7 @@ public class QuestionState implements ClientState {
 
                 view.showPanel(questionPanel);
 
-                return null;
+                return this;
 
             }
             case ANSWER_CHOSEN_BUTTON -> {
@@ -57,9 +60,11 @@ public class QuestionState implements ClientState {
                 // Uppdatera vyn baserat på om svaret var rätt eller fel
                 updateViewBasedOnResult(view,event,result,correctAnswer);
 
-                sleepFiveSeconds();
+                sleepForAWhile();
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
+
+                    view.showWaitingPanel(); // TODO maybe change text
                     return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));
@@ -72,9 +77,9 @@ public class QuestionState implements ClientState {
 
     }
 
-    private void sleepFiveSeconds() {
+    private void sleepForAWhile() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException();
         }
@@ -87,7 +92,6 @@ public class QuestionState implements ClientState {
                     questionPanel.getAnswerButtonList().get(i).setBackground(Color.green);
                     view.revalidate();
                     view.repaint();
-                    //Om det inte uppdateras ändra till självstående knappar.
                 }
             }
         }
@@ -97,7 +101,6 @@ public class QuestionState implements ClientState {
                     questionPanel.getAnswerButtonList().get(i).setBackground(Color.red);
                     view.revalidate();
                     view.repaint();
-                    //Om det inte uppdateras ändra till självstående knappar.
                 }
             }
         }
