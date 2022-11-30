@@ -12,19 +12,19 @@ import java.net.Socket;
 
 public class ClientEventRepository implements EventRepository {
 
-	private SocketOutputQueue<Event> socketOutputQueue;
-	private final SocketInputQueue<Event> socketInputQueue;
+	private SocketOutputQueue socketOutputQueue;
+	private final SocketInputQueue socketInputQueue;
 	private HostId clientId;
 	private static final Logger logger = LogManager.getLogger(ClientEventRepository.class);
 
 
 	public ClientEventRepository() {
-		this.socketInputQueue = new SocketInputQueue<>();
+		this.socketInputQueue = new SocketInputQueue();
 		new Thread(socketInputQueue).start();
 	}
 
 	public void connect(Socket socket) {
-		socketOutputQueue = new SocketOutputQueue<>(socket);
+		socketOutputQueue = new SocketOutputQueue(socket);
 		new Thread(socketOutputQueue).start();
 		new Thread(socketInputQueue).start();
 		socketInputQueue.connect(socket);

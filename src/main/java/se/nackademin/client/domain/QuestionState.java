@@ -27,6 +27,7 @@ public class QuestionState implements ClientState {
                 if (!remainingQuestions.isEmpty()) {
                     remainingQuestions = (List<String>) event.getData();
                 }
+                System.out.println(remainingQuestions);
 
                 // Ta en fråga
                 // Sätt currentQuestion till frågan

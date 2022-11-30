@@ -12,15 +12,15 @@ import java.net.Socket;
 
 public class ServerEventRepository implements EventRepository {
 
-	private SocketOutputQueue<Event> clientOneSocketOutputQueue;
-	private SocketOutputQueue<Event> clientTwoSocketOutputQueue;
-	private final SharedSocketInputQueue<Event> clientSharedSocketInputQueue = new SharedSocketInputQueue<>();
+	private SocketOutputQueue clientOneSocketOutputQueue;
+	private SocketOutputQueue clientTwoSocketOutputQueue;
+	private final SharedSocketInputQueue clientSharedSocketInputQueue = new SharedSocketInputQueue();
 	private static final Logger logger = LogManager.getLogger(ServerEventRepository.class);
 
 
 	public void connect(Socket clientOne, Socket clientTwo) {
-		clientOneSocketOutputQueue = new SocketOutputQueue<>(clientOne);
-		clientTwoSocketOutputQueue = new SocketOutputQueue<>(clientTwo);
+		clientOneSocketOutputQueue = new SocketOutputQueue(clientOne);
+		clientTwoSocketOutputQueue = new SocketOutputQueue(clientTwo);
 		new Thread(clientOneSocketOutputQueue).start();
 		new Thread(clientTwoSocketOutputQueue).start();
 		clientSharedSocketInputQueue.connect(clientOne, clientTwo);

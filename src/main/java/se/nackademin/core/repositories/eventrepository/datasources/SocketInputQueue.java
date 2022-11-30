@@ -1,22 +1,24 @@
 package se.nackademin.core.repositories.eventrepository.datasources;
 
+import se.nackademin.core.repositories.eventrepository.models.Event;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SocketInputQueue<T> implements Runnable {
+public class SocketInputQueue implements Runnable {
 
 	private ObjectInputStream objectInputStream;
-	private final BlockingQueue<T> receivedObjectsQueue;
+	private final BlockingQueue<Event> receivedObjectsQueue;
 	private boolean connected = false;
 
 	public SocketInputQueue() {
 		this.receivedObjectsQueue = new LinkedBlockingQueue<>();
 	}
 
-	public SocketInputQueue(BlockingQueue<T> receivedObjectsQueue) {
+	public SocketInputQueue(BlockingQueue<Event> receivedObjectsQueue) {
 		this.receivedObjectsQueue = receivedObjectsQueue;
 	}
 
@@ -29,7 +31,7 @@ public class SocketInputQueue<T> implements Runnable {
 		}
 	}
 
-	public T take() {
+	public Event take() {
 		try {
 			return receivedObjectsQueue.take();
 		} catch (InterruptedException e) {
@@ -37,7 +39,7 @@ public class SocketInputQueue<T> implements Runnable {
 		}
 	}
 
-	public void put(T object) {
+	public void put(Event object) {
 		try {
 			receivedObjectsQueue.put(object);
 		} catch (InterruptedException e) {
@@ -52,8 +54,11 @@ public class SocketInputQueue<T> implements Runnable {
 			try {
 				Thread.sleep(1000);
 				if (connected) {
-					T receivedObject = (T) objectInputStream.readObject();
-					receivedObjectsQueue.put(receivedObject);
+					synchronized (objectInputStream) {
+						Event receivedObject = (Event) objectInputStream.readObject();
+						receivedObjectsQueue.put(receivedObject);
+					}
+
 				}
 			} catch (InterruptedException | ClassNotFoundException | IOException e) {
 				throw new RuntimeException(e);

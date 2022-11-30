@@ -1,14 +1,16 @@
 package se.nackademin.core.repositories.eventrepository.datasources;
 
+import se.nackademin.core.repositories.eventrepository.models.Event;
+
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SharedSocketInputQueue<T> {
+public class SharedSocketInputQueue {
 
-	private final BlockingQueue<T> sharedQueue = new LinkedBlockingQueue<>();
-	SocketInputQueue<T> socketInputQueueOne = new SocketInputQueue<>(sharedQueue);
-	SocketInputQueue<T> socketInputQueueTwo = new SocketInputQueue<>(sharedQueue);
+	private final BlockingQueue<Event> sharedQueue = new LinkedBlockingQueue<>();
+	SocketInputQueue socketInputQueueOne = new SocketInputQueue(sharedQueue);
+	SocketInputQueue socketInputQueueTwo = new SocketInputQueue(sharedQueue);
 
 	public SharedSocketInputQueue() {
 		new Thread(socketInputQueueOne).start();
@@ -20,7 +22,7 @@ public class SharedSocketInputQueue<T> {
 		socketInputQueueTwo.connect(socketTwo);
 	}
 
-	public T take() {
+	public Event take() {
 		try {
 			return sharedQueue.take();
 		} catch (InterruptedException e) {
@@ -28,7 +30,7 @@ public class SharedSocketInputQueue<T> {
 		}
 	}
 
-	public void put(T object) {
+	public void put(Event object) {
 		try {
 			sharedQueue.put(object);
 		} catch (InterruptedException ex) {
