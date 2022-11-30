@@ -3,6 +3,7 @@ package se.nackademin.client.domain;
 import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.client.presentation.QuestionPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
@@ -19,7 +20,13 @@ public class QuestionState implements ClientState {
     private String currentQuestion;
     //private List<String> remainingQuestions = Collections.emptyList();
     private List<String> remainingQuestions = new ArrayList<>();
-    private final QuestionPanel questionPanel = new QuestionPanel();
+    private final QuestionPanel questionPanel;
+    private final EventRepository eventRepository;
+
+    public QuestionState(EventRepository eventRepository){
+        this.eventRepository = eventRepository;
+        this.questionPanel= new QuestionPanel(eventRepository);
+    }
 
     @Override
     public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
@@ -43,7 +50,7 @@ public class QuestionState implements ClientState {
 
                 view.showPanel(questionPanel);
 
-                return null;
+                return this;
 
             }
             case ANSWER_CHOSEN_BUTTON -> {
@@ -57,9 +64,11 @@ public class QuestionState implements ClientState {
                 // Uppdatera vyn baserat på om svaret var rätt eller fel
                 updateViewBasedOnResult(view,event,result,correctAnswer);
 
-                sleepFiveSeconds();
+                sleepForAWhile();
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
+
+                    view.showWaitingPanel(); // TODO maybe change text
                     return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));
@@ -72,9 +81,9 @@ public class QuestionState implements ClientState {
 
     }
 
-    private void sleepFiveSeconds() {
+    private void sleepForAWhile() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException();
         }

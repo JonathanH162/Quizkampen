@@ -17,11 +17,13 @@ import java.util.function.Predicate;
 public class ServerGame implements ServerState{
     QuestionRepositoryService questionService = new QuestionRepositoryService();
     ConfigProperties properties = new ConfigProperties();
-    private HostId currentPlayer;
-    private boolean bothPlayersDone = false;
+    private boolean clientOneShouldStart = true;
     private int roundsDone;
     private HashMap<HostId, List<Integer>> points = new HashMap<>();
-    private Predicate<List<Integer>> bothPlayersAreDone = (points) -> points.size() % 2 == 0;
+    private final Predicate<HashMap<HostId, List<Integer>>> bothPlayersAreDone = (points) -> points.keySet().size() == 2;
+    private final Predicate<Integer> gameIsNotFinished = (roundsDone) -> roundsDone <= properties.getNumberOfRound();
+    private HostId nextToChoose = HostId.CLIENT_ONE;
+    private HostId waitingForChoice = HostId.CLIENT_TWO;
 
     @Override
     public ServerState transitionToNextState(Event event, EventRepository eventRepository) {
@@ -78,7 +80,6 @@ public class ServerGame implements ServerState{
             }
             default -> throw new RuntimeException("Event not handled: " + event.getEventType());
         }
-        return null;
     }
 
 

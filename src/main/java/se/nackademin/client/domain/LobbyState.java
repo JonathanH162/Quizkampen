@@ -13,9 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LobbyState implements ClientState {
-	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
 	private final EventRepository eventRepository;
-	private final ConfigProperties configProperties = new ConfigProperties();
 	private final CategoryPanel categoryPanel;
 
 	public LobbyState(EventRepository eventRepository) {
