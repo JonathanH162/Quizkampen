@@ -42,69 +42,44 @@ public class ServerGame implements ServerState{
                 return this;
             }
             case ROUND_FINISHED -> {
-
-
-
                 var clientResults = (List<Boolean>) event.getData();
-
                 var clientPoints = Collections.frequency(clientResults,true);
 
-                
-
                 if (!points.containsKey(event.getSource())) {
-                    points.put(event.getSource(), Collections.emptyList());
+                    points.put(event.getSource(), new ArrayList<>());
                 }
                 points.get(event.getSource()).add(clientPoints);
 
-                // TODO
+                //  If both players are done
 
+                if (bothPlayersAreDone.test(points)){
+                    if (gameIsNotFinished.test(roundsDone)) {
+                        eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points));
+                        eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, points));
+                        roundsDone++;
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        eventRepository.add(Event.toSelf(EventType.START_ROUND));
+                        return this;
+                    } else {
+                        eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, points));
+                        eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, points));
+                        Thread.currentThread().interrupt();
 
-                roundsDone++;
-
-
-                // Spara spelarens poäng.
-
-                //event.getData() == [true, false, true]
-
-                if (bothPlayersDone) {
-                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(1)));
-                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, points.get(0)));
-
+                    }
                 }
 
-                // TODO Sparar statistiken som bifogats eventet.
+                eventRepository.add(Event.toServer(EventType.START_ROUND));
 
-
-/*
-
-
-                Om båda spelarna är klara och det inte var sista omgången skickas ROUND_FINISHED till båda spelarna och statistik bifogas i eventet.
-
-                Om båda spelarna är klara och det var sista omgången skickas GAME_FINISHED till båda spelarna och statistik bifogas i eventet. Tråden avslutas.*/
-
-
-
-/*                if (bothPlayersDone && roundsDone <= properties.getNumberOfRound()) {
-
-                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, Statistics));
-                    eventRepository.add(Event.toClient(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, Statistics));
-                }
-                else {
-                    eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
-                    eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, Statistics));
-                    Thread.currentThread().interrupt();
-                }*/
-
-
-
+                return this;
             }
-
-
             default -> throw new RuntimeException("Event not handled: " + event.getEventType());
         }
         return null;
     }
-
 
 
 }

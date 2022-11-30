@@ -18,7 +18,8 @@ public class QuestionPanel extends JPanel {
 	private final JLabel questionLabel;
 	private final JPanel buttonPanel = new JPanel(new GridLayout(2, 2));
 
-	public QuestionPanel() {
+	public QuestionPanel(EventRepository eventRepository) {
+		this.eventRepository = eventRepository;
 		setLayout(new GridLayout(2, 2));
 
 		questionLabel = new JLabel();

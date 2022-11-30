@@ -7,8 +7,10 @@ import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
-import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
-import se.nackademin.core.utils.ConfigProperties;
+
+import javax.swing.*;
+import java.util.HashMap;
+import java.util.List;
 
 public class LobbyState implements ClientState {
 	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
@@ -51,6 +53,10 @@ public class LobbyState implements ClientState {
 			case ROUND_FINISHED -> {
 				System.out.println(event.getData());
 				return null;
+			}
+			case GAME_FINISHED -> {
+				// TODO
+				return this;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());
 		}

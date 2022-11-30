@@ -46,7 +46,7 @@ public class View extends JFrame {
 	}
 
 	public void showWaitingPanel() {
-		showPanel(new WaitingPanel());
+		showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
 	}
 
 	public void showCategoryPanel() {

@@ -3,9 +3,10 @@ package se.nackademin.client.presentation;
 import javax.swing.*;
 
 public class WaitingPanel extends JPanel {
-	private final JLabel waitingLabel = new JLabel("Väntar på att motståndaren ska välja kategori");
+	private final JLabel waitingLabel;
 
-	public WaitingPanel() {
+	public WaitingPanel(String text) {
+		waitingLabel = new JLabel(text);
 		add(waitingLabel);
 	}
 
