@@ -10,7 +10,7 @@ public class Event implements Serializable {
 	private final EventType eventType;
 	private final HostId destination;
 	private HostId source;
-	private final Object data;
+	private Object data;
 
 	public void setSource(HostId source) {
 		this.source = source;
@@ -42,6 +42,14 @@ public class Event implements Serializable {
 
 	public static Event toSelf(EventType eventType, Object data) {
 		return new Event(eventType, HostId.SELF, HostId.SELF, data);
+	}
+
+	public static Event toBothClients(EventType eventType) {
+		return new Event(eventType, HostId.BOTH_CLIENTS, HostId.EMPTY, HostId.EMPTY);
+	}
+
+	public static Event toBothClients(EventType eventType, Object data) {
+		return new Event(eventType, HostId.BOTH_CLIENTS, HostId.EMPTY, data);
 	}
 
 	public static Event toClient(EventType eventType, HostId client) {
@@ -85,4 +93,9 @@ public class Event implements Serializable {
 	public int hashCode() {
 		return Objects.hash(eventType, destination, source, data);
 	}
+
+	public void setData(Object object) {
+		data = object;
+	}
+
 }

@@ -9,6 +9,8 @@ import se.nackademin.core.repositories.eventrepository.datasources.SharedSocketI
 import se.nackademin.core.repositories.eventrepository.datasources.SocketOutputQueue;
 
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServerEventRepository implements EventRepository {
 
@@ -45,7 +47,16 @@ public class ServerEventRepository implements EventRepository {
 	}
 
 	public void add(Event event) {
+		if (event.getDestination().equals(HostId.BOTH_CLIENTS)) {
+			splitEventIntoTwo(event).forEach(this::prepareAndSend);
+		} else {
+			prepareAndSend(event);
+		}
+	}
+
+	private void prepareAndSend(Event event) {
 		event.setSource(HostId.SERVER);
+		setHostIdIfEmpty(event);
 		putIntoQueueForSending(event);
 	}
 
@@ -55,6 +66,19 @@ public class ServerEventRepository implements EventRepository {
 			case CLIENT_ONE -> clientOneSocketOutputQueue.put(event);
 			case CLIENT_TWO -> clientTwoSocketOutputQueue.put(event);
 		}
+	}
+
+	private void setHostIdIfEmpty(Event event) {
+		if (event.getData().equals(HostId.EMPTY)) {
+			event.setData(event.getDestination());
+		}
+	}
+
+	private List<Event> splitEventIntoTwo(Event event) {
+		List<Event> eventList = new ArrayList<>();
+		eventList.add(Event.toClient(event.getEventType(),HostId.CLIENT_ONE,event.getData()));
+		eventList.add(Event.toClient(event.getEventType(),HostId.CLIENT_TWO,event.getData()));
+		return eventList;
 	}
 
 }

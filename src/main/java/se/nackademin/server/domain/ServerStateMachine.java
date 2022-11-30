@@ -2,6 +2,7 @@ package se.nackademin.server.domain;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.server.data.ServerEventRepository;
@@ -9,7 +10,7 @@ import se.nackademin.server.data.ServerEventRepository;
 import java.net.Socket;
 
 public class ServerStateMachine implements Runnable{
-
+	private final EventLog eventLog = new EventLog();
 	private ServerState currentState;
 	private final ServerEventRepository eventRepository = new ServerEventRepository();
 	private Event lastEvent = Event.empty();
@@ -32,7 +33,8 @@ public class ServerStateMachine implements Runnable{
 
 			if (eventShouldBeHandled(event)){
 				lastEvent = event;
-				currentState = currentState.transitionToNextState(event, eventRepository);
+				eventLog.log(event);
+				currentState = currentState.transitionToNextState(event, eventRepository, eventLog);
 			}
 
 		}
