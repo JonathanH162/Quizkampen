@@ -12,6 +12,7 @@ public class ServerStateMachine implements Runnable{
 
 	private ServerState currentState;
 	private final ServerEventRepository eventRepository = new ServerEventRepository();
+	private Event lastEvent = Event.empty();
 
 	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
 
@@ -29,8 +30,17 @@ public class ServerStateMachine implements Runnable{
 			var event = eventRepository.get();
 			logger.info("Event found: " + event.getEventType());
 
-			currentState = currentState.transitionToNextState(event, eventRepository);
+			if (eventShouldBeHandled(event)){
+				lastEvent = event;
+				currentState = currentState.transitionToNextState(event, eventRepository);
+			}
+
 		}
+	}
+
+	private boolean eventShouldBeHandled(Event event){
+		// Returns true only if incoming event is not the same as last event.
+		return !event.equals(lastEvent);
 	}
 
 

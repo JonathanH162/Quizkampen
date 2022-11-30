@@ -17,6 +17,20 @@ public class ServerEventRepository implements EventRepository {
 	private final SharedSocketInputQueue clientSharedSocketInputQueue = new SharedSocketInputQueue();
 	private static final Logger logger = LogManager.getLogger(ServerEventRepository.class);
 
+	@Override
+	public HostId getHostId() {
+		throw new RuntimeException("Not implemented");
+	}
+
+	@Override
+	public void setSourceId(HostId data) {
+		throw new RuntimeException("Not implemented");
+	}
+
+	@Override
+	public void connect(Socket socket) {
+		throw new RuntimeException("Not implemented");
+	}
 
 	public void connect(Socket clientOne, Socket clientTwo) {
 		clientOneSocketOutputQueue = new SocketOutputQueue(clientOne);

@@ -18,11 +18,11 @@ public class View extends JFrame {
 
 	JButton startButton;
 	JLabel welcomeLabel;
-	ClientEventRepository eventRepository;
+	EventRepository eventRepository;
 	private JPanel currentPanel = new JPanel();
 
 
-	public View(ClientEventRepository eventRepository) throws HeadlessException {
+	public View(EventRepository eventRepository) throws HeadlessException {
 		this.eventRepository = eventRepository;
 		setTitle("Quizkampen");
 		setSize(350, 400);

@@ -27,7 +27,7 @@ public class LobbyState implements ClientState {
 	}
 
 	@Override
-	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+	public ClientState transitionToNextState(Event event, View view, EventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case WAITING_FOR_CHOICE -> {
 				view.showWaitingPanel();

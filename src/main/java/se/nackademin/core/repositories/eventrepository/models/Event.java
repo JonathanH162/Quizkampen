@@ -32,6 +32,10 @@ public class Event implements Serializable {
 		return eventType;
 	}
 
+	public static Event empty() {
+		return new Event(EventType.EMPTY, HostId.EMPTY, HostId.EMPTY, HostId.EMPTY);
+	}
+
 	public static Event toSelf(EventType eventType) {
 		return new Event(eventType, HostId.SELF, HostId.SELF, HostId.EMPTY);
 	}
@@ -69,4 +73,16 @@ public class Event implements Serializable {
 				+ data + '}';
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Event event = (Event) o;
+		return eventType == event.eventType && destination == event.destination && source == event.source && Objects.equals(data, event.data);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(eventType, destination, source, data);
+	}
 }
