@@ -27,7 +27,7 @@ public class QuestionState implements ClientState {
     }
 
     @Override
-    public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+    public ClientState transitionToNextState(Event event, View view, EventRepository eventRepository) {
         switch (event.getEventType()) {
             case SHOW_QUESTION -> {
                 if (remainingQuestions.isEmpty()) {

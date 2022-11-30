@@ -3,6 +3,7 @@ package se.nackademin.client.domain;
 import se.nackademin.client.presentation.LobbyPanel;
 import se.nackademin.client.presentation.View;
 import se.nackademin.client.presentation.WelcomePanel;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.client.data.ClientEventRepository;
@@ -15,7 +16,7 @@ public class WelcomeScreenState implements ClientState {
 	private final WelcomePanel welcomePanel = new WelcomePanel();
 	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	@Override
-	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+	public ClientState transitionToNextState(Event event, View view, EventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case INITIAL -> {
 				view.showPanel(welcomePanel);
@@ -36,7 +37,7 @@ public class WelcomeScreenState implements ClientState {
 		}
 	}
 
-	private ClientState connectToServer(View view, ClientEventRepository eventRepository) {
+	private ClientState connectToServer(View view, EventRepository eventRepository) {
 		view.showPanel(welcomePanel);
 		welcomePanel.getStartButton().setVisible(false);
 		welcomePanel.getWelcomeLabel().setText("Connecting to Server...");

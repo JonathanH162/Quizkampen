@@ -1,6 +1,8 @@
 package se.nackademin.client.presentation;
 
 
+import se.nackademin.core.repositories.eventrepository.models.HostId;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -30,7 +32,8 @@ public class LobbyPanel extends JPanel {
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
 		add(namePanel, BorderLayout.NORTH);
-		add(categoryAndPointPanel, BorderLayout.CENTER);
+		add(scorePanel, BorderLayout.CENTER);
+		//add(categoryAndPointPanel, BorderLayout.CENTER);
 		PlaybuttonPanel.add(playButton);
 		add(PlaybuttonPanel, BorderLayout.SOUTH);
 		namePanel.setLayout(new BorderLayout());
@@ -73,7 +76,8 @@ public class LobbyPanel extends JPanel {
 		}
 
 	}
-	public JPanel getPlaybuttonPanel () {
-		return getPlaybuttonPanel();
+
+	public ScorePanel getScorePanel() {
+		return scorePanel;
 	}
 }

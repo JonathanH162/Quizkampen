@@ -64,9 +64,6 @@ public class LobbyState implements ClientState {
 				}
 				var otherPlayerPoints = tempMap.get(otherPlayerID);
 
-				System.out.println(thisPlayerPoints);
-				System.out.println(otherPlayerPoints);
-
 				var thisPlayerPointsLastRound = thisPlayerPoints.get(thisPlayerPoints.size()-1);
 				var otherPlayerPointsLastRound = otherPlayerPoints.get(otherPlayerPoints.size()-1);
 

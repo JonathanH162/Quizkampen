@@ -75,7 +75,7 @@ public class ServerGame implements ServerState{
                         return this;
                     } else {
                         eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, points));
-                        eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_ONE, points));
+                        eventRepository.add(Event.toClient(EventType.GAME_FINISHED, HostId.CLIENT_TWO, points));
                         Thread.currentThread().interrupt();
 
                     }
