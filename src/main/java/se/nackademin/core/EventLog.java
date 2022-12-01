@@ -60,7 +60,6 @@ public class EventLog implements Serializable {
 	public Integer getPlayerPointsForRound(HostId player, Integer round) {
 		synchronized (events) {
 			AtomicInteger counter = new AtomicInteger(1);
-			System.out.println(round);
 			return events.stream()
 					.filter((event -> event.getSource().equals(player)))
 					.filter(event -> event.getEventType().equals(EventType.ROUND_FINISHED))
@@ -77,8 +76,6 @@ public class EventLog implements Serializable {
 	public HashMap<Integer, Integer> getPointsForAllRoundsSoFar(HostId player) {
 		var points = new HashMap<Integer, Integer>();
 		var numberOfCompletedRounds = getNumberOfCompletedRounds();
-		System.out.println("lajsdfljsdlfjlkfjslkjflskjfl;"
-				+ "jfljdklfjlsdkjflkjfljasldfjsldfjlksdajfljdslkfjadlfjdslfjdslfj" +numberOfCompletedRounds);
 		if (numberOfCompletedRounds == 0) {
 			throw new RuntimeException("No round is finished by both players.");
 		}

@@ -12,6 +12,7 @@ import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
