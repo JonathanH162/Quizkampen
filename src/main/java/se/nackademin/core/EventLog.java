@@ -1,0 +1,94 @@
+package se.nackademin.core;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import se.nackademin.core.repositories.eventrepository.models.Event;
+import se.nackademin.core.repositories.eventrepository.models.EventType;
+import se.nackademin.core.repositories.eventrepository.models.HostId;
+import se.nackademin.core.utils.ConfigProperties;
+import se.nackademin.server.data.ServerEventRepository;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class EventLog implements Serializable {
+
+	private final List<Event> events = new ArrayList<>();
+	private final ConfigProperties configProperties = new ConfigProperties();
+	private static final Logger logger = LogManager.getLogger(EventLog.class);
+
+	public void log(Event event) {
+		logger.info(event);
+		events.add(event);
+	}
+
+	private Long countEventType(EventType eventType) {
+		return events.stream()
+				.filter((event -> event.getEventType().equals(eventType)))
+				.count();
+	}
+
+	public HostId getNextToChoose() {
+		var count = countEventType(EventType.NEXT_TO_CHOOSE);
+		return (count % 2 == 0) ? HostId.CLIENT_ONE : HostId.CLIENT_TWO;
+	}
+
+	public HostId getWaitingForChoice() {
+		return (getNextToChoose().equals(HostId.CLIENT_ONE)) ? HostId.CLIENT_TWO : HostId.CLIENT_ONE;
+	}
+
+	public boolean bothPlayersCompletedRound() {
+		var count = countEventType(EventType.ROUND_FINISHED);
+		return (count % 2 == 0);
+	}
+
+	public Long getNumberOfCompletedRounds() {
+		var count = countEventType(EventType.ROUND_FINISHED);
+		return count / 4;
+	}
+
+	public boolean gameIsFinished() {
+		var roundsSoFar = getNumberOfCompletedRounds();
+		var roundsPerGame = configProperties.getNumberOfRound();
+		return roundsSoFar == roundsPerGame;
+	}
+
+	public Integer getPlayerPointsForRound(HostId player, Integer round) {
+		synchronized (events) {
+			AtomicInteger counter = new AtomicInteger(1);
+			return events.stream()
+					.filter((event -> event.getSource().equals(player)))
+					.filter(event -> event.getEventType().equals(EventType.ROUND_FINISHED))
+					.peek((event -> System.out.println(event + " " + counter)))
+					.filter(event -> counter.getAndIncrement() == round)
+					.peek((event -> System.out.println(event + " " + counter)))
+					.map(event -> (List<Boolean>) event.getData())
+					.map((list) -> Collections.frequency(list, true))
+					.findFirst()
+					.orElseThrow();
+		}
+	}
+
+	public HashMap<Integer, Integer> getPointsForAllRoundsSoFar(HostId player) {
+		var points = new HashMap<Integer, Integer>();
+		var numberOfCompletedRounds = getNumberOfCompletedRounds();
+		if (numberOfCompletedRounds == 0) {
+			throw new RuntimeException("No round is finished by both players.");
+		}
+		for (int round = 1; round <= numberOfCompletedRounds; round++) {
+			points.put(round, getPlayerPointsForRound(player, round));
+		}
+		return points;
+	}
+
+	public Integer getTotalPointsForAllRoundsSoFar(HostId player) {
+		return getPointsForAllRoundsSoFar(player).values().stream()
+				.mapToInt(Integer::intValue)
+				.sum();
+	}
+
+}

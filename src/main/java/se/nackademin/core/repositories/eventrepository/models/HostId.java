@@ -4,6 +4,5 @@ public enum HostId {
 	EMPTY,
 	SERVER,
 	CLIENT_ONE,
-	CLIENT_TWO,
-	SELF
+	CLIENT_TWO, BOTH_CLIENTS, SELF
 }

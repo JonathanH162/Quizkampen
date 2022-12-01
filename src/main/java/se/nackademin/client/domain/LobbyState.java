@@ -1,9 +1,7 @@
 package se.nackademin.client.domain;
 
-import se.nackademin.client.presentation.CategoryPanel;
-import se.nackademin.client.presentation.FinishPanel;
-import se.nackademin.client.presentation.LobbyPanel;
-import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.*;
+import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
@@ -11,6 +9,7 @@ import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,30 +53,34 @@ public class LobbyState implements ClientState {
 				return new QuestionState(eventRepository);
 			}
 			case ROUND_FINISHED -> {
-				var tempMap = (HashMap<HostId, List<Integer>>) event.getData();
-				var thisPlayerPoints = tempMap.get(eventRepository.getHostId());
-				HostId otherPlayerID = HostId.EMPTY;
-				for (HostId key : tempMap.keySet()) {
-					if (key != eventRepository.getHostId()) {
-						otherPlayerID = key;
-					}
+
+				var eventLog = (EventLog) event.getData();
+				var thisPlayer = eventRepository.getHostId();
+				var otherPlayer = (thisPlayer.equals(HostId.CLIENT_ONE)) ? HostId.CLIENT_TWO : HostId.CLIENT_ONE;
+				var thisPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(thisPlayer);
+				var otherPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(otherPlayer);
+
+				// var tempMap = (HashMap<HostId, List<Integer>>) event.getData();
+
+				// TODO Send whatever is needed to getScorePanel
+				// T ex: eventLog.getPointsForAllRoundsSoFar()
+
+				// lobbyPanel.getScorePanel().display(tempMap);
+				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
 				}
-				var otherPlayerPoints = tempMap.get(otherPlayerID);
 
-				var thisPlayerPointsLastRound = thisPlayerPoints.get(thisPlayerPoints.size()-1);
-				var otherPlayerPointsLastRound = otherPlayerPoints.get(otherPlayerPoints.size()-1);
-
-				lobbyPanel.getScorePanel().display(tempMap);
-
-				//lobbyPanel.getScorePanel().setRound(roundNumber, thisPlayerPointsLastRound, otherPlayerPointsLastRound, category);
-
-				var thisPlayerSum = thisPlayerPoints.stream().mapToInt(Integer::intValue).sum();
-				var otherPlayerSum = otherPlayerPoints.stream().mapToInt(Integer::intValue).sum();
-
-				lobbyPanel.setPlayerSum(1, thisPlayerSum);
-				lobbyPanel.setPlayerSum(2, otherPlayerSum);
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
+
+
+				//NewScorePanel scorePanel = new NewScorePanel();
+				//view.showPanel(scorePanel);
+
+				//view.showPanel(lobbyPanel);
 
 
 				return new LobbyState(eventRepository);
