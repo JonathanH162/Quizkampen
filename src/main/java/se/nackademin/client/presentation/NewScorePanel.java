@@ -26,7 +26,22 @@ public class NewScorePanel extends JPanel {
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
-		left
+		JPanel topPanel = new JPanel();
+		JPanel bottomPanel = new JPanel();
+		centerPanel.setLayout(new GridLayout(playerOneLabels.size(),1));
+		topPanel.setLayout(new BorderLayout());
+		bottomPanel.setLayout(new BorderLayout());
+		topPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
+		var firstPlayerName = (eventRepository.getHostId().equals(HostId.CLIENT_ONE)) ? "Du" : "Motståndare";
+		var secondPlayerName = (eventRepository.getHostId().equals(HostId.CLIENT_TWO)) ? "Du" : "Motståndare";
+		JLabel firstPlayer = new JLabel(firstPlayerName);
+		JLabel secondPlayer = new JLabel(secondPlayerName);
+		for (int i = 1; i < playerOneLabels.size(); i++) {
+			centerPanel.add(new JLabel("Runda " + i, SwingConstants.CENTER));
+		}
+
+		leftPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
+		rightPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
 		scorePanel.setLayout(new BorderLayout());
 		scorePanel.add(leftPanel, BorderLayout.WEST);
 		scorePanel.add(centerPanel, BorderLayout.CENTER);
@@ -44,6 +59,10 @@ public class NewScorePanel extends JPanel {
 		return pointsMap.values().stream()
 				.map((points) -> new JLabel(String.valueOf(points)))
 				.toList();
+	}
+
+	private static int getTotalPoints(HashMap<Integer,Integer> pointsMap) {
+		return pointsMap.values().stream().mapToInt(Integer::intValue).sum();
 	}
 
 	private void addLabelsToPanel(List<JLabel> labels) {
