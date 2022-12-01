@@ -1,9 +1,6 @@
 package se.nackademin.client.domain;
 
-import se.nackademin.client.presentation.CategoryPanel;
-import se.nackademin.client.presentation.FinishPanel;
-import se.nackademin.client.presentation.LobbyPanel;
-import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.*;
 import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
@@ -74,6 +71,12 @@ public class LobbyState implements ClientState {
 				lobbyPanel.setPlayerSum(2, otherPlayerSum);
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
+
+
+				//NewScorePanel scorePanel = new NewScorePanel();
+				//view.showPanel(scorePanel);
+
+				//view.showPanel(lobbyPanel);
 
 
 				return new LobbyState(eventRepository);
