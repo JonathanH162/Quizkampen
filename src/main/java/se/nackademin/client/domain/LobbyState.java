@@ -14,14 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LobbyState implements ClientState {
-	private final EventRepository eventRepository;
 	private final CategoryPanel categoryPanel;
 	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	private String category;
 	private int roundCounter;
 
 	public LobbyState(EventRepository eventRepository) {
-		this.eventRepository = eventRepository;
 		this.categoryPanel = new CategoryPanel(eventRepository);
 	}
 
