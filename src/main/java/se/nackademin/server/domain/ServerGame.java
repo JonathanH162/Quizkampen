@@ -16,7 +16,6 @@ public class ServerGame implements ServerState {
 
 	QuestionRepositoryService questionService = new QuestionRepositoryService();
 	ConfigProperties properties = new ConfigProperties();
-	// private HashMap<HostId, List<Integer>> points = new HashMap<>();
 
 	@Override
 	public ServerState transitionToNextState(Event event, EventRepository eventRepository, EventLog eventLog) {
