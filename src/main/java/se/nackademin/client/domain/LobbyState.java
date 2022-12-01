@@ -55,17 +55,6 @@ public class LobbyState implements ClientState {
 			case ROUND_FINISHED -> {
 
 				var eventLog = (EventLog) event.getData();
-				var thisPlayer = eventRepository.getHostId();
-				var otherPlayer = (thisPlayer.equals(HostId.CLIENT_ONE)) ? HostId.CLIENT_TWO : HostId.CLIENT_ONE;
-				var thisPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(thisPlayer);
-				var otherPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(otherPlayer);
-
-				// var tempMap = (HashMap<HostId, List<Integer>>) event.getData();
-
-				// TODO Send whatever is needed to getScorePanel
-				// T ex: eventLog.getPointsForAllRoundsSoFar()
-
-				// lobbyPanel.getScorePanel().display(tempMap);
 				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
 				try {
 					Thread.sleep(5000);
@@ -86,7 +75,8 @@ public class LobbyState implements ClientState {
 				return new LobbyState(eventRepository);
 			}
 			case GAME_FINISHED -> {
-				// TODO skicka till en slutlig resultatskärm samt räkna ut vem som har vunnit.
+				var eventLog = (EventLog) event.getData();
+				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
 				return this;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());

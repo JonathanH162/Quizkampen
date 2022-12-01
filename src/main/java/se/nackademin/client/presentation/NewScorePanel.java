@@ -21,21 +21,52 @@ public class NewScorePanel extends JPanel {
 		var playerTwoHashmap = eventLog.getPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
 		var playerOneLabels = createLabels(playerOneHashmap);
 		var playerTwoLabels = createLabels(playerTwoHashmap);
+		var playerOneTotalPoints = getTotalPoints(playerOneHashmap);
+		var playerTwoTotalPoints = getTotalPoints(playerTwoHashmap);
 
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
 		JPanel topPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
+
 		centerPanel.setLayout(new GridLayout(playerOneLabels.size(),1));
 		topPanel.setLayout(new BorderLayout());
 		bottomPanel.setLayout(new BorderLayout());
+		bottomPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
 		topPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
+
+
 		var firstPlayerName = (eventRepository.getHostId().equals(HostId.CLIENT_ONE)) ? "Du" : "Motståndare";
 		var secondPlayerName = (eventRepository.getHostId().equals(HostId.CLIENT_TWO)) ? "Du" : "Motståndare";
+
+
+
+
+		if (eventLog.gameIsFinished()) {
+
+			if (playerOneTotalPoints == playerTwoTotalPoints){
+				firstPlayerName = "OAVGJORT";
+				secondPlayerName = "OAVGJORT";
+
+			}
+			if (playerOneTotalPoints > playerTwoTotalPoints){
+				firstPlayerName = "VINNARE";
+				secondPlayerName = "FÖRLORARE";
+
+			}
+			if (playerOneTotalPoints < playerTwoTotalPoints) {
+				firstPlayerName = "FÖRLORARE";
+				secondPlayerName = "VINNARE";
+			}
+		}
+
 		JLabel firstPlayer = new JLabel(firstPlayerName);
 		JLabel secondPlayer = new JLabel(secondPlayerName);
-		for (int i = 1; i < playerOneLabels.size(); i++) {
+
+
+
+		for (int i = 1; i < playerOneLabels.size() + 1; i++) {
 			centerPanel.add(new JLabel("Runda " + i, SwingConstants.CENTER));
 		}
 
@@ -48,9 +79,11 @@ public class NewScorePanel extends JPanel {
 		scorePanel.add(topPanel, BorderLayout.NORTH);
 		scorePanel.add(bottomPanel, BorderLayout.SOUTH);
 
-		bottomPanel.add(new JLabel(String.valueOf(getTotalPoints(playerOneHashmap))), BorderLayout.WEST);
-		bottomPanel.add(new JLabel(String.valueOf(getTotalPoints(playerTwoHashmap))), BorderLayout.EAST);
-		bottomPanel.add(new JLabel("Totalpoäng"), BorderLayout.CENTER);
+
+		bottomPanel.add(new JLabel(String.valueOf(playerOneTotalPoints)), BorderLayout.WEST);
+		bottomPanel.add(new JLabel(String.valueOf(playerTwoTotalPoints)), BorderLayout.EAST);
+		bottomPanel.add(new JLabel("Totalpoäng", SwingConstants.CENTER), BorderLayout.CENTER);
+
 
 		leftPanel.setLayout(new GridLayout(playerOneLabels.size(), 1));
 		rightPanel.setLayout(new GridLayout(playerTwoLabels.size(), 1));
