@@ -46,7 +46,7 @@ public class LobbyState implements ClientState {
 				var eventLog = (EventLog) event.getData();
 				view.showPanel(ScorePanel.create(eventLog,eventRepository));
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(7000);
 				} catch (InterruptedException e) {
 					throw new RuntimeException(e);
 				}

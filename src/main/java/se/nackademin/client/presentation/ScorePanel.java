@@ -21,7 +21,7 @@ public class ScorePanel extends JPanel {
 		var playerTwoHashmap = eventLog.getPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
 		var playerOneLabels = createLabels(playerOneHashmap);
 		var playerTwoLabels = createLabels(playerTwoHashmap);
-		var playerOneTotalPoints = eventLog.getTotalPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
+		var playerOneTotalPoints = eventLog.getTotalPointsForAllRoundsSoFar(HostId.CLIENT_ONE);
 		var playerTwoTotalPoints = eventLog.getTotalPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
 
 		JPanel leftPanel = new JPanel();
@@ -47,18 +47,18 @@ public class ScorePanel extends JPanel {
 		if (eventLog.gameIsFinished()) {
 
 			if (playerOneTotalPoints == playerTwoTotalPoints) {
-				toAppend1 = "OAVGJORT";
-				toAppend2 = "OAVGJORT";
+				toAppend1 = " = OAVGJORT";
+				toAppend2 = " = OAVGJORT";
 
 			}
 			if (playerOneTotalPoints > playerTwoTotalPoints) {
-				toAppend1 = "VINNARE";
-				toAppend2 = "FÖRLORARE";
+				toAppend1 = " = VINNARE";
+				toAppend2 = " = FÖRLORARE";
 
 			}
 			if (playerOneTotalPoints < playerTwoTotalPoints) {
-				toAppend1 = "FÖRLORARE";
-				toAppend2 = "VINNARE";
+				toAppend1 = " = FÖRLORARE";
+				toAppend2 = " = VINNARE";
 			}
 		}
 

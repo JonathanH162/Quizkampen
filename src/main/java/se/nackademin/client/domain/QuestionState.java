@@ -56,7 +56,7 @@ public class QuestionState implements ClientState {
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
 
-                    view.showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
+                    view.showPanel(new WaitingPanel("Väntar på att motståndaren ska svara färdigt."));
                     return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));

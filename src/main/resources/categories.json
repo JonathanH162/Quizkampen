@@ -75,12 +75,12 @@
         },
         {
           "question": "Vilket är det största djuret i världen?",
-          "possibleAnswer": ["Afrikansk elefant", "Blåval i Antarktis", "Kolossal bläckfisk", "Giraff"],
-          "correctAnswer": "Blåval i Antarktis"
+          "possibleAnswer": ["Afrikansk elefant", "Blåval ifrån Antarktis", "Kolossal bläckfisk", "Giraff"],
+          "correctAnswer": "Blåval ifrån Antarktis"
         },
         {
           "question": " Vilket är det längsta djuret i världen?",
-          "possibleAnswer": ["Afrikansk elefant", "Blåval i Antarktis", "Kolossal bläckfisk", "Giraff"],
+          "possibleAnswer": ["Afrikansk elefant", "Blåval ifrån Antarktis", "Kolossal bläckfisk", "Giraff"],
           "correctAnswer": "Giraff"
         },
         {
@@ -91,12 +91,12 @@
         {
           "question": " Vad kallar man påfågelhonor på Engelska?",
           "possibleAnswer": ["Pea-fowls","Pea-nannies","Pea-hens", "Pioner"],
-          "correctAnswer": "Peahens"
+          "correctAnswer": "Pea-hens"
         },
         {
           "question": " Vilken hundras är störst i storlek?",
           "possibleAnswer": ["Tysk schäfer", "Teacup Chihuahua", "Engelsk Mastiff", "Golden Retriever"],
-          "correctAnswer": "Engelsk mastiff"
+          "correctAnswer": "Engelsk Mastiff"
         }
       ]
     },
@@ -141,7 +141,7 @@
         {
           "question": "Det är allt som upptar utrymme och har massa, vad är det?",
           "possibleAnswer": [" atom","materia", "begrepp", "hypotes"],
-          "correctAnswer": "Materia"
+          "correctAnswer": "materia"
         },
         {
           "question": " Det är det största organet i vår kropp, vad är det?",
@@ -156,7 +156,7 @@
         {
           "question": " Vad kallar du en utbildad gissning?",
           "possibleAnswer": ["begrepp","aning", "åsikt", "hypotes"],
-          "correctAnswer": "Hypotes"
+          "correctAnswer": "hypotes"
         },
         {
           "question": " Hur många planeter finns det i solsystemet?",

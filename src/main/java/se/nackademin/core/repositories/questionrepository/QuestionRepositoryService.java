@@ -42,7 +42,6 @@ public class QuestionRepositoryService {
         }
         return categoriesName;
     }
-
     public List<String> getAllQuestionInCategory(String categoryName) {
         List<String> questions = new ArrayList<>();
         for (Category c : categories) {
