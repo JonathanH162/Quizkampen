@@ -53,7 +53,6 @@ public class LobbyState implements ClientState {
 				return new QuestionState(eventRepository);
 			}
 			case ROUND_FINISHED -> {
-
 				var eventLog = (EventLog) event.getData();
 				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
 				try {
@@ -65,11 +64,6 @@ public class LobbyState implements ClientState {
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
 
-
-				//NewScorePanel scorePanel = new NewScorePanel();
-				//view.showPanel(scorePanel);
-
-				//view.showPanel(lobbyPanel);
 
 
 				return new LobbyState(eventRepository);
