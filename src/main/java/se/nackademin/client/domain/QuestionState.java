@@ -40,7 +40,7 @@ public class QuestionState implements ClientState {
 
                 //System.out.println(questionService.getAllPossibleAnswers(currentQuestion));
 
-                questionPanel.getQuestionLabel().setText(currentQuestion);
+                questionPanel.getQuestionLabel().setText(currentQuestion);//Varför tar currentQuestion istället answer?---------------------
                 questionPanel.addAnswerButtonsToList(questionPanel.getAnswerButtonList(), questionService.getAllPossibleAnswers(currentQuestion));
                 questionPanel.addButtonsToPanel(questionPanel.getAnswerButtonList(), questionPanel.getButtonPanel());
 

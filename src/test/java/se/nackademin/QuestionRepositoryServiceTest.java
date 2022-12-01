@@ -36,7 +36,7 @@ class QuestionRepositoryServiceTest {
 
     @Test
     void should_return_correct_possibel_answer_for_a_question() {
-        List<String> expect = List.of("Dunkerque","Brest", "Dunkerque", "Calais", "Le Havre");
+        List<String> expect = List.of("Dunkerque", "Brest", "Calais", "Le Havre");
         List<String> actual = sut.getAllPossibleAnswers("I vilken fransk stad evakuerades nästan 350.000 allierade soldater under Andra världskriget?");
         assertArrayEquals(expect.toArray(), actual.toArray());
 
