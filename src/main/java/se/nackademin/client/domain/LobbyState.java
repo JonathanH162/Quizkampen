@@ -1,8 +1,7 @@
 package se.nackademin.client.domain;
 
-import se.nackademin.client.presentation.CategoryPanel;
-import se.nackademin.client.presentation.LobbyPanel;
-import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.*;
+import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.client.data.ClientEventRepository;
@@ -10,6 +9,7 @@ import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +18,7 @@ public class LobbyState implements ClientState {
 	private final CategoryPanel categoryPanel;
 	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	private String category;
+	private int roundCounter;
 
 	public LobbyState(EventRepository eventRepository) {
 		this.eventRepository = eventRepository;
@@ -25,7 +26,7 @@ public class LobbyState implements ClientState {
 	}
 
 	@Override
-	public ClientState transitionToNextState(Event event, View view, ClientEventRepository eventRepository) {
+	public ClientState transitionToNextState(Event event, View view, EventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case WAITING_FOR_CHOICE -> {
 				view.showWaitingPanel();
@@ -52,39 +53,40 @@ public class LobbyState implements ClientState {
 				return new QuestionState(eventRepository);
 			}
 			case ROUND_FINISHED -> {
-				var tempMap = (HashMap<HostId, List<Integer>>) event.getData();
-				var thisPlayerPoints = tempMap.get(eventRepository.getHostId());
-				HostId otherPlayerID = HostId.EMPTY;
-				for (HostId key : tempMap.keySet()) {
-					if (key != eventRepository.getHostId()) {
-						otherPlayerID = key;
-					}
+
+				var eventLog = (EventLog) event.getData();
+				var thisPlayer = eventRepository.getHostId();
+				var otherPlayer = (thisPlayer.equals(HostId.CLIENT_ONE)) ? HostId.CLIENT_TWO : HostId.CLIENT_ONE;
+				var thisPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(thisPlayer);
+				var otherPlayerSum = eventLog.getTotalPointsForAllRoundsSoFar(otherPlayer);
+
+				// var tempMap = (HashMap<HostId, List<Integer>>) event.getData();
+
+				// TODO Send whatever is needed to getScorePanel
+				// T ex: eventLog.getPointsForAllRoundsSoFar()
+
+				// lobbyPanel.getScorePanel().display(tempMap);
+				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
 				}
-				var otherPlayerPoints = tempMap.get(otherPlayerID);
 
-				System.out.println(thisPlayerPoints);
-				System.out.println(otherPlayerPoints);
-
-				var thisPlayerPointsLastRound = thisPlayerPoints.get(thisPlayerPoints.size()-1);
-				var otherPlayerPointsLastRound = otherPlayerPoints.get(thisPlayerPoints.size()-1);
-				var thisPlayerSum = thisPlayerPoints.stream().mapToInt(Integer::intValue).sum();
-				var otherPlayerSum = otherPlayerPoints.stream().mapToInt(Integer::intValue).sum();
-
-
-
-				lobbyPanel.addPointPanel(new JPanel(),thisPlayerPointsLastRound,otherPlayerPointsLastRound,category);
-				//lobbyPanel.getTotalScoreCounter1().setText(String.valueOf(thisPlayerSum));
-				//lobbyPanel.getTotalScoreCounter2().setText(String.valueOf(otherPlayerSum));
-				lobbyPanel.setPlayerSum(1, thisPlayerSum);
-				lobbyPanel.setPlayerSum(2, otherPlayerSum);
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
+
+
+				//NewScorePanel scorePanel = new NewScorePanel();
+				//view.showPanel(scorePanel);
+
+				//view.showPanel(lobbyPanel);
 
 
 				return new LobbyState(eventRepository);
 			}
 			case GAME_FINISHED -> {
-				// TODO
+				// TODO skicka till en slutlig resultatskärm samt räkna ut vem som har vunnit.
 				return this;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());

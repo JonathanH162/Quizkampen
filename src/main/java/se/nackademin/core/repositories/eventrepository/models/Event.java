@@ -1,6 +1,7 @@
 package se.nackademin.core.repositories.eventrepository.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Event implements Serializable {
 
@@ -9,7 +10,7 @@ public class Event implements Serializable {
 	private final EventType eventType;
 	private final HostId destination;
 	private HostId source;
-	private final Object data;
+	private Object data;
 
 	public void setSource(HostId source) {
 		this.source = source;
@@ -31,12 +32,24 @@ public class Event implements Serializable {
 		return eventType;
 	}
 
+	public static Event empty() {
+		return new Event(EventType.EMPTY, HostId.EMPTY, HostId.EMPTY, HostId.EMPTY);
+	}
+
 	public static Event toSelf(EventType eventType) {
 		return new Event(eventType, HostId.SELF, HostId.SELF, HostId.EMPTY);
 	}
 
 	public static Event toSelf(EventType eventType, Object data) {
 		return new Event(eventType, HostId.SELF, HostId.SELF, data);
+	}
+
+	public static Event toBothClients(EventType eventType) {
+		return new Event(eventType, HostId.BOTH_CLIENTS, HostId.EMPTY, HostId.EMPTY);
+	}
+
+	public static Event toBothClients(EventType eventType, Object data) {
+		return new Event(eventType, HostId.BOTH_CLIENTS, HostId.EMPTY, data);
 	}
 
 	public static Event toClient(EventType eventType, HostId client) {
@@ -55,7 +68,7 @@ public class Event implements Serializable {
 		return new Event(eventType, HostId.SERVER, HostId.EMPTY, data);
 	}
 
-	private Event(EventType eventType, HostId destination, HostId source, Object data) {
+	public Event(EventType eventType, HostId destination, HostId source, Object data) {
 		this.eventType = eventType;
 		this.destination = destination;
 		this.source = source;
@@ -66,6 +79,23 @@ public class Event implements Serializable {
 	public String toString() {
 		return "Event{" + "eventType=" + eventType + ", destination=" + destination + ", source=" + source + ", data="
 				+ data + '}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Event event = (Event) o;
+		return eventType == event.eventType && destination == event.destination && source == event.source && Objects.equals(data, event.data);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(eventType, destination, source, data);
+	}
+
+	public void setData(Object object) {
+		data = object;
 	}
 
 }

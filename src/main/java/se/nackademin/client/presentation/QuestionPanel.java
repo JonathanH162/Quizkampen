@@ -1,10 +1,8 @@
 package se.nackademin.client.presentation;
 
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.core.repositories.questionrepository.QuestionRepositoryService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionPanel extends JPanel {
-	private final QuestionRepositoryService questionService = new QuestionRepositoryService();
 	EventRepository eventRepository;
 
 	ArrayList<JButton> answerButtonList = new ArrayList<>();

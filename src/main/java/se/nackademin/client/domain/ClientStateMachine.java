@@ -3,6 +3,7 @@ package se.nackademin.client.domain;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se.nackademin.client.presentation.View;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.client.data.ClientEventRepository;
@@ -10,8 +11,9 @@ import se.nackademin.client.data.ClientEventRepository;
 public class ClientStateMachine {
 
     private ClientState currentState;
-    private final ClientEventRepository eventRepository = new ClientEventRepository();
+    private final EventRepository eventRepository = new ClientEventRepository();
     private final View view = new View(eventRepository);
+    private Event lastEvent = Event.empty();
 
     private static final Logger logger = LogManager.getLogger(ClientStateMachine.class);
 
@@ -29,8 +31,17 @@ public class ClientStateMachine {
             var event = eventRepository.get();
             logger.info("Event found: " + event.getEventType());
 
-            currentState = currentState.transitionToNextState(event, view, eventRepository);
+
+            if (eventShouldBeHandled(event)){
+                lastEvent = event;
+                currentState = currentState.transitionToNextState(event, view, eventRepository);
+            }
         }
+    }
+
+    private boolean eventShouldBeHandled(Event event){
+        // Returns true only if incoming event is not the same as last event.
+        return !event.equals(lastEvent);
     }
 
 }

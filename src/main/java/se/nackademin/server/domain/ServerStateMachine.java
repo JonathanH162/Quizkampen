@@ -2,6 +2,7 @@ package se.nackademin.server.domain;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.server.data.ServerEventRepository;
@@ -9,9 +10,10 @@ import se.nackademin.server.data.ServerEventRepository;
 import java.net.Socket;
 
 public class ServerStateMachine implements Runnable{
-
+	private final EventLog eventLog = new EventLog();
 	private ServerState currentState;
-	private final ServerEventRepository eventRepository = new ServerEventRepository();
+	private final ServerEventRepository eventRepository = new ServerEventRepository(eventLog);
+	private Event lastEvent = Event.empty();
 
 	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
 
@@ -29,8 +31,18 @@ public class ServerStateMachine implements Runnable{
 			var event = eventRepository.get();
 			logger.info("Event found: " + event.getEventType());
 
-			currentState = currentState.transitionToNextState(event, eventRepository);
+			if (eventShouldBeHandled(event)){
+				lastEvent = event;
+				eventLog.log(event);
+				currentState = currentState.transitionToNextState(event, eventRepository, eventLog);
+			}
+
 		}
+	}
+
+	private boolean eventShouldBeHandled(Event event){
+		// Returns true only if incoming event is not the same as last event.
+		return !event.equals(lastEvent);
 	}
 
 
