@@ -38,7 +38,7 @@ public class WelcomeScreenState implements ClientState {
 
 	private ClientState connectToServer(View view, EventRepository eventRepository) {
 		view.showPanel(welcomePanel);
-		welcomePanel.getStartButton().setVisible(false);//Varför får den vara false?
+		welcomePanel.getStartButton().setVisible(false);//Varför får den vara false? - För att den ska försvinna då den går över till connecting to Server.
 		welcomePanel.getWelcomeLabel().setText("Connecting to Server...");
 		try {
 			var properties = new ConfigProperties();

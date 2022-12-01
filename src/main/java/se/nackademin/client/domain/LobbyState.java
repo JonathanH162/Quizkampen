@@ -11,7 +11,6 @@ public class LobbyState implements ClientState {
 	private final CategoryPanel categoryPanel;
 	private final LobbyPanel lobbyPanel = new LobbyPanel();
 	private String category;
-	private int roundCounter;
 
 	public LobbyState(EventRepository eventRepository) {
 		this.categoryPanel = new CategoryPanel(eventRepository);
@@ -54,8 +53,6 @@ public class LobbyState implements ClientState {
 
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
-
-
 
 				return new LobbyState(eventRepository);
 			}

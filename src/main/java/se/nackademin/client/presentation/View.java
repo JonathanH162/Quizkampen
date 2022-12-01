@@ -7,8 +7,6 @@ import se.nackademin.core.repositories.eventrepository.EventRepository;
 
 public class View extends JFrame {
 
-	JButton startButton;
-	JLabel welcomeLabel;
 	EventRepository eventRepository;
 	private JPanel currentPanel = new JPanel();
 
@@ -16,7 +14,7 @@ public class View extends JFrame {
 	public View(EventRepository eventRepository) throws HeadlessException {
 		this.eventRepository = eventRepository;
 		setTitle("Quizkampen");
-		setSize(350, 400);
+		setSize(450, 500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
