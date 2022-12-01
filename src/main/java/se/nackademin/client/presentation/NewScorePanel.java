@@ -1,6 +1,7 @@
 package se.nackademin.client.presentation;
 
 import se.nackademin.core.EventLog;
+import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public class NewScorePanel extends JPanel {
 
 	private NewScorePanel(){}
 
-	public static NewScorePanel create(EventLog eventLog) {
+	public static NewScorePanel create(EventLog eventLog, EventRepository eventRepository) {
 		var scorePanel = new NewScorePanel();
 		var playerOneHashmap = eventLog.getPointsForAllRoundsSoFar(HostId.CLIENT_ONE);
 		var playerTwoHashmap = eventLog.getPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
@@ -53,8 +54,12 @@ public class NewScorePanel extends JPanel {
 
 		leftPanel.setLayout(new GridLayout(playerOneLabels.size(), 1));
 		rightPanel.setLayout(new GridLayout(playerTwoLabels.size(), 1));
-		playerOneLabels.forEach((label) -> leftPanel.add(label));
-		playerTwoLabels.forEach((label) -> rightPanel.add(label));
+		topPanel.add(firstPlayer, BorderLayout.WEST);
+		topPanel.add(secondPlayer, BorderLayout.EAST);
+
+		playerOneLabels.forEach(leftPanel::add);
+		playerTwoLabels.forEach(rightPanel::add);
+
 		return scorePanel;
 	}
 
