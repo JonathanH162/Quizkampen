@@ -1,6 +1,8 @@
 package se.nackademin.client.presentation;
 
 
+import se.nackademin.core.repositories.eventrepository.models.Event;
+import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
@@ -32,16 +34,16 @@ public class LobbyPanel extends JPanel {
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
 		add(namePanel, BorderLayout.NORTH);
-		add(scorePanel, BorderLayout.CENTER);
+//		add(scorePanel, BorderLayout.CENTER);
 		//add(categoryAndPointPanel, BorderLayout.CENTER);
 		PlaybuttonPanel.add(playButton);
 		add(PlaybuttonPanel, BorderLayout.SOUTH);
-		namePanel.setLayout(new BorderLayout());
-		namePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		namePanel.add(nameLabel1, BorderLayout.WEST);
-		nameLabel1.setFont(font);
-		namePanel.add(nameLabel2, BorderLayout.EAST);
-		nameLabel2.setFont(font);
+//		namePanel.setLayout(new BorderLayout());
+//		namePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+//		namePanel.add(nameLabel1, BorderLayout.WEST);
+//		nameLabel1.setFont(font);
+//		namePanel.add(nameLabel2, BorderLayout.EAST);
+//		nameLabel2.setFont(font);
 		//categoryAndPointPanel.setLayout(new GridLayout(4, 1));
 		//totalScorePanel.setLayout(new BorderLayout());
 		//totalScorePanel.add(totalScoreLabel, BorderLayout.CENTER);
@@ -53,15 +55,7 @@ public class LobbyPanel extends JPanel {
 		revalidate();
 		repaint();
 	}
-	public void addPointPanel(JPanel pointPanel, int player1RoundPoints, int player2RoundPoints, String categoryName) {
-		pointPanel.setLayout(new BorderLayout());
-		pointPanel.add(new JLabel(String.valueOf(player1RoundPoints)), BorderLayout.WEST);
-		pointPanel.add(new JLabel(String.valueOf(player2RoundPoints)), BorderLayout.EAST);
-		pointPanel.add(new JLabel(categoryName, SwingConstants.CENTER), BorderLayout.CENTER);
-		pointPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
-		categoryAndPointPanel.add(pointPanel);
 
-	}
 	public JButton getPlayButton() {
 		return playButton;
 	}
@@ -76,7 +70,6 @@ public class LobbyPanel extends JPanel {
 		}
 
 	}
-
 	public ScorePanel getScorePanel() {
 		return scorePanel;
 	}

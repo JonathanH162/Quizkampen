@@ -66,9 +66,13 @@ public class LobbyState implements ClientState {
 				// T ex: eventLog.getPointsForAllRoundsSoFar()
 
 				// lobbyPanel.getScorePanel().display(tempMap);
+				view.showPanel(NewScorePanel.create(eventLog));
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
 
-				lobbyPanel.setPlayerSum(1, thisPlayerSum);
-				lobbyPanel.setPlayerSum(2, otherPlayerSum);
 				lobbyPanel.setPlayButtonListener((e) -> eventRepository.add(Event.toSelf(EventType.SHOW_CATEGORIES_BUTTON)));
 				view.showPanel(lobbyPanel);
 
