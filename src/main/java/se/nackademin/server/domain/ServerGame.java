@@ -16,7 +16,6 @@ public class ServerGame implements ServerState {
 
 	QuestionRepositoryService questionService = new QuestionRepositoryService();
 	ConfigProperties properties = new ConfigProperties();
-	// private HashMap<HostId, List<Integer>> points = new HashMap<>();
 
 	@Override
 	public ServerState transitionToNextState(Event event, EventRepository eventRepository, EventLog eventLog) {
@@ -35,14 +34,6 @@ public class ServerGame implements ServerState {
 				return this;
 			}
 			case ROUND_FINISHED -> {
-/*                var clientResults = (List<Boolean>) event.getData();
-                var clientPoints = Collections.frequency(clientResults,true);
-
-                if (!points.containsKey(event.getSource())) {
-                    points.put(event.getSource(), new ArrayList<>());
-                }
-                points.get(event.getSource()).add(clientPoints);
-                */
 
 				if (eventLog.bothPlayersCompletedRound() && !eventLog.gameIsFinished()) {
 					eventRepository.add(Event.toBothClients(EventType.ROUND_FINISHED, eventLog));

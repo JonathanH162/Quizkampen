@@ -1,8 +1,8 @@
 package se.nackademin.client.domain;
 
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.client.presentation.QuestionPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.WaitingPanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
@@ -10,7 +10,6 @@ import se.nackademin.core.repositories.questionrepository.QuestionRepositoryServ
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class QuestionState implements ClientState {
@@ -34,37 +33,30 @@ public class QuestionState implements ClientState {
                     remainingQuestions = (ArrayList<String>) event.getData();
                 }
 
-                // Ta en fråga
-                // Sätt currentQuestion till frågan
                 currentQuestion = remainingQuestions.remove(0);
 
-                //System.out.println(questionService.getAllPossibleAnswers(currentQuestion));
-
-                questionPanel.getQuestionLabel().setText(currentQuestion);//Varför tar currentQuestion istället answer?---------------------
+                questionPanel.getQuestionLabel().setText(currentQuestion);
                 questionPanel.addAnswerButtonsToList(questionPanel.getAnswerButtonList(), questionService.getAllPossibleAnswers(currentQuestion));
                 questionPanel.addButtonsToPanel(questionPanel.getAnswerButtonList(), questionPanel.getButtonPanel());
 
                 view.showPanel(questionPanel);
 
                 return this;
-
             }
             case ANSWER_CHOSEN_BUTTON -> {
 
-                // Kolla om svaret är rätt
                 var correctAnswer = questionService.getCorrectAnswer(currentQuestion);
                 var result = event.getData().equals(correctAnswer);
 
                 answerResults.add(result);
 
-                // Uppdatera vyn baserat på om svaret var rätt eller fel
                 updateViewBasedOnResult(view,event,result,correctAnswer);
 
                 sleepForAWhile();
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
 
-                    view.showWaitingPanel(); // TODO maybe change text
+                    view.showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
                     return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));
@@ -74,9 +66,7 @@ public class QuestionState implements ClientState {
             }
             default -> throw new RuntimeException("Event not handled: " + event.getEventType());
         }
-
     }
-
     private void sleepForAWhile() {
         try {
             Thread.sleep(1000);
@@ -84,7 +74,6 @@ public class QuestionState implements ClientState {
             throw new RuntimeException();
         }
     }
-
     private void updateViewBasedOnResult(View view, Event event, Boolean result, String correctAnswer){
         if (result) {
             for (int i = 0; i <questionPanel.getAnswerButtonList().size() ; i++) {

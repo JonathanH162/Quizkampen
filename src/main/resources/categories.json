@@ -39,27 +39,27 @@
           "correctAnswer": "26,2 mil"
         },
         {
-          "question": "Vilka är de fem färgerna på ringen för de olympiska spelen?",
+          "question": "Vilka är de fem färgerna på ringarna för de olympiska spelen?",
           "possibleAnswer": ["Blå, röd, gul, grön och svart", "Blå, röd, gul, grön och violett", "Indigo, röd, lila, grön och svart", "Blå, röd, gul, orange och grön"],
           "correctAnswer": "Blå, röd, gul, grön och svart"
         },
         {
-          "question": "  Hur många gånger vann Michael Jordan mästerskap för Chicago Bulls?",
+          "question": "  Hur många gånger vann Michael Jordan mästerskap med Chicago Bulls?",
           "possibleAnswer": ["5", "7", "6", "4"],
           "correctAnswer": "6"
         },
         {
-          "question": "  Vilken sport har utrustning som heter foil?",
+          "question": "  I Vilken sport använder man utrustning som heter foil?",
           "possibleAnswer": ["fäktning","polo", "golf", "boxning"],
           "correctAnswer": "fäktning"
         },
         {
-          "question": " Vilken OS -sport innefattar tuckar och gäddor?",
+          "question": " Vilken OS-sport innefattar Tuckar och Gäddor?",
           "possibleAnswer": ["simning","fäktning", "bowling", "polo"],
           "correctAnswer": "simning"
         },
         {
-          "question": "  Manny Pacquiao är en legendarisk boxare från vilket land?",
+          "question": "  Manny Pacquiao är en legendarisk boxare ifrån vilket land?",
           "possibleAnswer": ["Filippinerna", "Korea", "Kina", "Mexiko"],
           "correctAnswer": "Filippinerna"
         }
@@ -85,17 +85,17 @@
         },
         {
           "question": " I vilken riktning flyger nordliga fåglar på vintern?",
-          "possibleAnswer": ["North","Öst", "West", "Syd"],
+          "possibleAnswer": ["Nord","Öst", "Väst", "Syd"],
           "correctAnswer": "Syd"
         },
         {
-          "question": " Vad kallar man en påfågelhona?",
-          "possibleAnswer": [" Peafowl","Peananny","Peahens", "Pioner"],
+          "question": " Vad kallar man påfågelhonor på Engelska?",
+          "possibleAnswer": ["Pea-fowls","Pea-nannies","Pea-hens", "Pioner"],
           "correctAnswer": "Peahens"
         },
         {
           "question": " Vilken hundras är störst i storlek?",
-          "possibleAnswer": ["Tysk schäfer", "Teacup Chihuahua", "Engelsk mastiff", "Golden Retriever"],
+          "possibleAnswer": ["Tysk schäfer", "Teacup Chihuahua", "Engelsk Mastiff", "Golden Retriever"],
           "correctAnswer": "Engelsk mastiff"
         }
       ]
@@ -104,7 +104,7 @@
       "name": "Film",
       "cards": [
         {
-          "question": " Vad hette Harry Potters husdjursuggla?",
+          "question": " Vad heter Harry Potters husdjursuggla?",
           "possibleAnswer": [" Errol","Hedwig", "Skurthanks", "Skabbar"],
           "correctAnswer": "Hedwig"
         },
@@ -114,17 +114,17 @@
           "correctAnswer": "Volterra"
         },
         {
-          "question": " Daenerys Targaryen är för alltid känt för att vara…",
+          "question": " Daenerys Targaryen är för alltid känd för att vara…",
           "possibleAnswer": ["Nordens drottning", "Drakarnas mor", "Drakarnas drottning", "Nordens mor"],
           "correctAnswer": "Drakarnas mor"
         },
         {
           "question": " Vad var symbolen för Katniss Everdeen i Hungerspelen?",
-          "possibleAnswer": ["Mockingjay","Örn", "Lejoninna", "Svan"],
-          "correctAnswer": "Mockingjay"
+          "possibleAnswer": ["Härmskrika","Örn", "Lejoninna", "Svan"],
+          "correctAnswer": "Härmskrika"
         },
         {
-          "question": " Vad är mellannamnet på Christian Gray i Fifty Shades of Grey?",
+          "question": " Vad är mellannamnet på Christian Grey i Fifty Shades of Grey?",
           "possibleAnswer": ["Huntington","Vanderbilt","Trevelyan", "Vadställe"],
           "correctAnswer": "Trevelyan"
         },
@@ -139,19 +139,19 @@
       "name": "Vetenskap",
       "cards": [
         {
-          "question": " Det är allt som upptar utrymme och har massa.",
+          "question": "Det är allt som upptar utrymme och har massa, vad är det?",
           "possibleAnswer": [" atom","materia", "begrepp", "hypotes"],
           "correctAnswer": "Materia"
         },
         {
-          "question": " Det är det största organet i vår kropp..",
+          "question": " Det är det största organet i vår kropp, vad är det?",
           "possibleAnswer": ["lungor", "mage", "hud", "hjärna"],
           "correctAnswer": "hud"
         },
         {
-          "question": " Vilken kraft håller oss alla grundad?",
-          "possibleAnswer": ["allvar", "friktion", "motstånd", "spänning"],
-          "correctAnswer": "allvar"
+          "question": " Vilken kraft håller oss alla grundade?",
+          "possibleAnswer": ["gravitation", "friktion", "motstånd", "spänning"],
+          "correctAnswer": "gravitation"
         },
         {
           "question": " Vad kallar du en utbildad gissning?",

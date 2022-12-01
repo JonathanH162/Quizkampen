@@ -40,7 +40,6 @@ public class ClientStateMachine {
     }
 
     private boolean eventShouldBeHandled(Event event){
-        // Returns true only if incoming event is not the same as last event.
         return !event.equals(lastEvent);
     }
 

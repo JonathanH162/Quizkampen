@@ -1,76 +1,23 @@
 package se.nackademin.client.presentation;
 
-
-import se.nackademin.core.repositories.eventrepository.models.Event;
-import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.core.repositories.eventrepository.models.HostId;
-
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class LobbyPanel extends JPanel {
-	private JPanel namePanel = new JPanel();
-	int player1TotalPoints = 0;
-	int player2TotalPoints = 0;
-	Font font = new Font("", Font.PLAIN, 20);
-	JPanel totalScorePanel = new JPanel();
-	JPanel categoryAndPointPanel = new JPanel();
-	JLabel nameLabel1 = new JLabel("Du");
-	JLabel nameLabel2 = new JLabel("Motståndare");
-	JLabel totalScoreLabel = new JLabel("Totalpoäng", SwingConstants.CENTER);
+	private final JPanel namePanel = new JPanel();
 	JButton playButton = new JButton("Ny Runda");
-	JLabel totalScoreCounter1 = new JLabel(String.valueOf(player1TotalPoints));
-	JLabel totalScoreCounter2 = new JLabel(String.valueOf(player2TotalPoints));
-	JPanel PlaybuttonPanel = new JPanel();
-	private ScorePanel scorePanel = new ScorePanel();
-
 
 
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
 		add(namePanel, BorderLayout.NORTH);
-//		add(scorePanel, BorderLayout.CENTER);
-		//add(categoryAndPointPanel, BorderLayout.CENTER);
-		PlaybuttonPanel.add(playButton);
-		add(PlaybuttonPanel, BorderLayout.SOUTH);
-//		namePanel.setLayout(new BorderLayout());
-//		namePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-//		namePanel.add(nameLabel1, BorderLayout.WEST);
-//		nameLabel1.setFont(font);
-//		namePanel.add(nameLabel2, BorderLayout.EAST);
-//		nameLabel2.setFont(font);
-		//categoryAndPointPanel.setLayout(new GridLayout(4, 1));
-		//totalScorePanel.setLayout(new BorderLayout());
-		//totalScorePanel.add(totalScoreLabel, BorderLayout.CENTER);
-		//totalScorePanel.add(totalScoreCounter1, BorderLayout.EAST);
-		//totalScorePanel.add(totalScoreCounter2, BorderLayout.WEST);
-		//totalScorePanel.setBorder(new EmptyBorder(10, 30, 10, 30));
-		//add(totalScorePanel);
-		//categoryAndPointPanel.add(totalScorePanel);
+		add(playButton, BorderLayout.SOUTH);
 		revalidate();
 		repaint();
 	}
 
-	public JButton getPlayButton() {
-		return playButton;
-	}
 	public void setPlayButtonListener(ActionListener actionListener) {
 		playButton.addActionListener(actionListener);
-	}
-	public void setPlayerSum(int player, int sum) {
-		if (player == 1) {
-			totalScoreCounter1.setText(String.valueOf(sum));
-		} else if (player == 2) {
-			totalScoreCounter2.setText(String.valueOf(sum));
-		}
-
-	}
-	public ScorePanel getScorePanel() {
-		return scorePanel;
 	}
 }

@@ -34,7 +34,6 @@ public class SocketOutputQueue implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-
 				Event objectToSend = objectsToSendQueue.take();
 				objectOutputStream.writeObject(objectToSend);
 				objectOutputStream.flush();

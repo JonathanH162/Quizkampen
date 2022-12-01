@@ -6,7 +6,6 @@ import se.nackademin.client.presentation.WelcomePanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.utils.ConfigProperties;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class WelcomeScreenState implements ClientState {
 
 	private ClientState connectToServer(View view, EventRepository eventRepository) {
 		view.showPanel(welcomePanel);
-		welcomePanel.getStartButton().setVisible(false);//Varför får den vara false?
+		welcomePanel.getStartButton().setVisible(false);//Varför får den vara false? - För att den ska försvinna då den går över till connecting to Server.
 		welcomePanel.getWelcomeLabel().setText("Connecting to Server...");
 		try {
 			var properties = new ConfigProperties();
