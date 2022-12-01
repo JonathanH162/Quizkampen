@@ -1,8 +1,8 @@
 package se.nackademin.client.domain;
 
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.client.presentation.QuestionPanel;
 import se.nackademin.client.presentation.View;
+import se.nackademin.client.presentation.WaitingPanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
@@ -10,7 +10,6 @@ import se.nackademin.core.repositories.questionrepository.QuestionRepositoryServ
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class QuestionState implements ClientState {
@@ -64,7 +63,7 @@ public class QuestionState implements ClientState {
                 if(remainingQuestions.isEmpty()) {
                     eventRepository.add(Event.toServer(EventType.ROUND_FINISHED,answerResults));
 
-                    view.showWaitingPanel(); // TODO maybe change text
+                    view.showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
                     return new LobbyState(eventRepository);
                 } else {
                     eventRepository.add(Event.toSelf(EventType.SHOW_QUESTION));

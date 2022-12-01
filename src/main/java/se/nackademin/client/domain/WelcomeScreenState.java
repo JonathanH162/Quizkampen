@@ -6,7 +6,6 @@ import se.nackademin.client.presentation.WelcomePanel;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.utils.ConfigProperties;
 
 import java.io.IOException;

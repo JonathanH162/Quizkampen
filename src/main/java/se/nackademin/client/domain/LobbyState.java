@@ -4,14 +4,8 @@ import se.nackademin.client.presentation.*;
 import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.EventRepository;
 import se.nackademin.core.repositories.eventrepository.models.Event;
-import se.nackademin.client.data.ClientEventRepository;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class LobbyState implements ClientState {
 	private final CategoryPanel categoryPanel;
@@ -27,8 +21,7 @@ public class LobbyState implements ClientState {
 	public ClientState transitionToNextState(Event event, View view, EventRepository eventRepository) {
 		switch (event.getEventType()) {
 			case WAITING_FOR_CHOICE -> {
-				view.showWaitingPanel();
-				eventRepository.setSourceId((HostId) event.getData());
+				view.showPanel(new WaitingPanel("Väntar på att motståndaren ska välja kategori."));
 				return new QuestionState(eventRepository);
 			}
 			case NEXT_TO_CHOOSE -> {
@@ -52,7 +45,7 @@ public class LobbyState implements ClientState {
 			}
 			case ROUND_FINISHED -> {
 				var eventLog = (EventLog) event.getData();
-				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
+				view.showPanel(ScorePanel.create(eventLog,eventRepository));
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e) {
@@ -68,7 +61,7 @@ public class LobbyState implements ClientState {
 			}
 			case GAME_FINISHED -> {
 				var eventLog = (EventLog) event.getData();
-				view.showPanel(NewScorePanel.create(eventLog,eventRepository));
+				view.showPanel(ScorePanel.create(eventLog,eventRepository));
 				return this;
 			}
 				default -> throw new RuntimeException("Event not handled: " + event.getEventType());
