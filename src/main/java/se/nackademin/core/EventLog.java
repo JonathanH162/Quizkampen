@@ -5,13 +5,14 @@ import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.core.utils.ConfigProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class EventLog {
+public class EventLog implements Serializable {
 
 	private final List<Event> events = new ArrayList<>();
 	private final ConfigProperties configProperties = new ConfigProperties();
