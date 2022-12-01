@@ -23,25 +23,25 @@ class EventLogTest {
 	@BeforeEach
 	void setUp() {
 		eventListOne = new ArrayList<>();
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE);
-		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE);
-		eventListOne.add(new Event(EventType.CATEGORY_CHOSEN, HostId.SERVER, HostId.null, "Historia");
-		eventListOne.add(new Event(EventType.SHOW_QUESTION, HostId.CLIENT_ONE, HostId.SERVER, List.of("Vilken historisk person är känd som 'Il Duce'?", "Var ligger den katolska nunnan Moder Teresa begraven?", "Vad användes Judestjärnan till under Andra världskriget?"));
-		eventListOne.add(new Event(EventType.SHOW_QUESTION, HostId.CLIENT_TWO, HostId.SERVER, List.of("Vilken historisk person är känd som 'Il Duce'?", "Var ligger den katolska nunnan Moder Teresa begraven?", "Vad användes Judestjärnan till under Andra världskriget?"));
-		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.SERVER, HostId.null, List.of(true, false, true));
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_TWO, HostId.SERVER, HostId.CLIENT_TWO);
-		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.SERVER, HostId.CLIENT_TWO);
-		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.SERVER, HostId.CLIENT_ONE, List.of(false, false, false));
-		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, HostId.SERVER, HostId.EMPTY);
-		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, HostId.SERVER, HostId.EMPTY);
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF);
-		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE);
-		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE);
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE));
+		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE));
+		eventListOne.add(new Event(EventType.CATEGORY_CHOSEN, HostId.SERVER, HostId.EMPTY, "Historia"));
+		eventListOne.add(new Event(EventType.SHOW_QUESTION, HostId.CLIENT_ONE, HostId.SERVER, List.of("Vilken historisk person är känd som 'Il Duce'?", "Var ligger den katolska nunnan Moder Teresa begraven?", "Vad användes Judestjärnan till under Andra världskriget?")));
+		eventListOne.add(new Event(EventType.SHOW_QUESTION, HostId.CLIENT_TWO, HostId.SERVER, List.of("Vilken historisk person är känd som 'Il Duce'?", "Var ligger den katolska nunnan Moder Teresa begraven?", "Vad användes Judestjärnan till under Andra världskriget?")));
+		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.SERVER, HostId.EMPTY, List.of(true, false, true)));
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_TWO, HostId.SERVER, HostId.CLIENT_TWO));
+		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_TWO, HostId.SERVER, HostId.CLIENT_TWO));
+		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.SERVER, HostId.CLIENT_ONE, List.of(false, false, false)));
+		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.CLIENT_ONE, HostId.SERVER, HostId.EMPTY));
+		eventListOne.add(new Event(EventType.ROUND_FINISHED, HostId.CLIENT_TWO, HostId.SERVER, HostId.EMPTY));
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.START_ROUND, HostId.SELF, HostId.SERVER, HostId.SELF));
+		eventListOne.add(new Event(EventType.NEXT_TO_CHOOSE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE));
+		eventListOne.add(new Event(EventType.WAITING_FOR_CHOICE, HostId.CLIENT_ONE, HostId.SERVER, HostId.CLIENT_ONE));
 
 		eventListTwo = new ArrayList<>(eventListOne);
 

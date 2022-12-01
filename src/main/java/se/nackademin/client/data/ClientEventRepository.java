@@ -14,7 +14,7 @@ public class ClientEventRepository implements EventRepository {
 
 	private SocketOutputQueue socketOutputQueue;
 	private final SocketInputQueue socketInputQueue;
-	private HostId clientId;
+	private HostId clientId = HostId.EMPTY;
 	private static final Logger logger = LogManager.getLogger(ClientEventRepository.class);
 
 
@@ -38,7 +38,11 @@ public class ClientEventRepository implements EventRepository {
 		return clientId;
 	}
 	public Event get() {
-		return socketInputQueue.take();
+		var event = socketInputQueue.take();
+		if (clientId.equals(HostId.EMPTY) && event.getSource().equals(HostId.SERVER)) {
+			clientId = event.getDestination();
+		}
+		return event;
 	}
 
 	public void add(Event event) {
