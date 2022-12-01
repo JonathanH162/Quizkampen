@@ -4,6 +4,7 @@ import se.nackademin.core.EventLog;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,9 +20,6 @@ public class NewScorePanel extends JPanel {
 		var playerTwoHashmap = eventLog.getPointsForAllRoundsSoFar(HostId.CLIENT_TWO);
 		var playerOneLabels = createLabels(playerOneHashmap);
 		var playerTwoLabels = createLabels(playerTwoHashmap);
-		// scorePanel.addLabelsToPanel(playerOneLabels);
-		// scorePanel.addLabelsToPanel(playerTwoLabels);
-		// scorePanel.setLayout(new GridLayout(5,2));
 
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
@@ -46,6 +44,12 @@ public class NewScorePanel extends JPanel {
 		scorePanel.add(leftPanel, BorderLayout.WEST);
 		scorePanel.add(centerPanel, BorderLayout.CENTER);
 		scorePanel.add(rightPanel, BorderLayout.EAST);
+		scorePanel.add(topPanel, BorderLayout.NORTH);
+		scorePanel.add(bottomPanel, BorderLayout.SOUTH);
+
+		bottomPanel.add(new JLabel(String.valueOf(getTotalPoints(playerOneHashmap))), BorderLayout.WEST);
+		bottomPanel.add(new JLabel(String.valueOf(getTotalPoints(playerTwoHashmap))), BorderLayout.EAST);
+		bottomPanel.add(new JLabel("Totalpoäng"), BorderLayout.CENTER);
 
 		leftPanel.setLayout(new GridLayout(playerOneLabels.size(), 1));
 		rightPanel.setLayout(new GridLayout(playerTwoLabels.size(), 1));
@@ -65,9 +69,4 @@ public class NewScorePanel extends JPanel {
 		return pointsMap.values().stream().mapToInt(Integer::intValue).sum();
 	}
 
-	private void addLabelsToPanel(List<JLabel> labels) {
-		for (JLabel label : labels) {
-			add(label);
-		}
-	}
 }
