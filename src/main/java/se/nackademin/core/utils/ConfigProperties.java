@@ -5,12 +5,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 import java.util.Properties;
 
-public class ConfigProperties {
+public class ConfigProperties implements Serializable {
 
     static final String CONFIG_FILE = Objects.requireNonNull(ConfigProperties.class.getClassLoader().getResource("config.properties")).getFile();
     private final Properties properties = new Properties();

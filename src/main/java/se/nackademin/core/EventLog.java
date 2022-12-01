@@ -1,9 +1,12 @@
 package se.nackademin.core;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se.nackademin.core.repositories.eventrepository.models.Event;
 import se.nackademin.core.repositories.eventrepository.models.EventType;
 import se.nackademin.core.repositories.eventrepository.models.HostId;
 import se.nackademin.core.utils.ConfigProperties;
+import se.nackademin.server.data.ServerEventRepository;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,8 +19,10 @@ public class EventLog implements Serializable {
 
 	private final List<Event> events = new ArrayList<>();
 	private final ConfigProperties configProperties = new ConfigProperties();
+	private static final Logger logger = LogManager.getLogger(EventLog.class);
 
 	public void log(Event event) {
+		logger.info(event);
 		events.add(event);
 	}
 
@@ -58,7 +63,7 @@ public class EventLog implements Serializable {
 				.filter((event -> event.getSource().equals(player)))
 				.filter(event -> event.getEventType().equals(EventType.ROUND_FINISHED))
 				.filter(event -> counter.getAndIncrement() == round)
-				.map(event -> (List<Integer>) event.getData())
+				.map(event -> (List<Boolean>) event.getData())
 				.map((list) -> Collections.frequency(list, true))
 				.findFirst()
 				.orElseThrow();

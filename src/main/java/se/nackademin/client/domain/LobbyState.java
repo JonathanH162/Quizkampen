@@ -67,7 +67,7 @@ public class LobbyState implements ClientState {
 				// TODO Send whatever is needed to getScorePanel
 				// T ex: eventLog.getPointsForAllRoundsSoFar()
 
-				lobbyPanel.getScorePanel().display(tempMap);
+				// lobbyPanel.getScorePanel().display(tempMap);
 
 				lobbyPanel.setPlayerSum(1, thisPlayerSum);
 				lobbyPanel.setPlayerSum(2, otherPlayerSum);

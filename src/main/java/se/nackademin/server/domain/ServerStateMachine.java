@@ -12,7 +12,7 @@ import java.net.Socket;
 public class ServerStateMachine implements Runnable{
 	private final EventLog eventLog = new EventLog();
 	private ServerState currentState;
-	private final ServerEventRepository eventRepository = new ServerEventRepository();
+	private final ServerEventRepository eventRepository = new ServerEventRepository(eventLog);
 	private Event lastEvent = Event.empty();
 
 	private static final Logger logger = LogManager.getLogger(ServerStateMachine.class);
