@@ -47,6 +47,7 @@ public class ServerGame implements ServerState {
 				if (eventLog.bothPlayersCompletedRound() && !eventLog.gameIsFinished()) {
 					eventRepository.add(Event.toBothClients(EventType.ROUND_FINISHED, eventLog));
 					waitForAWhile();
+					eventRepository.add(Event.toSelf(EventType.START_ROUND));
 				}
 
 				if (eventLog.gameIsFinished()) {
@@ -54,7 +55,6 @@ public class ServerGame implements ServerState {
 					Thread.currentThread().interrupt();
 				}
 
-				eventRepository.add(Event.toSelf(EventType.START_ROUND));
 				return this;
 			}
 			default -> throw new RuntimeException("Event not handled: " + event.getEventType());

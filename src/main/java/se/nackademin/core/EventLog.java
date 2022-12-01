@@ -48,7 +48,7 @@ public class EventLog implements Serializable {
 
 	public Long getNumberOfCompletedRounds() {
 		var count = countEventType(EventType.ROUND_FINISHED);
-		return count / 2;
+		return count / 4;
 	}
 
 	public boolean gameIsFinished() {
@@ -58,20 +58,30 @@ public class EventLog implements Serializable {
 	}
 
 	public Integer getPlayerPointsForRound(HostId player, Integer round) {
-		var counter = new AtomicInteger(1);
-		return events.stream()
-				.filter((event -> event.getSource().equals(player)))
-				.filter(event -> event.getEventType().equals(EventType.ROUND_FINISHED))
-				.filter(event -> counter.getAndIncrement() == round)
-				.map(event -> (List<Boolean>) event.getData())
-				.map((list) -> Collections.frequency(list, true))
-				.findFirst()
-				.orElseThrow();
+		synchronized (events) {
+			AtomicInteger counter = new AtomicInteger(1);
+			System.out.println(round);
+			return events.stream()
+					.filter((event -> event.getSource().equals(player)))
+					.filter(event -> event.getEventType().equals(EventType.ROUND_FINISHED))
+					.peek((event -> System.out.println(event + " " + counter)))
+					.filter(event -> counter.getAndIncrement() == round)
+					.peek((event -> System.out.println(event + " " + counter)))
+					.map(event -> (List<Boolean>) event.getData())
+					.map((list) -> Collections.frequency(list, true))
+					.findFirst()
+					.orElseThrow();
+		}
 	}
 
 	public HashMap<Integer, Integer> getPointsForAllRoundsSoFar(HostId player) {
 		var points = new HashMap<Integer, Integer>();
 		var numberOfCompletedRounds = getNumberOfCompletedRounds();
+		System.out.println("lajsdfljsdlfjlkfjslkjflskjfl;"
+				+ "jfljdklfjlsdkjflkjfljasldfjsldfjlksdajfljdslkfjadlfjdslfjdslfj" +numberOfCompletedRounds);
+		if (numberOfCompletedRounds == 0) {
+			throw new RuntimeException("No round is finished by both players.");
+		}
 		for (int round = 1; round <= numberOfCompletedRounds; round++) {
 			points.put(round, getPlayerPointsForRound(player, round));
 		}
