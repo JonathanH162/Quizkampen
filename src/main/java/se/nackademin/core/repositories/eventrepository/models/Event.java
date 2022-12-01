@@ -45,7 +45,7 @@ public class Event implements Serializable {
 	}
 
 	public static Event toClient(EventType eventType, HostId client) {
-		return new Event(eventType, client, HostId.EMPTY, HostId.EMPTY);
+		return new Event(eventType, client, HostId.EMPTY, HostId.EMPTY);//Varför två HostId.EMPTY?
 	}
 
 	public static Event toClient(EventType eventType, HostId client, Object data) {

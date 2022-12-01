@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class ConfigProperties {
 
-    static final String CONFIG_FILE = Objects.requireNonNull(ConfigProperties.class.getClassLoader().getResource("config.properties")).getFile();
+    static final String CONFIG_FILE = Objects.requireNonNull(ConfigProperties.class.getClassLoader().getResource("config.properties")).getFile(); //Här checkas att är filen tomt eller nej
     private final Properties properties = new Properties();
     private static final Logger logger = LogManager.getLogger(ConfigProperties.class);
 
